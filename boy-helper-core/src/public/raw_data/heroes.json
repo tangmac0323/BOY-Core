@@ -1,0 +1,39 @@
+{
+  "上官影": {
+    "type": "vanguard",
+    "title": "黑衫刃影",
+    "name": "上官影",
+    "formation-config": {
+      "max-lvl": 10,
+      "default": "vanguard",
+      "extra": [
+        "strike",
+        "commander",
+        "super_conduit",
+        "rage",
+        "restore_energy",
+        "anti_mage",
+        "curse",
+        "thunderstorm"
+      ]
+    }
+  },
+  "爱丽丝": {
+    "type": "vanguard",
+    "title": "灵刃之主",
+    "name": "爱丽丝",
+    "formation-config": {
+      "max-lvl": 8,
+      "default": "vanguard",
+      "extra": [
+        "strike",
+        "commander",
+        "super_conduit",
+        "rage",
+        "tenacity",
+        "ranger",
+        "force_field"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/* Main content styling */
+.main-content {
+  flex: 1; /* This will make the main content take up the remaining space */
+  padding: 20px;
+  background-color: #f4f4f4;
+  overflow-y: auto; /* Allow scrolling if the content overflows */
+  margin-left: 140px; /* Adjust the margin to match the smaller sidebar */
+  transition: margin-left 0.3s ease; /* Smooth transition */
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 100px; /* Auto-collapse on small screens */
+  }
+}
+
+.main-content.expanded {
+  margin-left: 60px; /* Adjusted margin for collapsed sidebar */
+}
+/*  */

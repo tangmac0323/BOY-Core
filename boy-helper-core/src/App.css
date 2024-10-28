@@ -1,0 +1,7 @@
+/* Layout for the main content and sidebar container */
+.main-layout {
+  display: flex; /* Apply flexbox to align sidebar and main content */
+  margin-top: 60px; /* Space below the fixed header */
+  height: calc(100vh - 60px); /* Full height minus the header height */
+  justify-content: space-between;
+}

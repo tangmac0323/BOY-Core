@@ -1,0 +1,92 @@
+{
+  "vanguard": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT",
+    "6": "LVL-6 EFFECT",
+    "7": "LVL-7 EFFECT",
+    "8": "LVL-8 EFFECT",
+    "9": "LVL-9 EFFECT",
+    "10": "LVL-10 EFFECT",
+    "11": "LVL-11 EFFECT"
+  },
+  "strike": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "commander": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "super_conduit": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "rage": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "restore_energy": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "anti_mage": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "curse": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "thunderstorm": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "tenacity": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "ranger": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  },
+  "force_field": {
+    "1": "LVL-1 EFFECT",
+    "2": "LVL-2 EFFECT",
+    "3": "LVL-3 EFFECT",
+    "4": "LVL-4 EFFECT",
+    "5": "LVL-5 EFFECT"
+  }
+}
