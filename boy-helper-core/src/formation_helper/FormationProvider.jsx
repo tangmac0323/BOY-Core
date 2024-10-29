@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 // context
 import FormationContext from './FormationContext';
@@ -6,14 +6,6 @@ import FormationContext from './FormationContext';
 // json
 import formationsJson from '@src/public/raw_data/formations.json';
 import heroesJson from '@src/public/raw_data/heroes.json';
-
-const buildFormationOptions = () => {
-  return;
-};
-
-const buildHeroOptions = () => {
-  return;
-};
 
 const FormationProvider = ({ children }) => {
   // load the formation json file
@@ -25,8 +17,6 @@ const FormationProvider = ({ children }) => {
     []
   );
 
-  console.log(formationCategories);
-
   // load the hero json file
   const heroCategories = useMemo(
     () =>
@@ -36,9 +26,13 @@ const FormationProvider = ({ children }) => {
     []
   );
 
-  console.log(heroCategories);
+  const value = {
+    formationCategories,
+    heroCategories,
+  };
+
   return (
-    <FormationContext.Provider value={FormationContext}>
+    <FormationContext.Provider value={value}>
       {children}
     </FormationContext.Provider>
   );

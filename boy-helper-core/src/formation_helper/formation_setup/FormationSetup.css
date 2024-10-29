@@ -1,0 +1,5 @@
+.formation-setup-main {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  height: 80vh; /* Full viewport height */
+}

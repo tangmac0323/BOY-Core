@@ -1,8 +1,11 @@
 // css
 import './TeamBlock.css';
 
-const TeamBlock = ({ teamNumber }) => {
-  return <div class=".team-block">Block {teamNumber}</div>;
+import { useForm, Controller } from 'react-hook-form';
+
+const TeamBlock = ({ teamNumber, validHeroOptions }) => {
+  // const formationCategories =
+  return <div className=".team-block">Block {teamNumber}</div>;
 };
 
 export default TeamBlock;

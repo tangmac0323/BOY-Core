@@ -1,19 +1,17 @@
 // css
-import './FormationHelper.css';
+import './FormationHelperEntry.css';
 
 // provider
 import FormationProvider from './FormationProvider';
 
 // components
-import TeamBlock from './team_block/TeamBlock';
+import FormationSetup from './formation_setup/FormationSetup';
 
 const FormationHelperEntry = () => {
   return (
     <FormationProvider>
       <div className="formation-helper-main">
-        <TeamBlock teamNumber="1" />
-        <TeamBlock teamNumber="2" />
-        <TeamBlock teamNumber="3" />
+        <FormationSetup />
       </div>
     </FormationProvider>
   );

@@ -31,7 +31,7 @@ export default [
         extensions: ['.js', '.jsx', '.ts', '.tsx'], // Add more if needed
       },
     },
-    pluginS: ['import'],
+    // pluginS: ['import'],
   },
 
   // {
