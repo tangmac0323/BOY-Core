@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@FormationHelper/*": ["src/formation_helper/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

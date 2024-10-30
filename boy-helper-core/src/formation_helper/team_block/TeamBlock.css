@@ -4,3 +4,28 @@
   margin: 10px 0;
   text-align: center;
 }
+
+.team-block-item {
+  padding: 10px;
+}
+
+.hero-setup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: '16px';
+}
+
+.hero-basic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: '16px';
+}
+
+.formation-basic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: '16px';
+}

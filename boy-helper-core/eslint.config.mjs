@@ -26,7 +26,10 @@ export default [
     settings: {
       'import/resolver': {
         alias: {
-          map: [['@rc', './src']],
+          map: [
+            ['@src', './src'],
+            ['@FormationHelper', './src/formation_helper'],
+          ],
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx'], // Add more if needed
       },
