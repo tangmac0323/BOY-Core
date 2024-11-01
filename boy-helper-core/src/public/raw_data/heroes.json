@@ -3,8 +3,8 @@
     "type": "前锋",
     "title": "黑衫刃影",
     "name": "上官影",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "前锋",
       "extra": ["强袭", "统帅", "超导", "暴怒", "回能", "灭法", "咒蚀", "雷暴"]
     }
@@ -13,8 +13,8 @@
     "type": "守护",
     "title": "雷鸣掠空",
     "name": "雅波娜",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "守护",
       "extra": ["智慧", "坚韧", "妖精", "统帅", "盾御", "力场", "聚变"]
     }
@@ -23,8 +23,8 @@
     "type": "前锋",
     "title": "灵刃之主",
     "name": "爱丽丝",
-    "formation-config": {
-      "max-lvl": 8,
+    "formation_config": {
+      "max_lvl": 8,
       "default": "前锋",
       "extra": ["强袭", "统帅", "超导", "暴怒", "坚韧", "游侠", "力场"]
     }
@@ -33,18 +33,18 @@
     "type": "刺杀",
     "title": "圣翼降临",
     "name": "塞尔希娅",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "刺杀",
-      "extra": ["游侠", "暗影", "敌法", "暴怒", "坚韧", "游侠", "力场"]
+      "extra": ["游侠", "诡影", "敌法", "暴怒", "坚韧", "游侠", "力场"]
     }
   },
   "斯蒂芬妮": {
     "type": "秘术",
     "title": "唤霜海灵",
     "name": "斯蒂芬妮",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "秘术",
       "extra": ["魔导", "妖精", "风涌", "聚变", "回馈", "灭法", "咒蚀", "共鸣"]
     }
@@ -53,8 +53,8 @@
     "type": "辅助",
     "title": "墨凝清影",
     "name": "未沫",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "辅助",
       "extra": ["强袭", "敌法", "妖精", "流星", "聚变", "灭法"]
     }
@@ -63,8 +63,8 @@
     "type": "狩魔",
     "title": "夜行暹罗",
     "name": "呜喵",
-    "formation-config": {
-      "max-lvl": 10,
+    "formation_config": {
+      "max_lvl": 10,
       "default": "狩魔",
       "extra": ["诡影", "强袭", "智慧", "超导", "聚变", "咒蚀", "雷暴"]
     }

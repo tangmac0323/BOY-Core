@@ -1,0 +1,14 @@
+.rotating-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rotating-button-control {
+  display: flex;
+  flex-direction: row;
+}
+
+.rotating-button-display {
+  margin: 0 10px;
+}

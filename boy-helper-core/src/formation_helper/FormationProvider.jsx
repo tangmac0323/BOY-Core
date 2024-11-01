@@ -37,7 +37,7 @@ const FormationProvider = ({ children }) => {
   const watchedValues = watch();
 
   const handleFormChange = (values) => {
-    console.log('Form changed:', values);
+    // console.log('Form changed:', values);
     // Add custom logic here, e.g., validation, API calls, etc.
   };
 
@@ -73,30 +73,31 @@ const FormationProvider = ({ children }) => {
 
   const [formationLvlSelected, setFormationLvlSelected] = useState({
     // TEAM-0
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[0].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[1].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[2].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[3].${FORM_KEYS.FORMATION_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
 
     // TEAM-1
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[0].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[1].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[2].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[3].${FORM_KEYS.FORMATION_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
 
     // TEAM-2
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[0].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[1].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[2].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[3].${FORM_KEYS.FORMATION_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
 
     // SUPPORT
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[0].${FORM_KEYS.FORMATION_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[1].${FORM_KEYS.FORMATION_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
+    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
   });
 
   const value = {
     heroes: heroesJson,
+    formations: formationsJson,
     formationCategories,
     heroCategories,
 
