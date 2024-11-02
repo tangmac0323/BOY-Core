@@ -7,7 +7,7 @@ import useFormation from '../useFormation';
 import './RotatingButton.css';
 
 // constants
-import { FORM_KEYS } from '../Utils';
+import { FORM_KEYS, isNumber } from '../Utils';
 
 // helper function to check if exceeding the max total formation lvl
 const isExceedMaxTotalFormationLvl = ({
@@ -40,8 +40,6 @@ const RotatingButton = ({
   curTotalFormationLvl,
   field,
 }) => {
-  // // const [buttonValue, setButtonValue] = useState(initCount);
-  // const [isIncrementalDisabled, setIsIncrementalDisabled] = useState();
   const disableDecremental = count <= minCount;
   const disabledIncremental = isExceedMaxTotalFormationLvl({
     maxCount,
@@ -52,11 +50,13 @@ const RotatingButton = ({
 
   // alter the value
   useEffect(() => {
-    if (count < minCount) {
+    // need to check if the count is a numbe here
+    // as it could be undefined whne the extra formation is not set
+    if (isNumber(count) && count < minCount) {
       // construct the field value
       field.onChange({
-        [FORM_KEYS.FORMATION_CONFIGURATOR_NAME]: title,
-        [FORM_KEYS.FORMATION_CONFIGURATOR_LVL]: minCount,
+        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: minCount,
       });
     }
   }, [field, minCount]);
@@ -65,16 +65,16 @@ const RotatingButton = ({
   const handleIncrement = () => {
     const newCount = count + 1;
     field.onChange({
-      [FORM_KEYS.FORMATION_CONFIGURATOR_NAME]: title,
-      [FORM_KEYS.FORMATION_CONFIGURATOR_LVL]: newCount,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: newCount,
     });
   };
 
   const handleDecrement = () => {
     const newCount = count - 1;
     field.onChange({
-      [FORM_KEYS.FORMATION_CONFIGURATOR_NAME]: title,
-      [FORM_KEYS.FORMATION_CONFIGURATOR_LVL]: newCount,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: newCount,
     });
   };
 
@@ -100,9 +100,6 @@ const RotatingButton = ({
           +
         </button>
       </div>
-      {/* <button type="button" key={buttonKey} onClick={handleClick}>
-        {displayCount}
-      </button> */}
     </div>
   );
 };

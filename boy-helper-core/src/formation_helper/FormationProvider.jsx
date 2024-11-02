@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // context
@@ -7,9 +7,6 @@ import FormationContext from './FormationContext';
 // json
 import formationsJson from '@src/public/raw_data/formations.json';
 import heroesJson from '@src/public/raw_data/heroes.json';
-
-// constants
-import { FORM_KEYS } from './Utils';
 
 const FormationProvider = ({ children }) => {
   // load the formation json file
@@ -21,7 +18,7 @@ const FormationProvider = ({ children }) => {
     []
   );
 
-  // load the ${FORM_KEYS.HERO} json file
+  // load the ${FORM_KEYS.TEAM.HERO.KEY_NAME} json file
   const heroCategories = useMemo(
     () =>
       Object.keys(heroesJson).map((key) => {
@@ -30,14 +27,20 @@ const FormationProvider = ({ children }) => {
     []
   );
 
-  const { control, handleSubmit, watch, setValue: setFormValue } = useForm();
+  const {
+    control,
+    handleSubmit,
+    watch: watchForm,
+    setValue: setFormValue,
+    resetField: resetFormField,
+  } = useForm();
   // const { formationCategories, heroCategories } = useFormation();
 
   // Watch all fields
-  const watchedValues = watch();
+  const watchedValues = watchForm();
 
   const handleFormChange = (values) => {
-    // console.log('Form changed:', values);
+    console.log('Form changed:', values);
     // Add custom logic here, e.g., validation, API calls, etc.
   };
 
@@ -46,72 +49,17 @@ const FormationProvider = ({ children }) => {
     handleFormChange(watchedValues);
   }, [watchedValues]);
 
-  // state to store the selected ${FORM_KEYS.HERO} for each ${FORM_KEYS.TEAM}
-  const [heroesSelected, setHeroesSelected] = useState({
-    // TEAM-0
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[0]`]: '',
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[1]`]: '',
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[2]`]: '',
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[3]`]: '',
-
-    // TEAM-1
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[0]`]: '',
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[1]`]: '',
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[2]`]: '',
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[3]`]: '',
-
-    // TEAM-2
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[0]`]: '',
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[1]`]: '',
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[2]`]: '',
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[3]`]: '',
-
-    // SUPPORT
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[0]`]: '',
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[1]`]: '',
-  });
-
-  const [formationLvlSelected, setFormationLvlSelected] = useState({
-    // TEAM-0
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[0].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-
-    // TEAM-1
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[1].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-
-    // TEAM-2
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[2].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[2].${FORM_KEYS.HERO}[3].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-
-    // SUPPORT
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[0].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-    [`${FORM_KEYS.TEAM}[3].${FORM_KEYS.HERO}[1].${FORM_KEYS.HERO_FORMATION_MAX_LVL}`]: 0,
-  });
-
   const value = {
-    heroes: heroesJson,
-    formations: formationsJson,
+    HEROES_RAW_DATA: heroesJson,
+    FORMATIONS_RAW_DATA: formationsJson,
     formationCategories,
     heroCategories,
 
-    // ----- hero selected -----
-    heroesSelected,
-    setHeroesSelected,
-
-    // ----- formation lvl -----
-    formationLvlSelected,
-    setFormationLvlSelected,
-
     // ----- form values -----
     control,
-    watchForm: watch,
+    watchForm,
+    resetFormField,
+    setFormValue,
   };
 
   return (

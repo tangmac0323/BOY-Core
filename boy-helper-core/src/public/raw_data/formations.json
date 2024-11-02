@@ -1,4 +1,14 @@
 {
+  "组合阵线": {
+    "max_lvl": 4,
+    "name": "组合阵线",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
   "前锋": {
     "max_lvl": 11,
     "name": "前锋",
