@@ -6,16 +6,25 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'src',
-  publicDir: 'src/public',
+  // root: 'src',
+  // publicDir: 'src/public',
   build: {
-    outDir: '../dist',
+    outDir: './dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: 'index.jsx',
+      input: '/index.html', // Path to your HTML file in the project root
+
+      // external: [
+      //   '@src/raw_data/formations.json',
+      //   '@src/raw_data/heroes.json',
+      // ],
     },
   },
+  preview: {
+    port: 4173,
+  },
   server: {
+    // historyApiFallback: true,
     port: 3000,
   },
   plugins: [
@@ -23,8 +32,8 @@ export default defineConfig({
       include: '**/*.jsx',
     }),
     createHtmlPlugin({
-      entry: '/index.jsx',
-      template: '/public/index.html',
+      entry: '/src/index.jsx',
+      template: '/index.html',
       minify: true,
     }),
     svgr(),
@@ -33,9 +42,8 @@ export default defineConfig({
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['node_modules', 'src'],
     alias: {
-      '@src': path.resolve(__dirname, './src'),
-      // '@FormationHelper': './src/formation_helper',
-      // '@Shared': './src/shared',
+      '@src': path.resolve('./src'),
     },
   },
+  base: '/',
 });

@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import FormationContext from './FormationContext';
 
 // json
-import formationsJson from '@src/public/raw_data/formations.json';
-import heroesJson from '@src/public/raw_data/heroes.json';
+import formationsJson from '@src/raw_data/formations.json';
+import heroesJson from '@src/raw_data/heroes.json';
 
 const FormationProvider = ({ children }) => {
   // load the formation json file

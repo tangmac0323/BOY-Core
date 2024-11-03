@@ -19,7 +19,8 @@
     "start": "vite",
     "build": "vite build",
     "test": "npm run test",
-    "eject": "npm run eject"
+    "eject": "npm run eject",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
