@@ -1,0 +1,15 @@
+/* src/components/Header.css */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #b982b7;
+  color: rgb(211, 37, 37);
+  z-index: 1000;
+  height: 60px; /* Adjust this to your header height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}

@@ -1,0 +1,61 @@
+/* src/components/SideNav.css */
+.side-nav {
+  position: fixed;
+  top: 60px; /* Align this below the header */
+  left: 0;
+  width: 100px; /* Smaller width for the sidebar on mobile */
+  height: calc(100vh - 60px); /* Full height minus header height */
+  background-color: #e4dcdc;
+  color: white;
+  padding: 20px;
+  z-index: 999; /* Should be below the header */
+  transition: width 0.3s ease; /* Smooth transition when collapsing */
+  flex-shrink: 0; /* Don't allow the sidebar to shrink */
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    width: 60px; /* Auto-collapse on small screens */
+  }
+}
+
+.side-nav.collapsed {
+  width: 20px; /* Collapsed width */
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-nav ul li {
+  margin-bottom: 10px;
+}
+
+.side-nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.side-nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Button to toggle sidebar */
+.toggle-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: -20px; /* Position it outside the sidebar */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  transform: translate(-50%, -50%); /* Center the button */
+}
+
+.toggle-btn:hover {
+  background-color: #555;
+}

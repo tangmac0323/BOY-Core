@@ -1,0 +1,390 @@
+{
+  "组合阵线": {
+    "max_lvl": 4,
+    "name": "组合阵线",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "前锋": {
+    "max_lvl": 11,
+    "name": "前锋",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "辅助": {
+    "max_lvl": 11,
+    "name": "辅助",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "狩魔": {
+    "max_lvl": 11,
+    "name": "狩魔",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "秘术": {
+    "max_lvl": 11,
+    "name": "秘术",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "守护": {
+    "max_lvl": 11,
+    "name": "守护",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "刺杀": {
+    "max_lvl": 11,
+    "name": "刺杀",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-6 EFFECT",
+      "7": "LVL-7 EFFECT",
+      "8": "LVL-8 EFFECT",
+      "9": "LVL-9 EFFECT",
+      "10": "LVL-10 EFFECT",
+      "11": "LVL-11 EFFECT"
+    }
+  },
+  "游侠": {
+    "max_lvl": 4,
+    "name": "游侠",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "诡影": {
+    "max_lvl": 4,
+    "name": "诡影",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "强袭": {
+    "max_lvl": 6,
+    "name": "强袭",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "智慧": {
+    "max_lvl": 4,
+    "name": "智慧",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "敌法": {
+    "max_lvl": 4,
+    "name": "敌法",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "魔导": {
+    "max_lvl": 6,
+    "name": "魔导",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "噬魂": {
+    "max_lvl": 4,
+    "name": "噬魂",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "医者": {
+    "max_lvl": 6,
+    "name": "医者",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "召唤": {
+    "max_lvl": 6,
+    "name": "召唤",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "通灵": {
+    "max_lvl": 5,
+    "name": "通灵",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT"
+    }
+  },
+  "坚韧": {
+    "max_lvl": 5,
+    "name": "坚韧",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT"
+    }
+  },
+  "妖精": {
+    "max_lvl": 4,
+    "name": "妖精",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "统帅": {
+    "max_lvl": 2,
+    "name": "统帅",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT"
+    }
+  },
+  "盾御": {
+    "max_lvl": 6,
+    "name": "盾御",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "超导": {
+    "max_lvl": 5,
+    "name": "超导",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT"
+    }
+  },
+  "力场": {
+    "max_lvl": 4,
+    "name": "力场",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "流星": {
+    "max_lvl": 4,
+    "name": "流星",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "暴怒": {
+    "max_lvl": 6,
+    "name": "暴怒",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "风涌": {
+    "max_lvl": 4,
+    "name": "风涌",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "回能": {
+    "max_lvl": 4,
+    "name": "回能",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "聚变": {
+    "max_lvl": 6,
+    "name": "聚变",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "回馈": {
+    "max_lvl": 6,
+    "name": "回馈",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT",
+      "5": "LVL-5 EFFECT",
+      "6": "LVL-5 EFFECT"
+    }
+  },
+  "灭法": {
+    "max_lvl": 4,
+    "name": "灭法",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "咒蚀": {
+    "max_lvl": 4,
+    "name": "咒蚀",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "雷暴": {
+    "max_lvl": 4,
+    "name": "雷暴",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT",
+      "4": "LVL-4 EFFECT"
+    }
+  },
+  "共鸣": {
+    "max_lvl": 3,
+    "name": "共鸣",
+    "effects": {
+      "1": "LVL-1 EFFECT",
+      "2": "LVL-2 EFFECT",
+      "3": "LVL-3 EFFECT"
+    }
+  }
+}
