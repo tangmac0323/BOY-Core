@@ -8,7 +8,5 @@
           "use": "@vercel/node"
         }
       ],
-      "routes": [
-        { "src": "/(.*)", "dest": "boy-helper-core/$1" }
-      ]
+    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
   }
