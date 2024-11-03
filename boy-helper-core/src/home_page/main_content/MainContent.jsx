@@ -2,7 +2,7 @@
 import './MainContent.css';
 
 // hooks
-import useMain from '/home_page/main_provider/useMainProvider';
+import useMain from '@src/home_page/main_provider/useMainProvider';
 
 // components
 import MainContentRoutes from './MainContentRoutes';

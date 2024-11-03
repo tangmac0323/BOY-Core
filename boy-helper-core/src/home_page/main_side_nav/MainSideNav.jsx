@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './MainSideNav.css';
 
 // hooks
-import useMain from '/home_page/main_provider/useMainProvider';
+import useMain from '@src/home_page/main_provider/useMainProvider';
 
 const MainSideNav = () => {
   const { toggleMainNav, isMainNavCollapsed } = useMain();
