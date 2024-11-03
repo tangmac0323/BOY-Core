@@ -9,7 +9,7 @@ export default defineConfig({
   // root: 'src',
   // publicDir: 'src/public',
   build: {
-    outDir: '../dist',
+    outDir: './dist',
     emptyOutDir: true,
     rollupOptions: {
       input: '/index.html', // Path to your HTML file in the project root
