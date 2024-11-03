@@ -6,11 +6,16 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import ErrorBoundary from './home_page/error_boundary/ErrorBondary';
 
+import { Analytics } from '@vercel/analytics/react';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ErrorBoundary>
     <React.StrictMode>
-      <App />
+      <>
+        <Analytics />
+        <App />
+      </>
     </React.StrictMode>
   </ErrorBoundary>
 );
