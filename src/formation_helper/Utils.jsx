@@ -39,25 +39,26 @@ export const TEAM_HERO_LIMIT = {
   },
 };
 
-export const DATA_HERO_CONFIG_ENUM = {
+export const RAW_DATA_HERO_CONFIG_KEYS = {
   FORMATION_CONFIG: 'formation_config',
 };
 
-export const DATA_HERO_FORMATION_CONFIG_ENUM = {
+export const RAW_DATA_HERO_FORMATION_CONFIG_KEYS = {
   MAX_LVL: 'max_lvl',
-  DEFAULT: 'default',
+  MAJOR: 'major',
   EXTRA: 'extra',
 };
 
-export const DATA_FORMATION_CONFIG_ENUM = {
-  MAX_LVL: 'max_lvl',
-  NAME: 'name',
-  EFFECTS: 'effects',
+export const FORMATION_CATEGORY_ENUM = {
+  MAJOR: 'MAJOR',
+  EXTRA: 'EXTRA',
 };
 
+export const COMBINATION_FORMATION_NAME = '组合阵线';
+
 export const HERO_FORMATION_RULE = {
-  MAX_DEFAULT_LVL: 11,
-  MIN_DEFAULT_LVL: 1,
+  MAX_MAJOR_LVL: 11,
+  MIN_MAJOR_LVL: 1,
   UNLOCK_EXTRA_LVL: 4,
   MAX_EXTRA_LVL: 1,
   MIN_EXTRA_LVL: 0,
@@ -159,4 +160,8 @@ export const getHeroFormationLvlFieldName = ({
   formationIndex,
 }) => {
   return `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}[${formationIndex}]`;
+};
+
+export const ColoredText = ({ text, color = 'red' }) => {
+  return <span style={{ color: color }}>{text}</span>;
 };
