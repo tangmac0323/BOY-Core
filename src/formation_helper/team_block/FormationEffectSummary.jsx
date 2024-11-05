@@ -18,10 +18,30 @@ import {
   RAW_FORMATION_DATA,
 } from '@src/formation_helper/shared/Utils';
 
+// helper function to initialize fData in getFormationLvlMapping
+const initializeFormationData = ({ cathedralBonus }) => {
+  const fData = {};
+  if (cathedralBonus) {
+    //  if the flag is on, initialize with all major foramtion with lvl 1
+    for (const fName in RAW_FORMATION_DATA) {
+      if (
+        RAW_FORMATION_DATA[fName].CATEGORY === FORMATION_CATEGORY_ENUM.MAJOR
+      ) {
+        fData[fName] = 1;
+      }
+    }
+  }
+
+  return fData;
+};
+
 // helper function to get the formation and cumulative formation lvl mapping
 const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
   // get the form data
   const watchedValues = watchForm();
+
+  // check if cathedral bonus is enabled
+  const cathedralBonus = watchedValues[FORM_KEYS.CATHEDRAL_BONUS];
 
   if (isEmptyObject(watchedValues)) return;
   const heroesData =
@@ -33,7 +53,7 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
   // the formationData should be a dict with formationName as the key and
   // cumulative level as the value
   const majorFormationCount = new Set();
-  const fData = {};
+  const fData = initializeFormationData({ cathedralBonus });
   for (const hData of heroesData) {
     if (!(FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME in hData)) continue;
     const hFormationConfig =
