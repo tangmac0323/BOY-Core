@@ -11,6 +11,7 @@ const MainContent = () => {
     <Routes>
       <Route path="/" element={<FormationHelperEntry />} index={true} />
       <Route path="/formation-helper" element={<FormationHelperEntry />} />
+      <Route path="/heroes-helper" element={<FormationHelperEntry />} />
     </Routes>
   );
 };

@@ -115,7 +115,10 @@ export const calculateTotalFormationLvl = ({
 // and the current selected hero by hero index in this team
 export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
   const watchedValues = watchForm();
-  if (isEmptyObject(watchedValues))
+  if (
+    isEmptyObject(watchedValues) ||
+    !(FORM_KEYS.TEAM.KEY_NAME in watchedValues)
+  )
     return {
       selectedHeroes: [],
       currentSelectedHero: null,
@@ -131,6 +134,13 @@ export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
         selectedHeroes.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       }
     }
+  }
+
+  if (selectedHeroes.length == 0) {
+    return {
+      selectedHeroes: [],
+      currentSelectedHero: null,
+    };
   }
 
   const currentSelectedHero =

@@ -1,14 +1,28 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 
 // context
 import FormationContext from './FormationContext';
+import FormationEncryptUrl from './FormationEncryptUrl';
 
 // json
 import formationsJson from '@src/raw_data/formations.json';
 import heroesJson from '@src/raw_data/heroes.json';
 
+// utils
+import { decryptObject, encryptObject } from '@src/crypto/Utils';
+
 const FormationProvider = ({ children }) => {
+  // Extracts the setupcode for initialize form
+  const [searchParams] = useSearchParams();
+  const setupcode = searchParams.get('setupcode');
+
+  // decrypt the form state from the setupcode
+  const decryptedFormState = setupcode ? decryptObject(setupcode) : null;
+
+  const [encryptedSetupCode, setEncryptedSetupCode] = useState(setupcode);
+
   // load the formation json file
   const formationCategories = useMemo(
     () =>
@@ -33,14 +47,21 @@ const FormationProvider = ({ children }) => {
     watch: watchForm,
     setValue: setFormValue,
     resetField: resetFormField,
+    reset: resetForm,
   } = useForm();
   // const { formationCategories, heroCategories } = useFormation();
+
+  useEffect(() => {
+    resetForm(decryptedFormState);
+  }, [setupcode]);
 
   // Watch all fields
   const watchedValues = watchForm();
 
   const handleFormChange = (values) => {
-    console.log('Form changed:', values);
+    if (values && Object.keys(values).length > 0) {
+      setEncryptedSetupCode(encryptObject(values));
+    }
     // Add custom logic here, e.g., validation, API calls, etc.
   };
 
@@ -64,6 +85,7 @@ const FormationProvider = ({ children }) => {
 
   return (
     <FormationContext.Provider value={value}>
+      <FormationEncryptUrl encryptedSetupCode={encryptedSetupCode} />
       <form>{children}</form>
     </FormationContext.Provider>
   );
