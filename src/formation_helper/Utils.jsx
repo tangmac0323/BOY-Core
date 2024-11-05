@@ -60,6 +60,7 @@ export const COMBINATION_FORMATION_NAME = '组合阵线';
 export const HERO_FORMATION_RULE = {
   MAX_MAJOR_LVL: 11,
   MIN_MAJOR_LVL: 1,
+  // means the minimum MAJOR formation level required to unlock EXTRA formation
   UNLOCK_EXTRA_LVL: 4,
   MAX_EXTRA_LVL: 1,
   MIN_EXTRA_LVL: 0,
@@ -114,7 +115,10 @@ export const calculateTotalFormationLvl = ({
 // and the current selected hero by hero index in this team
 export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
   const watchedValues = watchForm();
-  if (isEmptyObject(watchedValues))
+  if (
+    isEmptyObject(watchedValues) ||
+    !(FORM_KEYS.TEAM.KEY_NAME in watchedValues)
+  )
     return {
       selectedHeroes: [],
       currentSelectedHero: null,
@@ -130,6 +134,13 @@ export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
         selectedHeroes.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       }
     }
+  }
+
+  if (selectedHeroes.length == 0) {
+    return {
+      selectedHeroes: [],
+      currentSelectedHero: null,
+    };
   }
 
   const currentSelectedHero =
