@@ -5,28 +5,33 @@ import './MainSideNav.css';
 // hooks
 import useMain from '@src/home_page/main_provider/useMainProvider';
 
+const handleAsideClick = (onClick) => {
+  onClick();
+};
+
+function handleChildClick(event) {
+  event.stopPropagation(); // Prevents the click from bubbling up to the aside
+}
+
 const MainSideNav = () => {
   const { toggleMainNav, isMainNavCollapsed } = useMain();
 
   return (
-    // <div className="side-nav">
     <aside
       className={`side-nav ${isMainNavCollapsed ? 'collapsed' : ''}`}
-      onClick={toggleMainNav}
+      onClick={() => handleAsideClick(toggleMainNav)}
     >
-      {/* <button className="toggle-btn" onClick={toggleMainNav}>
-        {isMainNavCollapsed ? '>' : '<'}
-      </button> */}
       <ul>
         <li>
-          <Link to="/formation-helper">阵线模拟器</Link>
-        </li>
-        {/* <li>
-          <Link to="/page2">Tab 2</Link>
+          <Link to="/formation-helper" onClick={handleChildClick}>
+            阵线模拟器
+          </Link>
         </li>
         <li>
-          <Link to="/page3">Tab 3</Link>
-        </li> */}
+          <Link to="/heroes-helper" onClick={handleChildClick}>
+            黑卫阵线检索
+          </Link>
+        </li>
       </ul>
     </aside>
   );

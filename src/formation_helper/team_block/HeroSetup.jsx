@@ -22,6 +22,7 @@ import {
 
 import { RAW_FORMATION_CONFIG_KEYS } from '@src/formation_helper/shared/Utils';
 
+// NOTE: hard code here to use the first formation in the list, as it should always be the major foramtion
 const getFormationLvl = ({ curFormationInfo, formationIndex }) => {
   if (!curFormationInfo) return 0;
   if (curFormationInfo.length <= formationIndex) return 0;
@@ -91,6 +92,12 @@ const FormationLvlConfigurator = ({
     `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`
   );
 
+  // get the current major foramtion lvl
+  const curMajorFormationLvl = getFormationLvl({
+    curFormationInfo,
+    formationIndex: 0,
+  });
+
   // render the button based on FORMATIONS_RAW_DATA
   return (
     <div className="formation-basic">
@@ -109,7 +116,7 @@ const FormationLvlConfigurator = ({
                 maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                 curTotalFormationLvl={curTotalFormationLvl}
                 title={majorForamtionConfig.name}
-                count={getFormationLvl({ curFormationInfo, formationIndex: 0 })}
+                count={curMajorFormationLvl}
                 // count={field.value[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]}
                 minCount={HERO_FORMATION_RULE.MIN_MAJOR_LVL}
                 maxCount={
@@ -151,6 +158,11 @@ const FormationLvlConfigurator = ({
                       minCount={HERO_FORMATION_RULE.MIN_EXTRA_LVL}
                       maxCount={HERO_FORMATION_RULE.MAX_EXTRA_LVL}
                       field={field}
+                      // NOTE: we disable the extra formation if the major formation is less than 4
+                      disabled={
+                        curMajorFormationLvl <
+                        HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL
+                      }
                     />
                   )}
                 />

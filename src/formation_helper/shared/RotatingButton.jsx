@@ -39,6 +39,7 @@ const RotatingButton = ({
   maxTotalFormationLvl,
   curTotalFormationLvl,
   field,
+  disabled = false,
 }) => {
   const disableDecremental = count <= minCount;
   const disabledIncremental = isExceedMaxTotalFormationLvl({
@@ -87,7 +88,7 @@ const RotatingButton = ({
         <button
           type="button"
           onClick={handleDecrement}
-          disabled={disableDecremental}
+          disabled={disabled || disableDecremental}
         >
           -
         </button>
@@ -95,7 +96,7 @@ const RotatingButton = ({
         <button
           type="button"
           onClick={handleIncrement}
-          disabled={disabledIncremental}
+          disabled={disabled || disabledIncremental}
         >
           +
         </button>
