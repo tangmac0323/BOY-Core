@@ -1215,7 +1215,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '魔导',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '魔导阵线的强度达到2/3/4/5/6时, 队伍中魔导型黑卫血量降低至50%以下时, 对随机1个目标释放妖术, 使其变为羊, 持续1.5/2/3/4/4秒, 冷却时间为14/14/14/14/8秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1225,7 +1226,43 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '1.5';
+          displayValueB = '14';
+          break;
+        case 3:
+          displayValueA = '2';
+          displayValueB = '14';
+          break;
+        case 4:
+          displayValueA = '3';
+          displayValueB = '14';
+          break;
+        case 5:
+          displayValueA = '4';
+          displayValueB = '14';
+          break;
+        case 6:
+          displayValueA = '4';
+          displayValueB = '8';
+          break;
+        default:
+          displayValueA = '0';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          队伍中魔导型黑卫血量降低至50%以下时, 对随机1个目标释放妖术,
+          使其变为羊, 持续
+          <ColoredText text={displayValueA} />
+          秒, 冷却时间为
+          <ColoredText text={displayValueB} />秒
+        </span>
+      );
     },
   },
   噬魂: {
@@ -1233,7 +1270,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '噬魂',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '噬魂阵线的强度达到2/3/4时, 上阵的噬魂型黑卫在进行普通攻击时, 有15%/35%/75%几率偷取目标25怒气, 每0.5秒起效一次',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1241,7 +1279,28 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '15%';
+          break;
+        case 3:
+          displayValueA = '35%';
+          break;
+        case 4:
+          displayValueA = '75%';
+          break;
+        default:
+          displayValueA = '0%';
+      }
+      return (
+        <span>
+          上阵的噬魂型黑卫在进行普通攻击时, 有
+          <ColoredText text={displayValueA} />
+          几率偷取目标25怒气, 每0.5秒起效一次
+        </span>
+      );
     },
   },
   医者: {
@@ -1249,7 +1308,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '医者',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '医者阵线的强度达到2/3/4/5/6时, 上阵黑卫造成的治疗效果提升15%/25%/35%/50%/50%. 医者英雄阵亡时可复活0/0/0/0/1次, 回复45%生命值',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1259,7 +1319,42 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '15%';
+          displayValueB = '0';
+          break;
+        case 3:
+          displayValueA = '25%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '35%';
+          displayValueB = '0';
+          break;
+        case 5:
+          displayValueA = '50%';
+          displayValueB = '0';
+          break;
+        case 6:
+          displayValueA = '50%';
+          displayValueB = '1';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          上阵黑卫造成的治疗效果提升
+          <ColoredText text={displayValueA} />. 医者英雄阵亡时可复活
+          <ColoredText text={displayValueB} />
+          次, 回复45%生命值
+        </span>
+      );
     },
   },
   召唤: {
@@ -1267,7 +1362,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '召唤',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '召唤阵线的强度达到2/3/4/5/6时, 召唤物普通攻击附带0.1%/0.2%/0.3%/0.5%/1%物理和法术强度的混沌伤害. (神之嫡子的蛇灵不享受此效果)',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1277,7 +1373,39 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '0.1%';
+
+          break;
+        case 3:
+          displayValueA = '0.2%';
+
+          break;
+        case 4:
+          displayValueA = '0.3%';
+
+          break;
+        case 5:
+          displayValueA = '0.5%';
+
+          break;
+        case 6:
+          displayValueA = '1%';
+
+          break;
+        default:
+          displayValueA = '0%';
+      }
+      return (
+        <span>
+          召唤物普通攻击附带
+          <ColoredText text={displayValueA} />
+          物理和法术强度的混沌伤害. {`(`}神之嫡子的蛇灵不享受此效果{`)`}
+        </span>
+      );
     },
   },
   通灵: {
@@ -1285,7 +1413,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '通灵',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '通灵阵线的强度达到2/3/4/5时, 召唤物造成的伤害提升10%/15%/20%/20%, 且会额外召唤0/0/0/1只魔狼作战, 魔狼拥有全队平均生命,强度,暴击,攻速等属性以及50%的伤害减免, 且具有冲锋和嘲讽技能',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1294,7 +1423,40 @@ export const RAW_FORMATION_DATA = {
       5: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '10%';
+          displayValueB = '0';
+          break;
+        case 3:
+          displayValueA = '15%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '20%';
+          displayValueB = '0';
+          break;
+        case 5:
+          displayValueA = '20%';
+          displayValueB = '1';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          召唤物造成的伤害提升
+          <ColoredText text={displayValueA} />, 且会额外召唤
+          <ColoredText text={displayValueB} />
+          只魔狼作战,
+          魔狼拥有全队平均生命,强度,暴击,攻速等属性以及50%的伤害减免,
+          且具有冲锋和嘲讽技能
+        </span>
+      );
     },
   },
   坚韧: {
@@ -1302,7 +1464,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '坚韧',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '坚韧阵线的强度达到2/3/4/5时, 上阵黑卫的生命值提升8%/12%/20%/20%, 受到伤害额外减免0%/0%/0%/20%',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1311,7 +1474,37 @@ export const RAW_FORMATION_DATA = {
       5: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '8%';
+          displayValueB = '0%';
+          break;
+        case 3:
+          displayValueA = '12%';
+          displayValueB = '0%';
+          break;
+        case 4:
+          displayValueA = '20%';
+          displayValueB = '0%';
+          break;
+        case 5:
+          displayValueA = '20%';
+          displayValueB = '20%';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0%';
+      }
+      return (
+        <span>
+          上阵黑卫的生命值提升
+          <ColoredText text={displayValueA} />, 受到伤害额外减免
+          <ColoredText text={displayValueB} />
+        </span>
+      );
     },
   },
   妖精: {
@@ -1319,7 +1512,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '妖精',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '妖精阵线的强度达到2/3/4时, 上阵黑卫受到的治疗效果提升10%/20%/40%, 每个妖精死亡时, 回复所有友军0/0/300点怒气',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1327,7 +1521,34 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '10%';
+          displayValueB = '0';
+          break;
+        case 3:
+          displayValueA = '20%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '40%';
+          displayValueB = '300';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          上阵黑卫受到的治疗效果提升
+          <ColoredText text={displayValueA} />, 每个妖精死亡时, 回复所有友军
+          <ColoredText text={displayValueB} />
+          点怒气
+        </span>
+      );
     },
   },
   统帅: {
@@ -1335,13 +1556,36 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 1,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '统帅',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '统帅阵线的强度达到1/2时, 每拥有一个阵线效果, 统帅型黑卫的生命值提升5%/8%, 伤害提升3%/5%',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 1:
+          displayValueA = '5%';
+          displayValueB = '3%';
+          break;
+        case 2:
+          displayValueA = '8%';
+          displayValueB = '5%';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0%';
+      }
+      return (
+        <span>
+          每拥有一个阵线效果, 统帅型黑卫的生命值提升
+          <ColoredText text={displayValueA} />, 伤害提升
+          <ColoredText text={displayValueB} />
+        </span>
+      );
     },
   },
   盾御: {
@@ -1349,7 +1593,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '盾御',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '盾御阵线达到2/3/4/5/6时, 当上阵黑卫的护盾值不为0时, 造成的伤害提升6%/8%/10%/12%/15%, 如果是盾御型黑卫, 则有0%/0%/0%/0%/35%几率免疫昏迷与冰冻',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1359,7 +1604,42 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '6%';
+          displayValueB = '0%';
+          break;
+        case 3:
+          displayValueA = '8%';
+          displayValueB = '0%';
+          break;
+        case 4:
+          displayValueA = '10%';
+          displayValueB = '0%';
+          break;
+        case 5:
+          displayValueA = '12%';
+          displayValueB = '0%';
+          break;
+        case 6:
+          displayValueA = '15%';
+          displayValueB = '35%';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0%';
+      }
+      return (
+        <span>
+          当上阵黑卫的护盾值不为0时, 造成的伤害提升
+          <ColoredText text={displayValueA} />, 如果是盾御型黑卫, 则有
+          <ColoredText text={displayValueB} />
+          几率免疫昏迷与冰冻
+        </span>
+      );
     },
   },
   超导: {
@@ -1367,7 +1647,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '超导',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '超导阵线达到2/3/4/5时, 全队能量回复速度提升3%/6%/10%/10%, 且超导阵线黑卫每5秒对随机敌方释放0/0/0/1道闪电链, 闪电链会连锁4次, 每次连锁衰减30%伤害. 闪电链伤害 = 5秒内额外获得的怒气值/140*(法术+物理)强度. (额外获得能量:偷取怒气, 技能直接恢复怒气等效果)',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1376,7 +1657,41 @@ export const RAW_FORMATION_DATA = {
       5: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '3%';
+          displayValueB = '0';
+          break;
+        case 3:
+          displayValueA = '6%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '10%';
+          displayValueB = '0';
+          break;
+        case 5:
+          displayValueA = '10%';
+          displayValueB = '1';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          全队能量回复速度提升
+          <ColoredText text={displayValueA} />,
+          且超导阵线黑卫每5秒对随机敌方释放
+          <ColoredText text={displayValueB} />
+          道闪电链, 闪电链会连锁4次, 每次连锁衰减30%伤害. 闪电链伤害 =
+          5秒内额外获得的怒气值/140*{`(`}法术+物理{`)`}强度. {`(`}
+          额外获得能量:偷取怒气, 技能直接恢复怒气等效果{`)`}
+        </span>
+      );
     },
   },
   力场: {
@@ -1384,7 +1699,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '力场',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '力场阵线达到2/3/4时, 力场阵线黑卫每隔20秒在自身位置释放抵挡弹道的护罩, 持续3/4/5秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1392,7 +1708,27 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '3';
+          break;
+        case 3:
+          displayValueA = '4';
+          break;
+        case 4:
+          displayValueA = '5';
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          力场阵线黑卫每隔20秒在自身位置释放抵挡弹道的护罩, 持续
+          <ColoredText text={displayValueA} />秒
+        </span>
+      );
     },
   },
   流星: {
@@ -1400,7 +1736,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '流星',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '流星阵线达到2/3/4时, 10秒1次, 召唤流星对场上所有敌人造成1000%/1500%/2000%强度的火焰伤害. (释放者为全队法术强度最高角色)',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1408,7 +1745,28 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '1000%';
+          break;
+        case 3:
+          displayValueA = '1500%';
+          break;
+        case 4:
+          displayValueA = '2000%';
+          break;
+        default:
+          displayValueA = '0%';
+      }
+      return (
+        <span>
+          10秒1次, 召唤流星对场上所有敌人造成
+          <ColoredText text={displayValueA} />
+          强度的火焰伤害. {`(`}释放者为全队法术强度最高角色{`)`}
+        </span>
+      );
     },
   },
   暴怒: {
@@ -1416,7 +1774,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '暴怒',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '暴怒阵线达到2/3/4/5/6时, 暴怒阵线黑卫每次受伤会增加会增加造成的所有伤害1%/1.5%/2%/3%/3%, 最多叠加5次, 持续30秒. 队伍中其他黑卫死亡时, 暴怒阵线黑卫有0%/0%/0%/0%/100%概率立刻恢复生命值并处于狂怒状态, 增加的伤害效果提升100%. 持续30秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1426,7 +1785,43 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '1%';
+          displayValueB = '0%';
+          break;
+        case 3:
+          displayValueA = '1.5%';
+          displayValueB = '0%';
+          break;
+        case 4:
+          displayValueA = '2%';
+          displayValueB = '0%';
+          break;
+        case 5:
+          displayValueA = '3%';
+          displayValueB = '0%';
+          break;
+        case 6:
+          displayValueA = '3%';
+          displayValueB = '100%';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0%';
+      }
+      return (
+        <span>
+          暴怒阵线黑卫每次受伤会增加会增加造成的所有伤害
+          <ColoredText text={displayValueA} />, 最多叠加5次, 持续30秒.
+          队伍中其他黑卫死亡时, 暴怒阵线黑卫有
+          <ColoredText text={displayValueB} />
+          概率立刻恢复生命值并处于狂怒状态, 增加的伤害效果提升100%. 持续30秒
+        </span>
+      );
     },
   },
   风涌: {
@@ -1434,7 +1829,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '风涌',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '风涌阵线达到2/3/4时, 战斗开始时, 每隔20秒召唤持续2.5/3.5/4.5秒的龙卷吹起一名敌方单位, 期间该敌人无法行动, 也不会受到伤害',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1442,7 +1838,31 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '2.5';
+
+          break;
+        case 3:
+          displayValueA = '3.5';
+
+          break;
+        case 4:
+          displayValueA = '4.5';
+
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          战斗开始时, 每隔20秒召唤持续
+          <ColoredText text={displayValueA} />
+          秒的龙卷吹起一名敌方单位, 期间该敌人无法行动, 也不会受到伤害
+        </span>
+      );
     },
   },
   回能: {
@@ -1450,7 +1870,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '回能',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '回能阵线达到2/3/4时, 魔法盾消失时, 恢复自身怒气值50/75/100. 效果每5秒可触发1次',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1458,7 +1879,30 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '50';
+
+          break;
+        case 3:
+          displayValueA = '75';
+
+          break;
+        case 4:
+          displayValueA = '100';
+
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          魔法盾消失时, 恢复自身怒气值
+          <ColoredText text={displayValueA} />. 效果每5秒可触发1次
+        </span>
+      );
     },
   },
   聚变: {
@@ -1466,7 +1910,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '聚变',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '聚变阵线达到2/3/4/5/6时, 聚变阵线黑卫获得的所有球的基础效果增加20%/30%/40%/50%/50%. 当聚变阵线黑卫获得球时, 累积0/0/0/0/1层充能, 达到20层时, 在随机敌方位置召唤离子风暴, 每秒对范围内敌人进行打击, 造成800%法术强度的闪电伤害, 持续5秒, CD 10秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1476,15 +1921,52 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 2:
+          displayValueA = '20%';
+          displayValueB = '0';
+          break;
+        case 3:
+          displayValueA = '30%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '40%';
+          displayValueB = '0';
+          break;
+        case 5:
+          displayValueA = '50%';
+          displayValueB = '0';
+          break;
+        case 6:
+          displayValueA = '50%';
+          displayValueB = '1';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          聚变阵线黑卫获得的所有球的基础效果增加
+          <ColoredText text={displayValueA} />. 当聚变阵线黑卫获得球时, 累积
+          <ColoredText text={displayValueB} />
+          层充能, 达到20层时, 在随机敌方位置召唤离子风暴,
+          每秒对范围内敌人进行打击, 造成800%法术强度的闪电伤害, 持续5秒, CD 10秒
+        </span>
+      );
     },
   },
   回馈: {
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
-    [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
+    [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 3,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '回馈',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '回馈阵线达到2/3/4/5时, 属于自身的召唤物死亡时, 召唤者获得25%/50%/75%/100%强度的魔法盾, 该效果5秒触发1次. 召唤物死亡, 召唤者还会恢复0/0/0/250点怒气, 该效果10秒触发一次',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1494,7 +1976,39 @@ export const RAW_FORMATION_DATA = {
       6: 'LVL-5 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+      let displayValueB;
+
+      switch (level) {
+        case 3:
+          displayValueA = '25%';
+          displayValueB = '0';
+          break;
+        case 4:
+          displayValueA = '50%';
+          displayValueB = '0';
+          break;
+        case 5:
+          displayValueA = '75%';
+          displayValueB = '0';
+          break;
+        case 6:
+          displayValueA = '100%';
+          displayValueB = '250';
+          break;
+        default:
+          displayValueA = '0%';
+          displayValueB = '0';
+      }
+      return (
+        <span>
+          属于自身的召唤物死亡时, 召唤者获得
+          <ColoredText text={displayValueA} />
+          强度的魔法盾, 该效果5秒触发1次. 召唤物死亡, 召唤者还会恢复
+          <ColoredText text={displayValueB} />
+          点怒气, 该效果10秒触发一次
+        </span>
+      );
     },
   },
   灭法: {
@@ -1502,7 +2016,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '灭法',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '灭法阵线达到2/3/4级时, 队伍中灭法阵线黑卫死亡时, 会沉默所有敌方黑卫3/4/5秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1510,7 +2025,29 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '3';
+
+          break;
+        case 3:
+          displayValueA = '4';
+
+          break;
+        case 4:
+          displayValueA = '5';
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          队伍中灭法阵线黑卫死亡时, 会沉默所有敌方黑卫
+          <ColoredText text={displayValueA} />秒
+        </span>
+      );
     },
   },
   咒蚀: {
@@ -1518,7 +2055,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '咒蚀',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '咒蚀阵线达到2/3/4时, 每当队伍中有角色对敌人造成冰缓,感电,中毒,点燃状态时, 咒蚀阵线的黑卫将获得1个随机球, 触发间隔为3/1.5/0.5秒',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1526,7 +2064,30 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '3';
+
+          break;
+        case 3:
+          displayValueA = '1.5';
+
+          break;
+        case 4:
+          displayValueA = '0.5';
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          每当队伍中有角色对敌人造成冰缓,感电,中毒,点燃状态时,
+          咒蚀阵线的黑卫将获得1个随机球, 触发间隔为
+          <ColoredText text={displayValueA} />秒
+        </span>
+      );
     },
   },
   雷暴: {
@@ -1534,7 +2095,8 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '雷暴',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '雷暴阵线达到2/3/4级时, 队伍中的该阵线黑卫在释放必杀技同时, 朝随机敌人释放2/4/8道闪电, 对落点附近敌人造成800%法术强度闪电伤害. (该伤害视为技能伤害，且只会受到全伤害增幅和闪电伤害增幅的影响)',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
@@ -1542,7 +2104,31 @@ export const RAW_FORMATION_DATA = {
       4: 'LVL-4 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '2';
+
+          break;
+        case 3:
+          displayValueA = '4';
+
+          break;
+        case 4:
+          displayValueA = '8';
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          队伍中的该阵线黑卫在释放必杀技同时, 朝随机敌人释放
+          <ColoredText text={displayValueA} />
+          道闪电, 对落点附近敌人造成800%法术强度闪电伤害. {`(`}
+          该伤害视为技能伤害，且只会受到全伤害增幅和闪电伤害增幅的影响{`)`}
+        </span>
+      );
     },
   },
   共鸣: {
@@ -1550,14 +2136,33 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.NAME]: '共鸣',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
-    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: '',
+    [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
+      '共鸣阵线达到2/3级时, 共鸣阵线的黑卫所有球的上限增加1/2个',
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS]: {
       1: 'N/A',
       2: 'LVL-2 EFFECT',
       3: 'LVL-3 EFFECT',
     },
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]: (level) => {
-      return <span>HI</span>;
+      let displayValueA;
+
+      switch (level) {
+        case 2:
+          displayValueA = '1';
+
+          break;
+        case 3:
+          displayValueA = '2';
+          break;
+        default:
+          displayValueA = '0';
+      }
+      return (
+        <span>
+          共鸣阵线的黑卫所有球的上限增加
+          <ColoredText text={displayValueA} />个
+        </span>
+      );
     },
   },
 };
