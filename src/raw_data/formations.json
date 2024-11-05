@@ -2,8 +2,10 @@
   "组合阵线": {
     "max_lvl": 4,
     "name": "组合阵线",
+    "description": "上阵的不同阵线的黑卫数量达到2种及以上时,增加生命值和护盾值*5%*lvl,造成伤害增加*5%*lvl",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -12,8 +14,9 @@
   "前锋": {
     "max_lvl": 11,
     "name": "前锋",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -29,8 +32,9 @@
   "辅助": {
     "max_lvl": 11,
     "name": "辅助",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -46,8 +50,9 @@
   "狩魔": {
     "max_lvl": 11,
     "name": "狩魔",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -63,8 +68,9 @@
   "秘术": {
     "max_lvl": 11,
     "name": "秘术",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -80,8 +86,9 @@
   "守护": {
     "max_lvl": 11,
     "name": "守护",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -97,8 +104,9 @@
   "刺杀": {
     "max_lvl": 11,
     "name": "刺杀",
+    "category": "MAJOR",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -114,8 +122,9 @@
   "游侠": {
     "max_lvl": 4,
     "name": "游侠",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -124,8 +133,9 @@
   "诡影": {
     "max_lvl": 4,
     "name": "诡影",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -134,8 +144,9 @@
   "强袭": {
     "max_lvl": 6,
     "name": "强袭",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -146,8 +157,9 @@
   "智慧": {
     "max_lvl": 4,
     "name": "智慧",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -156,8 +168,9 @@
   "敌法": {
     "max_lvl": 4,
     "name": "敌法",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -166,8 +179,9 @@
   "魔导": {
     "max_lvl": 6,
     "name": "魔导",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -178,8 +192,9 @@
   "噬魂": {
     "max_lvl": 4,
     "name": "噬魂",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -188,8 +203,9 @@
   "医者": {
     "max_lvl": 6,
     "name": "医者",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -200,8 +216,9 @@
   "召唤": {
     "max_lvl": 6,
     "name": "召唤",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -212,8 +229,9 @@
   "通灵": {
     "max_lvl": 5,
     "name": "通灵",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -223,8 +241,9 @@
   "坚韧": {
     "max_lvl": 5,
     "name": "坚韧",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -234,8 +253,9 @@
   "妖精": {
     "max_lvl": 4,
     "name": "妖精",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -244,16 +264,18 @@
   "统帅": {
     "max_lvl": 2,
     "name": "统帅",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT"
     }
   },
   "盾御": {
     "max_lvl": 6,
     "name": "盾御",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -264,8 +286,9 @@
   "超导": {
     "max_lvl": 5,
     "name": "超导",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -275,8 +298,9 @@
   "力场": {
     "max_lvl": 4,
     "name": "力场",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -285,8 +309,9 @@
   "流星": {
     "max_lvl": 4,
     "name": "流星",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -295,8 +320,9 @@
   "暴怒": {
     "max_lvl": 6,
     "name": "暴怒",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -307,8 +333,9 @@
   "风涌": {
     "max_lvl": 4,
     "name": "风涌",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -317,8 +344,9 @@
   "回能": {
     "max_lvl": 4,
     "name": "回能",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -327,8 +355,9 @@
   "聚变": {
     "max_lvl": 6,
     "name": "聚变",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -339,8 +368,9 @@
   "回馈": {
     "max_lvl": 6,
     "name": "回馈",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT",
@@ -351,8 +381,9 @@
   "灭法": {
     "max_lvl": 4,
     "name": "灭法",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -361,8 +392,9 @@
   "咒蚀": {
     "max_lvl": 4,
     "name": "咒蚀",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -371,8 +403,9 @@
   "雷暴": {
     "max_lvl": 4,
     "name": "雷暴",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT",
       "4": "LVL-4 EFFECT"
@@ -381,8 +414,9 @@
   "共鸣": {
     "max_lvl": 3,
     "name": "共鸣",
+    "category": "EXTRA",
     "effects": {
-      "1": "LVL-1 EFFECT",
+      "1": "N/A",
       "2": "LVL-2 EFFECT",
       "3": "LVL-3 EFFECT"
     }
