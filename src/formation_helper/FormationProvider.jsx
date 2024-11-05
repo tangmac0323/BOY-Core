@@ -59,10 +59,10 @@ const FormationProvider = ({ children }) => {
   const watchedValues = watchForm();
 
   const handleFormChange = (values) => {
+    // console.log('Form changed:', values);
     if (values && Object.keys(values).length > 0) {
       setEncryptedSetupCode(encryptObject(values));
     }
-    // Add custom logic here, e.g., validation, API calls, etc.
   };
 
   // Custom function to run on every change

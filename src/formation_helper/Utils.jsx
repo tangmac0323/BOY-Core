@@ -104,6 +104,7 @@ export const calculateTotalFormationLvl = ({
   if (!formFormationConfigValues) return curTotalFormationLvl;
 
   for (const formFormationConfigValue of formFormationConfigValues) {
+    if (!formFormationConfigValue) continue;
     curTotalFormationLvl +=
       formFormationConfigValue[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
   }

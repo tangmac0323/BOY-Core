@@ -11,12 +11,17 @@ export const encryptObject = (obj) => {
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
   }).toString();
+
   const encData = CryptoJS.enc.Base64.stringify(
     CryptoJS.enc.Utf8.parse(encJson)
   );
 
+  console.log('Encrypted data:', encData);
+
   // PROLLY WE SHOULD ONLY USE UTF16
-  // const compressedData = LZString.compressToBase64(encData);
+  // const compressedData = LZString.compressToUTF16(encData);
+
+  // console.log('Compressed data:', compressedData);
   return encData;
 };
 

@@ -49,18 +49,18 @@ const RotatingButton = ({
     curTotalFormationLvl,
   });
 
-  // alter the value
-  useEffect(() => {
-    // need to check if the count is a numbe here
-    // as it could be undefined whne the extra formation is not set
-    if (isNumber(count) && count < minCount) {
-      // construct the field value
-      field.onChange({
-        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
-        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: minCount,
-      });
-    }
-  }, [field, minCount]);
+  // // alter the value
+  // useEffect(() => {
+  //   // need to check if the count is a numbe here
+  //   // as it could be undefined whne the extra formation is not set
+  //   if (isNumber(count) && count < minCount) {
+  //     // construct the field value
+  //     field.onChange({
+  //       [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+  //       [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: minCount,
+  //     });
+  //   }
+  // }, [field, minCount]);
 
   // Handle left-click to increment the number on each button
   const handleIncrement = () => {

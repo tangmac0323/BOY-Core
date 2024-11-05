@@ -65,6 +65,8 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
 
     // loop through the formation config data to get the formation name and lvl
     for (const hFormationData of hFormationConfig) {
+      if (!hFormationData) continue;
+
       // get the formation name and formation lvl from the formation config data
       const fName = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME];
       const fLvl = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
