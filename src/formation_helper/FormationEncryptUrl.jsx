@@ -11,10 +11,12 @@ export const retrieveSetupFromDatabase = async ({
   hashedSetupCode,
   resetForm,
 }) => {
+  console.log('GETTING DATA FROM DATABASE');
   // get the code from the database
   const { rows } =
     await sql`SELECT * FROM hashed_formation_setup WHERE hashed_setup_code = ${hashedSetupCode};`;
 
+  console.log('ROWS:', rows);
   // check the length of the rows
   if (rows.length === 0) {
     return;
@@ -23,11 +25,17 @@ export const retrieveSetupFromDatabase = async ({
   // get the first one in the rows
   const row = rows[0];
 
+  console.log('row:', row);
+
   // get the encrypted setup code
   const encryptedSetupCode = row.encrypted_setup_code;
 
+  console.log('encryptedSetupCode:', encryptedSetupCode);
+
   // decrypt the code first
   const decryptedSetupCode = decryptObject(encryptedSetupCode);
+
+  console.log('decryptedSetupCode:', decryptedSetupCode);
 
   console.log('retrieveSetupFromDatabase - load data from hash code');
   resetForm(decryptedSetupCode);
