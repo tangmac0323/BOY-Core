@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => {
     env = loadEnv(mode, process.cwd(), '');
   }
   const config = {
-    // define: {
-    //   __APP_ENV__: process.env.VITE_VERCEL_ENV,
-    // },
+    define: {
+      'process.env': env ? JSON.stringify(env) : null,
+    },
     // root: 'src',
     // publicDir: 'src/public',
     build: {
@@ -63,8 +63,6 @@ export default defineConfig(({ mode }) => {
       'process.env': env ? JSON.stringify(env) : null,
     };
   }
-
-  console.log('env', process.env);
 
   return config;
 });
