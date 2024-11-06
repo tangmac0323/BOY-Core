@@ -9,6 +9,7 @@ import MainContent from './home_page/main_content/MainContent';
 import MainProvider from './home_page/main_provider/MainProvider';
 
 const App = () => {
+  console.log('processenv', process.env);
   return (
     <Router>
       <MainProvider>
