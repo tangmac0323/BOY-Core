@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => {
     // publicDir: 'src/public',
     // define: injectedEnv,
     define: {
-      'process.env': injectedEnv,
+      'process.env': env ? JSON.stringify(env) : null,
     },
     build: {
       outDir: './dist',
