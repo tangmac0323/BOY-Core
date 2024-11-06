@@ -9,9 +9,8 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   let env;
-  if (mode === 'development') {
-    env = loadEnv(mode, process.cwd(), '');
-  }
+
+  env = loadEnv(mode, process.cwd(), '');
 
   // inject Psogres ENV
   const injectedEnv = {};
