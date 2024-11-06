@@ -10,8 +10,8 @@ import RotatingButton from '@src/formation_helper/shared/RotatingButton';
 // utils
 import {
   FORM_KEYS,
-  RAW_DATA_HERO_CONFIG_KEYS,
-  RAW_DATA_HERO_FORMATION_CONFIG_KEYS,
+  // RAW_DATA_HERO_CONFIG_KEYS,
+  // RAW_DATA_HERO_FORMATION_CONFIG_KEYS,
   HERO_FORMATION_RULE,
   isEmptyObject,
   getSelectedMaxFormationLvl,
@@ -20,14 +20,22 @@ import {
   getHeroFieldName,
 } from '@src/formation_helper/Utils';
 
-import { RAW_FORMATION_CONFIG_KEYS } from '@src/formation_helper/shared/Utils';
+import {
+  RAW_FORMATION_CONFIG_KEYS,
+  RAW_FORMATION_DATA,
+} from '@src/formation_helper/shared/FormationData';
+import {
+  RAW_HEROES_DATA,
+  RAW_HERO_CONFIG_KEYS,
+  RAW_HERO_FORMATION_CONFIG_KEYS,
+} from '@src/formation_helper/shared/HeroData';
 
 // NOTE: hard code here to use the first formation in the list, as it should always be the major foramtion
-const getFormationLvl = ({ curFormationInfo, formationName }) => {
+const getFormationLvl = ({ curFormationInfo, formationID }) => {
   if (!curFormationInfo) return 0;
   for (const formationInfo of curFormationInfo) {
     if (!formationInfo) continue;
-    if (formationInfo.name === formationName) {
+    if (formationInfo.name === formationID) {
       return formationInfo.level;
     }
   }
@@ -39,9 +47,9 @@ const FormationLvlConfigurator = ({
   teamNumber,
   heroIndex,
   control,
-  selectedHeroName,
+  selectedHeroID,
 }) => {
-  const { HEROES_RAW_DATA, FORMATIONS_RAW_DATA, watchForm } = useFormation();
+  const { watchForm } = useFormation();
 
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
 
@@ -67,26 +75,34 @@ const FormationLvlConfigurator = ({
   );
 
   // get the main formation for the hero
-  const majorForamtionConfig = useMemo(() => {
-    if (!selectedHeroName) return null;
+  const { rawMajorForamtionConfig, extraFormationIDs } = useMemo(() => {
+    if (!selectedHeroID) return {};
 
     // get the major formation config
-    const defaultFormationName =
-      HEROES_RAW_DATA[selectedHeroName][
-        RAW_DATA_HERO_CONFIG_KEYS.FORMATION_CONFIG
-      ][RAW_DATA_HERO_FORMATION_CONFIG_KEYS.MAJOR];
+    const majorFormationID =
+      RAW_HEROES_DATA[selectedHeroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
+      ];
 
-    return FORMATIONS_RAW_DATA[defaultFormationName];
-  }, [selectedHeroName]);
+    const tempExtraFormationIDs =
+      RAW_HEROES_DATA[selectedHeroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA
+      ];
 
-  const extraFormationNames = useMemo(() => {
-    if (!selectedHeroName) return null;
+    return {
+      rawMajorForamtionConfig: RAW_FORMATION_DATA[majorFormationID],
+      extraFormationIDs: tempExtraFormationIDs,
+    };
+  }, [selectedHeroID]);
 
-    // get the extra FORMATIONS_RAW_DATA list
-    return HEROES_RAW_DATA[selectedHeroName][
-      RAW_DATA_HERO_CONFIG_KEYS.FORMATION_CONFIG
-    ][RAW_DATA_HERO_FORMATION_CONFIG_KEYS.EXTRA];
-  }, [selectedHeroName]);
+  // const extraFormationNames = useMemo(() => {
+  //   if (!selectedHeroID) return null;
+
+  //   // get the extra FORMATIONS_RAW_DATA list
+  //   return RAW_HEROES_DATA[selectedHeroID][
+  //     RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG
+  //   ][RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA];
+  // }, [selectedHeroID]);
 
   // get the valid extra_formations for the hero
   const buttonKeyBase = `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`;
@@ -99,7 +115,7 @@ const FormationLvlConfigurator = ({
   // get the current major foramtion lvl
   const curMajorFormationLvl = getFormationLvl({
     curFormationInfo,
-    formationName: majorForamtionConfig?.name,
+    formationID: rawMajorForamtionConfig?.[RAW_FORMATION_CONFIG_KEYS.UUID4],
   });
 
   // render the button based on FORMATIONS_RAW_DATA
@@ -107,38 +123,38 @@ const FormationLvlConfigurator = ({
     <div className="formation-basic">
       {
         // render the button for the main formation
-        majorForamtionConfig ? (
-          <Controller
-            name={`${buttonKeyBase}[0]`}
-            control={control}
-            defaultValue={{
-              [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
-              [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 0,
-            }}
-            render={({ field }) => (
+
+        <Controller
+          name={`${buttonKeyBase}[0]`}
+          control={control}
+          defaultValue={{
+            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
+            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 0,
+          }}
+          render={({ field }) =>
+            rawMajorForamtionConfig ? (
               <RotatingButton
                 maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                 curTotalFormationLvl={curTotalFormationLvl}
-                title={majorForamtionConfig.name}
+                formationConfig={rawMajorForamtionConfig}
                 count={curMajorFormationLvl}
                 minCount={HERO_FORMATION_RULE.MIN_MAJOR_LVL}
                 maxCount={
-                  majorForamtionConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL]
+                  rawMajorForamtionConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL]
                 }
                 field={field}
               />
-            )}
-          />
-        ) : null
+            ) : null
+          }
+        />
       }
 
       {
         // render the button for the extra FORMATIONS_RAW_DATA
-        extraFormationNames
-          ? extraFormationNames.map((extraFormationName, index) => {
+        extraFormationIDs
+          ? extraFormationIDs.map((extraFormationID, index) => {
               const curFormationButtonKey = `${buttonKeyBase}[${index + 1}]`;
-              const curFormationConfig =
-                FORMATIONS_RAW_DATA[extraFormationName];
+              const curFormationConfig = RAW_FORMATION_DATA[extraFormationID];
 
               return (
                 <Controller
@@ -153,10 +169,10 @@ const FormationLvlConfigurator = ({
                     <RotatingButton
                       maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                       curTotalFormationLvl={curTotalFormationLvl}
-                      title={curFormationConfig.name}
+                      formationConfig={curFormationConfig}
                       count={getFormationLvl({
                         curFormationInfo,
-                        formationName: extraFormationName,
+                        formationID: extraFormationID,
                       })}
                       minCount={HERO_FORMATION_RULE.MIN_EXTRA_LVL}
                       maxCount={HERO_FORMATION_RULE.MAX_EXTRA_LVL}
@@ -185,7 +201,6 @@ const HeroSelector = ({
   getValidHeroOptions,
 }) => {
   // get hero information from the provider
-  const { HEROES_RAW_DATA } = useFormation();
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
   const formFieldName = `${heroFieldName}.${FORM_KEYS.TEAM.HERO.NAME}`;
   return (
@@ -207,11 +222,16 @@ const HeroSelector = ({
           <option value="" disabled>
             选择一个英雄
           </option>
-          {getValidHeroOptions(formFieldName).map((option) => (
-            <option key={option} value={option}>
-              {`${HEROES_RAW_DATA[option].name} - ${HEROES_RAW_DATA[option].title}`}
-            </option>
-          ))}
+          {getValidHeroOptions(formFieldName).map((option) => {
+            const label = `${
+              RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.NAME]
+            } - ${RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.TITLE]}`;
+            return (
+              <option key={option} value={option}>
+                {label}
+              </option>
+            );
+          })}
         </select>
       )}
     />
@@ -221,10 +241,10 @@ const HeroSelector = ({
 const HeroFormationMaxLvlSelector = ({
   teamNumber,
   heroIndex,
-  selectedHeroName,
+  selectedHeroID,
   handleFormationLvlSet,
 }) => {
-  const { control, HEROES_RAW_DATA, watchForm } = useFormation();
+  const { control, watchForm } = useFormation();
 
   const formFieldName = `${getHeroFieldName({ teamNumber, heroIndex })}.${
     FORM_KEYS.TEAM.HERO.FORMATION_MAX_LVL
@@ -238,12 +258,12 @@ const HeroFormationMaxLvlSelector = ({
 
   // get the max formation lvl for the selected hero from the raw data
   const maxFormationLvl = useMemo(() => {
-    if (!selectedHeroName) return 1;
+    if (!selectedHeroID) return 1;
 
-    return HEROES_RAW_DATA[selectedHeroName][
-      RAW_DATA_HERO_CONFIG_KEYS.FORMATION_CONFIG
-    ][RAW_DATA_HERO_FORMATION_CONFIG_KEYS.MAX_LVL];
-  }, [selectedHeroName]);
+    return RAW_HEROES_DATA[selectedHeroID][
+      RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG
+    ][RAW_FORMATION_CONFIG_KEYS.MAX_LVL];
+  }, [selectedHeroID]);
 
   return (
     <Controller
@@ -274,12 +294,11 @@ const HeroFormationMaxLvlSelector = ({
 
 const HeroSetup = ({ teamNumber, heroIndex }) => {
   // get information from the provider
-  const { control, heroCategories, watchForm, setFormValue, HEROES_RAW_DATA } =
-    useFormation();
+  const { control, HERO_UUID4_LIST, watchForm, setFormValue } = useFormation();
 
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
 
-  const { selectedHeroes, currentSelectedHero } = getSelectedHeroes({
+  const { selectedHeroeIDs, currentSelectedHeroID } = getSelectedHeroes({
     watchForm,
     teamNumber,
     heroIndex,
@@ -289,8 +308,9 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
   const getValidHeroOptions = () => {
     // watchedValues;
     // get the non empty values from the form state
-    const valieOptions = heroCategories.filter(
-      (hero) => hero === currentSelectedHero || !selectedHeroes.includes(hero)
+    const valieOptions = HERO_UUID4_LIST.filter(
+      (heroID) =>
+        heroID === currentSelectedHeroID || !selectedHeroeIDs.includes(heroID)
     );
 
     return valieOptions;
@@ -306,15 +326,15 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
       1
     );
 
-    const majorFormationName =
-      HEROES_RAW_DATA[value][RAW_DATA_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-        RAW_DATA_HERO_FORMATION_CONFIG_KEYS.MAJOR
+    const majorFormationId =
+      RAW_HEROES_DATA[value][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
       ];
 
     // reset the formation config in form to major formation with lvl 1
     setFormValue(
       `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
-      [{ name: majorFormationName, level: 1 }]
+      [{ name: majorFormationId, level: 1 }]
     );
   };
 
@@ -323,17 +343,17 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
     // Update react-hook-form's state with field.onChange
     field.onChange(value);
 
-    const heroName = watchForm(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.NAME}`);
+    const heroID = watchForm(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.NAME}`);
 
-    const majorFormationName =
-      HEROES_RAW_DATA[heroName][RAW_DATA_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-        RAW_DATA_HERO_FORMATION_CONFIG_KEYS.MAJOR
+    const majorFormationID =
+      RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
       ];
 
     // reset the formation config in form
     setFormValue(
       `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
-      [{ name: majorFormationName, level: 1 }]
+      [{ name: majorFormationID, level: 1 }]
     );
   };
 
@@ -353,7 +373,7 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
           heroIndex={heroIndex}
           control={control}
           handleFormationLvlSet={handleFormationLvlSet}
-          selectedHeroName={currentSelectedHero}
+          selectedHeroID={currentSelectedHeroID}
         />
       </div>
 
@@ -361,7 +381,7 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
         teamNumber={teamNumber}
         heroIndex={heroIndex}
         control={control}
-        selectedHeroName={currentSelectedHero}
+        selectedHeroID={currentSelectedHeroID}
       />
     </div>
   );

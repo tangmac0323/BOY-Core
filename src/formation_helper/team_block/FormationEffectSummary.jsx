@@ -16,18 +16,20 @@ import {
 import {
   RAW_FORMATION_CONFIG_KEYS,
   RAW_FORMATION_DATA,
-} from '@src/formation_helper/shared/Utils';
+  FORMATION_NAME_UUID4_REVERSE_MAPPING,
+} from '@src/formation_helper/shared/FormationData';
 
 // helper function to initialize fData in getFormationLvlMapping
 const initializeFormationData = ({ cathedralBonus }) => {
   const fData = {};
   if (cathedralBonus) {
     //  if the flag is on, initialize with all major foramtion with lvl 1
-    for (const fName in RAW_FORMATION_DATA) {
+    for (const formationID in RAW_FORMATION_DATA) {
       if (
-        RAW_FORMATION_DATA[fName].CATEGORY === FORMATION_CATEGORY_ENUM.MAJOR
+        RAW_FORMATION_DATA[formationID][RAW_FORMATION_CONFIG_KEYS.CATEGORY] ===
+        FORMATION_CATEGORY_ENUM.MAJOR
       ) {
-        fData[fName] = 1;
+        fData[formationID] = 1;
       }
     }
   }
@@ -68,15 +70,16 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
       if (!hFormationData) continue;
 
       // get the formation name and formation lvl from the formation config data
-      const fName = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME];
+      const formationID =
+        hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME];
       const fLvl = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
 
       // we skip null, cuz null in {} is true
-      if (fName == null) {
+      if (formationID == null) {
         continue;
       }
 
-      const formationRawData = RAW_FORMATION_DATA[fName];
+      const formationRawData = RAW_FORMATION_DATA[formationID];
 
       // use the set to count the category of major formation in this team
       if (
@@ -89,13 +92,15 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
 
         // add the combination formation to the fData
 
-        fData[COMBINATION_FORMATION_NAME] = majorFormationCount.size;
+        fData[
+          FORMATION_NAME_UUID4_REVERSE_MAPPING[COMBINATION_FORMATION_NAME]
+        ] = majorFormationCount.size;
       }
 
-      if (fName in fData) {
-        fData[fName] += fLvl;
+      if (formationID in fData) {
+        fData[formationID] += fLvl;
       } else {
-        fData[fName] = fLvl;
+        fData[formationID] = fLvl;
       }
     }
   }
@@ -108,9 +113,9 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
 const FormationEffect = ({ heroFormationData }) => {
   const formationDataList = Object.entries(heroFormationData);
 
-  return formationDataList.map(([formationName, formationLvl]) => {
+  return formationDataList.map(([formationID, formationLvl]) => {
     let tempFormationLvl = formationLvl;
-    const formationRawData = RAW_FORMATION_DATA[formationName];
+    const formationRawData = RAW_FORMATION_DATA[formationID];
 
     if (formationLvl < 2) {
       return null;
@@ -124,8 +129,8 @@ const FormationEffect = ({ heroFormationData }) => {
       formationRawData[RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER];
 
     return (
-      <div key={`${formationName}-${tempFormationLvl}`}>
-        {`${formationName}(LVL`}
+      <div key={`${formationID}-${tempFormationLvl}`}>
+        {`${formationRawData[RAW_FORMATION_CONFIG_KEYS.NAME]}(LVL`}
         <ColoredText color="blue" text={tempFormationLvl} />
         {`/`}
         <ColoredText color="blue" text={maxFormationLvl} />
