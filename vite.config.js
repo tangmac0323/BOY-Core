@@ -38,8 +38,8 @@ export default defineConfig(({ mode }) => {
   const config = {
     // root: 'src',
     // publicDir: 'src/public',
+    define: injectedEnv,
     build: {
-      define: injectedEnv,
       outDir: './dist',
       emptyOutDir: true,
       rollupOptions: {
