@@ -14,7 +14,7 @@ const retrieveSetupFromDatabase = async (request, response) => {
     console.log('ROWS:', rows);
     // check the length of the rows
     if (rows.length === 0) {
-      return;
+      return response.status(200).json({ encryptedSetupCode: null });
     }
 
     // get the first one in the rows

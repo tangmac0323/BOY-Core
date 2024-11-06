@@ -23,6 +23,10 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
 
 export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
   console.log('retrieveHashedSetup - start process: ', hashedSetupCode);
+
+  if (!hashedSetupCode) {
+    return;
+  }
   const params = new URLSearchParams({
     hashedSetupCode,
   });
@@ -44,6 +48,14 @@ export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
       console.log('retrieveHashedSetup - get response data: ', data);
       // get the encrypted setup code
       const { encryptedSetupCode } = data;
+
+      if (!encryptedSetupCode) {
+        console.log(
+          'retrieveHashedSetup - No encrypted setup code found in the database with hashedSetupCode',
+          hashedSetupCode
+        );
+        return;
+      }
 
       // decrypt the code first
       const decryptedSetupCode = decryptObject(encryptedSetupCode);
