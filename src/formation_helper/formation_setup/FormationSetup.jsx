@@ -1,11 +1,3 @@
-import { useState, useEffect } from 'react';
-
-// form
-import { useForm, Controller } from 'react-hook-form';
-
-// hooks
-import useFormation from '../useFormation';
-
 // css
 import './FormationSetup.css';
 

@@ -7,7 +7,8 @@ import useFormation from '../useFormation';
 import './RotatingButton.css';
 
 // constants
-import { FORM_KEYS, isNumber } from '../Utils';
+import { FORM_KEYS } from '../Utils';
+import { RAW_FORMATION_CONFIG_KEYS } from '@src/formation_helper/shared/FormationData';
 
 // helper function to check if exceeding the max total formation lvl
 const isExceedMaxTotalFormationLvl = ({
@@ -32,7 +33,7 @@ const isExceedMaxTotalFormationLvl = ({
 };
 
 const RotatingButton = ({
-  title,
+  formationConfig,
   count,
   minCount,
   maxCount,
@@ -49,24 +50,12 @@ const RotatingButton = ({
     curTotalFormationLvl,
   });
 
-  // alter the value
-  useEffect(() => {
-    // need to check if the count is a numbe here
-    // as it could be undefined whne the extra formation is not set
-    if (isNumber(count) && count < minCount) {
-      // construct the field value
-      field.onChange({
-        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
-        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: minCount,
-      });
-    }
-  }, [field, minCount]);
-
   // Handle left-click to increment the number on each button
   const handleIncrement = () => {
     const newCount = count + 1;
     field.onChange({
-      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]:
+        formationConfig[RAW_FORMATION_CONFIG_KEYS.UUID4],
       [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: newCount,
     });
   };
@@ -74,7 +63,8 @@ const RotatingButton = ({
   const handleDecrement = () => {
     const newCount = count - 1;
     field.onChange({
-      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: title,
+      [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]:
+        formationConfig[RAW_FORMATION_CONFIG_KEYS.UUID4],
       [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: newCount,
     });
   };
@@ -83,7 +73,7 @@ const RotatingButton = ({
 
   return (
     <div className="rotating-button">
-      {title}:
+      {formationConfig[RAW_FORMATION_CONFIG_KEYS.NAME]}:
       <div className="rotating-button-control">
         <button
           type="button"

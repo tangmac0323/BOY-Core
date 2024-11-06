@@ -4,38 +4,27 @@ import { useSearchParams } from 'react-router-dom';
 
 // context
 import FormationContext from './FormationContext';
-import FormationEncryptUrl from './FormationEncryptUrl';
-
-// json
-import formationsJson from '@src/raw_data/formations.json';
-import heroesJson from '@src/raw_data/heroes.json';
-
-// utils
-import { decryptObject, encryptObject } from '@src/crypto/Utils';
+import FormationEncryptUrl, {
+  retrieveSetupFromDatabase,
+} from './FormationEncryptUrl';
+import { HEROES_NAME_UUID4_MAPPING } from '@src/formation_helper/shared/HeroData';
 
 const FormationProvider = ({ children }) => {
   // Extracts the setupcode for initialize form
   const [searchParams] = useSearchParams();
   const setupcode = searchParams.get('setupcode');
 
+  // Get the domain of the current URL
+  const currentDomain = window.location.origin;
+  const currentUrl = window.location.href; // Full URL
+
+  const baseURL = `${currentDomain}/formation-helper`;
+  const [encryptedUrl, setEncryptedUrl] = useState(currentUrl);
+
   // decrypt the form state from the setupcode
-  const decryptedFormState = setupcode ? decryptObject(setupcode) : null;
-
-  const [encryptedSetupCode, setEncryptedSetupCode] = useState(setupcode);
-
-  // load the formation json file
-  const formationCategories = useMemo(
+  const HERO_UUID4_LIST = useMemo(
     () =>
-      Object.keys(formationsJson).map((key) => {
-        return key;
-      }),
-    []
-  );
-
-  // load the ${FORM_KEYS.TEAM.HERO.KEY_NAME} json file
-  const heroCategories = useMemo(
-    () =>
-      Object.keys(heroesJson).map((key) => {
+      Object.keys(HEROES_NAME_UUID4_MAPPING).map((key) => {
         return key;
       }),
     []
@@ -49,32 +38,29 @@ const FormationProvider = ({ children }) => {
     resetField: resetFormField,
     reset: resetForm,
   } = useForm();
-  // const { formationCategories, heroCategories } = useFormation();
 
+  // we only try to retrieve the decrypted setup code from the db on the very first render
   useEffect(() => {
-    resetForm(decryptedFormState);
+    retrieveSetupFromDatabase({
+      hashedSetupCode: setupcode,
+      resetForm,
+    });
   }, [setupcode]);
 
   // Watch all fields
-  const watchedValues = watchForm();
+  // const watchedValues = watchForm();
 
-  const handleFormChange = (values) => {
-    if (values && Object.keys(values).length > 0) {
-      setEncryptedSetupCode(encryptObject(values));
-    }
-    // Add custom logic here, e.g., validation, API calls, etc.
-  };
+  // const handleFormChange = (values) => {
+  //   console.log('Form changed:', values);
+  // };
 
-  // Custom function to run on every change
-  useEffect(() => {
-    handleFormChange(watchedValues);
-  }, [watchedValues]);
+  // // Custom function to run on every change
+  // useEffect(() => {
+  //   handleFormChange(watchedValues);
+  // }, [watchedValues]);
 
   const value = {
-    HEROES_RAW_DATA: heroesJson,
-    FORMATIONS_RAW_DATA: formationsJson,
-    formationCategories,
-    heroCategories,
+    HERO_UUID4_LIST,
 
     // ----- form values -----
     control,
@@ -85,8 +71,14 @@ const FormationProvider = ({ children }) => {
 
   return (
     <FormationContext.Provider value={value}>
-      <FormationEncryptUrl encryptedSetupCode={encryptedSetupCode} />
-      <form>{children}</form>
+      <form>
+        <FormationEncryptUrl
+          baseURL={baseURL}
+          encryptedUrl={encryptedUrl}
+          setEncryptedUrl={setEncryptedUrl}
+        />
+        {children}
+      </form>
     </FormationContext.Provider>
   );
 };

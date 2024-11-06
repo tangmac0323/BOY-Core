@@ -1,7 +1,5 @@
-import { useState } from 'react';
-
 // form
-import { useForm, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 // utils
 import useFormation from '@src/formation_helper/useFormation';

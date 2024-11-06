@@ -1,5 +1,77 @@
 import { ColoredText } from '@src/formation_helper/Utils';
 
+export const FORMATION_NAME_UUID4_MAPPING = {
+  '691a320a-f5c6-497c-bf0c-26d3d53fdbdf': '组合阵线',
+  '3ec87c68-f5d7-47f4-836e-e5adcea0b310': '前锋',
+  'a2e8ca71-732c-428c-a0c7-6af9ea18068b': '辅助',
+  '1550231a-7ab7-4d66-a664-1eb44774da2c': '狩魔',
+  '98e9ad0d-663b-4e6b-b294-d52f1821b7c3': '秘术',
+  '2745a25d-a88a-4ad5-8bcc-53754ff8c842': '守护',
+  'c47446e8-6e8c-48be-89ba-a235aed8aa70': '刺杀',
+  '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5': '游侠',
+  'a5d2555f-384b-45d9-9641-2b58ad1ba704': '诡影',
+  '3a4e010c-dd87-40fe-b51e-ac22b071124c': '强袭',
+  '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586': '智慧',
+  '22767987-a7f7-478d-a886-600680371a29': '敌法',
+  '7ce1586c-2934-4817-9e49-3438c5176dca': '魔导',
+  '0156538f-7a4d-4dad-b10b-ade160100753': '噬魂',
+  '94941c94-5a24-4664-865d-648d1bbeb9cb': '医者',
+  'b87fa056-2e7f-45a9-812c-ff2465a6e10c': '召唤',
+  '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1': '通灵',
+  'd44097e3-b513-4fdc-8c24-4b1977da07af': '坚韧',
+  '92eec46c-563f-4762-9e05-d3eb59186b7d': '妖精',
+  '17cdfdc0-84f3-4c83-8b76-9a933151b414': '统帅',
+  '9a6155f8-b843-4f22-9e29-1f35973db970': '盾御',
+  'a7f055d6-4d7c-4e2f-bbb6-c81011f49b0d': '超导',
+  '8eb7ab2a-4fb6-47b9-9944-5092bde976a5': '力场',
+  'aac2a900-5097-4c50-ad0b-427089f53e2a': '流星',
+  '834597b0-22e7-478b-960d-3b1f0026fcab': '暴怒',
+  'df287f43-de18-479c-8347-acd4568ff1fa': '风涌',
+  '9ecf9e36-9a3c-45d9-b284-8956c27af301': '回能',
+  'f1afd4e4-362a-469b-bccf-863e76797007': '聚变',
+  '8759154e-1d77-42e6-9117-6ef621ce0259': '回馈',
+  '0e817b77-0591-4e44-9cf5-8918fe31ab43': '灭法',
+  'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281': '咒蚀',
+  'b6205add-6954-4a3e-8399-7ac8e624f05f': '雷暴',
+  'ca820d71-cb69-4f89-b043-d58bb757fc39': '共鸣',
+};
+
+export const FORMATION_NAME_UUID4_REVERSE_MAPPING = {
+  组合阵线: '691a320a-f5c6-497c-bf0c-26d3d53fdbdf',
+  前锋: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+  辅助: 'a2e8ca71-732c-428c-a0c7-6af9ea18068b',
+  狩魔: '1550231a-7ab7-4d66-a664-1eb44774da2c',
+  秘术: '98e9ad0d-663b-4e6b-b294-d52f1821b7c3',
+  守护: '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
+  刺杀: 'c47446e8-6e8c-48be-89ba-a235aed8aa70',
+  游侠: '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5',
+  诡影: 'a5d2555f-384b-45d9-9641-2b58ad1ba704',
+  强袭: '3a4e010c-dd87-40fe-b51e-ac22b071124c',
+  智慧: '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586',
+  敌法: '22767987-a7f7-478d-a886-600680371a29',
+  魔导: '7ce1586c-2934-4817-9e49-3438c5176dca',
+  噬魂: '0156538f-7a4d-4dad-b10b-ade160100753',
+  医者: '94941c94-5a24-4664-865d-648d1bbeb9cb',
+  召唤: 'b87fa056-2e7f-45a9-812c-ff2465a6e10c',
+  通灵: '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1',
+  坚韧: 'd44097e3-b513-4fdc-8c24-4b1977da07af',
+  妖精: '92eec46c-563f-4762-9e05-d3eb59186b7d',
+  统帅: '17cdfdc0-84f3-4c83-8b76-9a933151b414',
+  盾御: '9a6155f8-b843-4f22-9e29-1f35973db970',
+  超导: 'a7f055d6-4d7c-4e2f-bbb6-c81011f49b0d',
+  力场: '8eb7ab2a-4fb6-47b9-9944-5092bde976a5',
+  流星: 'aac2a900-5097-4c50-ad0b-427089f53e2a',
+  暴怒: '834597b0-22e7-478b-960d-3b1f0026fcab',
+  风涌: 'df287f43-de18-479c-8347-acd4568ff1fa',
+  回能: '9ecf9e36-9a3c-45d9-b284-8956c27af301',
+  聚变: 'f1afd4e4-362a-469b-bccf-863e76797007',
+  回馈: '8759154e-1d77-42e6-9117-6ef621ce0259',
+  灭法: '0e817b77-0591-4e44-9cf5-8918fe31ab43',
+  咒蚀: 'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
+  雷暴: 'b6205add-6954-4a3e-8399-7ac8e624f05f',
+  共鸣: 'ca820d71-cb69-4f89-b043-d58bb757fc39',
+};
+
 const vanguard_effects_description_handler = (level) => {
   const descriptions = [];
   //   ---------------------- Low lvl ----------------------
@@ -787,13 +859,15 @@ export const RAW_FORMATION_CONFIG_KEYS = {
   EFFECTS: 'EFFECTS',
   EFFECTS_DESCRIPTION_HANDLER: 'EFFECTS_DESCRIPTION_HANDLER',
   DESCRIPTION: 'DESCRIPTION',
+  UUID4: 'UUID4',
 };
 
 export const RAW_FORMATION_DATA = {
-  组合阵线: {
+  '691a320a-f5c6-497c-bf0c-26d3d53fdbdf': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '组合阵线',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '691a320a-f5c6-497c-bf0c-26d3d53fdbdf',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '组合阵线',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '上阵的不同阵线的黑卫数量达到2种及以上时,增加生命值和护盾值*5%*lvl,造成伤害增加*5%*lvl',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
@@ -827,10 +901,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  前锋: {
+  '3ec87c68-f5d7-47f4-836e-e5adcea0b310': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '前锋',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '前锋',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `前锋阵线的强度达到2/3/4时, 队伍中的前锋型黑卫有5%/8%/10%的几率完全抵挡该次受到的伤害
     前锋阵线的强度达到5/6/7时, 前锋阵线的黑卫在受到致命伤害时, 会触发[不死状态],在后续3/4/5秒内受到任意伤害都不会死亡
@@ -853,10 +928,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       vanguard_effects_description_handler,
   },
-  辅助: {
+  'a2e8ca71-732c-428c-a0c7-6af9ea18068b': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '辅助',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'a2e8ca71-732c-428c-a0c7-6af9ea18068b',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '辅助',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `辅助阵线的强度达到2/3/4时, 溢出的治疗量的50%/75%/100%会转换为护盾值
     辅助阵线的强度达到5/6/7时, 所有黑卫每5秒回复3%/4%/5%生命值
@@ -878,10 +954,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       support_effect_description_handler,
   },
-  狩魔: {
+  '1550231a-7ab7-4d66-a664-1eb44774da2c': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '狩魔',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '1550231a-7ab7-4d66-a664-1eb44774da2c',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '狩魔',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `狩魔阵线的强度达到2/3/4时, 狩魔阵线的黑卫暴击几率增加5%/7%/10%
     狩魔阵线的强度达到5/6/7时, 所有黑卫暴击伤害增加50%/75%/100%
@@ -903,10 +980,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       hunter_effect_description_handler,
   },
-  秘术: {
+  '98e9ad0d-663b-4e6b-b294-d52f1821b7c3': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '秘术',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '98e9ad0d-663b-4e6b-b294-d52f1821b7c3',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '秘术',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `秘术阵线的强度达到2/3/4时, 秘术型黑卫在释放大招后, 会立即回复100/125/150怒气
     秘术阵线的强度达到5/6/7时, 所有秘术型黑卫增加8%/10%/15%法术强度
@@ -928,10 +1006,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       mage_effect_description_handler,
   },
-  守护: {
+  '2745a25d-a88a-4ad5-8bcc-53754ff8c842': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '守护',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '守护',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `守护阵线的强度达到2/3/4时, 所有黑卫增加3%/6%/10%生命值和护盾值
     守护阵线的强度达到5/6/7时, 所有黑卫增加6%/12%/18%体质
@@ -953,10 +1032,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       guardian_effect_description_handler,
   },
-  刺杀: {
+  'c47446e8-6e8c-48be-89ba-a235aed8aa70': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '刺杀',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'c47446e8-6e8c-48be-89ba-a235aed8aa70',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 11,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '刺杀',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'MAJOR',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]: `刺杀阵线的强度达到2/3/4时, 刺杀型黑卫增加25%/35%/50%闪避
     刺杀阵线的强度达到5/6/7时, 所有刺杀型黑卫增加15%/30%/50%回避
@@ -978,10 +1058,11 @@ export const RAW_FORMATION_DATA = {
     [RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER]:
       assassin_effect_description_handler,
   },
-  游侠: {
+  '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '游侠',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '游侠',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '游侠阵线的强度达到2/3/4时, 所有上阵的游侠型黑卫攻击速度提升10%/15%/30%, 其它上阵黑卫攻击速度提升5%/10%/20%',
@@ -1022,10 +1103,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  诡影: {
+  'a5d2555f-384b-45d9-9641-2b58ad1ba704': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '诡影',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'a5d2555f-384b-45d9-9641-2b58ad1ba704',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '诡影',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '诡影阵线的强度达到2/3/4时, 所有上阵黑卫回避增加10%/20%/30%, 回避后攻击速度提升0%/0%/30%, 持续6秒',
@@ -1065,10 +1147,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  强袭: {
+  '3a4e010c-dd87-40fe-b51e-ac22b071124c': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '强袭',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '3a4e010c-dd87-40fe-b51e-ac22b071124c',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '强袭',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '强袭阵线的强度达到2/3/4/5/6时, 所有上阵黑卫忽视目标4%/6%/8%/10%/10%的全伤害减免, 前锋型黑卫的[不死状态]持续时间增加0/0/0/0/2秒',
@@ -1121,10 +1204,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  智慧: {
+  '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '智慧',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '智慧',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '智慧阵线的强度达到2/3/4时, 上阵黑卫的怒气上限增加50/80/200. 每个在场的智慧英雄提升全队0%/0%/3%英雄独立增伤',
@@ -1165,10 +1249,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  敌法: {
+  '22767987-a7f7-478d-a886-600680371a29': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '敌法',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '22767987-a7f7-478d-a886-600680371a29',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '敌法',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '敌法阵线的强度达到2/3/4时, 上阵黑卫受到的技能暴击几率降低4%/8%/15%. 敌法阵线黑卫受到暴击时, 恢复0/0/50点怒气, 该效果有1秒的触发间隔',
@@ -1210,10 +1295,11 @@ export const RAW_FORMATION_DATA = {
     },
   },
   //   TODO: FINISH THIS
-  魔导: {
+  '7ce1586c-2934-4817-9e49-3438c5176dca': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '魔导',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '7ce1586c-2934-4817-9e49-3438c5176dca',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '魔导',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '魔导阵线的强度达到2/3/4/5/6时, 队伍中魔导型黑卫血量降低至50%以下时, 对随机1个目标释放妖术, 使其变为羊, 持续1.5/2/3/4/4秒, 冷却时间为14/14/14/14/8秒',
@@ -1265,10 +1351,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  噬魂: {
+  '0156538f-7a4d-4dad-b10b-ade160100753': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '噬魂',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '0156538f-7a4d-4dad-b10b-ade160100753',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '噬魂',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '噬魂阵线的强度达到2/3/4时, 上阵的噬魂型黑卫在进行普通攻击时, 有15%/35%/75%几率偷取目标25怒气, 每0.5秒起效一次',
@@ -1303,10 +1390,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  医者: {
+  '94941c94-5a24-4664-865d-648d1bbeb9cb': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '医者',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '94941c94-5a24-4664-865d-648d1bbeb9cb',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '医者',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '医者阵线的强度达到2/3/4/5/6时, 上阵黑卫造成的治疗效果提升15%/25%/35%/50%/50%. 医者英雄阵亡时可复活0/0/0/0/1次, 回复45%生命值',
@@ -1357,10 +1445,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  召唤: {
+  'b87fa056-2e7f-45a9-812c-ff2465a6e10c': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '召唤',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'b87fa056-2e7f-45a9-812c-ff2465a6e10c',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '召唤',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '召唤阵线的强度达到2/3/4/5/6时, 召唤物普通攻击附带0.1%/0.2%/0.3%/0.5%/1%物理和法术强度的混沌伤害. (神之嫡子的蛇灵不享受此效果)',
@@ -1408,10 +1497,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  通灵: {
+  '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '通灵',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 5,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '通灵',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '通灵阵线的强度达到2/3/4/5时, 召唤物造成的伤害提升10%/15%/20%/20%, 且会额外召唤0/0/0/1只魔狼作战, 魔狼拥有全队平均生命,强度,暴击,攻速等属性以及50%的伤害减免, 且具有冲锋和嘲讽技能',
@@ -1459,10 +1549,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  坚韧: {
+  'd44097e3-b513-4fdc-8c24-4b1977da07af': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '坚韧',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'd44097e3-b513-4fdc-8c24-4b1977da07af',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 5,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '坚韧',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '坚韧阵线的强度达到2/3/4/5时, 上阵黑卫的生命值提升8%/12%/20%/20%, 受到伤害额外减免0%/0%/0%/20%',
@@ -1507,10 +1598,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  妖精: {
+  '92eec46c-563f-4762-9e05-d3eb59186b7d': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '妖精',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '92eec46c-563f-4762-9e05-d3eb59186b7d',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '妖精',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '妖精阵线的强度达到2/3/4时, 上阵黑卫受到的治疗效果提升10%/20%/40%, 每个妖精死亡时, 回复所有友军0/0/300点怒气',
@@ -1551,10 +1643,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  统帅: {
+  '17cdfdc0-84f3-4c83-8b76-9a933151b414': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '统帅',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '17cdfdc0-84f3-4c83-8b76-9a933151b414',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 2,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 1,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '统帅',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '统帅阵线的强度达到1/2时, 每拥有一个阵线效果, 统帅型黑卫的生命值提升5%/8%, 伤害提升3%/5%',
@@ -1588,10 +1681,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  盾御: {
+  '9a6155f8-b843-4f22-9e29-1f35973db970': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '盾御',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '9a6155f8-b843-4f22-9e29-1f35973db970',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '盾御',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '盾御阵线达到2/3/4/5/6时, 当上阵黑卫的护盾值不为0时, 造成的伤害提升6%/8%/10%/12%/15%, 如果是盾御型黑卫, 则有0%/0%/0%/0%/35%几率免疫昏迷与冰冻',
@@ -1642,10 +1736,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  超导: {
+  'a7f055d6-4d7c-4e2f-bbb6-c81011f49b0d': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '超导',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'a7f055d6-4d7c-4e2f-bbb6-c81011f49b0d',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 5,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '超导',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '超导阵线达到2/3/4/5时, 全队能量回复速度提升3%/6%/10%/10%, 且超导阵线黑卫每5秒对随机敌方释放0/0/0/1道闪电链, 闪电链会连锁4次, 每次连锁衰减30%伤害. 闪电链伤害 = 5秒内额外获得的怒气值/140*(法术+物理)强度. (额外获得能量:偷取怒气, 技能直接恢复怒气等效果)',
@@ -1694,10 +1789,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  力场: {
+  '8eb7ab2a-4fb6-47b9-9944-5092bde976a5': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '力场',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '8eb7ab2a-4fb6-47b9-9944-5092bde976a5',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '力场',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '力场阵线达到2/3/4时, 力场阵线黑卫每隔20秒在自身位置释放抵挡弹道的护罩, 持续3/4/5秒',
@@ -1731,10 +1827,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  流星: {
+  'aac2a900-5097-4c50-ad0b-427089f53e2a': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '流星',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'aac2a900-5097-4c50-ad0b-427089f53e2a',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '流星',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '流星阵线达到2/3/4时, 10秒1次, 召唤流星对场上所有敌人造成1000%/1500%/2000%强度的火焰伤害. (释放者为全队法术强度最高角色)',
@@ -1769,10 +1866,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  暴怒: {
+  '834597b0-22e7-478b-960d-3b1f0026fcab': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '暴怒',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '834597b0-22e7-478b-960d-3b1f0026fcab',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '暴怒',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '暴怒阵线达到2/3/4/5/6时, 暴怒阵线黑卫每次受伤会增加会增加造成的所有伤害1%/1.5%/2%/3%/3%, 最多叠加5次, 持续30秒. 队伍中其他黑卫死亡时, 暴怒阵线黑卫有0%/0%/0%/0%/100%概率立刻恢复生命值并处于狂怒状态, 增加的伤害效果提升100%. 持续30秒',
@@ -1824,10 +1922,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  风涌: {
+  'df287f43-de18-479c-8347-acd4568ff1fa': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '风涌',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'df287f43-de18-479c-8347-acd4568ff1fa',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '风涌',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '风涌阵线达到2/3/4时, 战斗开始时, 每隔20秒召唤持续2.5/3.5/4.5秒的龙卷吹起一名敌方单位, 期间该敌人无法行动, 也不会受到伤害',
@@ -1865,10 +1964,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  回能: {
+  '9ecf9e36-9a3c-45d9-b284-8956c27af301': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '回能',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '9ecf9e36-9a3c-45d9-b284-8956c27af301',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '回能',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '回能阵线达到2/3/4时, 魔法盾消失时, 恢复自身怒气值50/75/100. 效果每5秒可触发1次',
@@ -1905,10 +2005,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  聚变: {
+  'f1afd4e4-362a-469b-bccf-863e76797007': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '聚变',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'f1afd4e4-362a-469b-bccf-863e76797007',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '聚变',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '聚变阵线达到2/3/4/5/6时, 聚变阵线黑卫获得的所有球的基础效果增加20%/30%/40%/50%/50%. 当聚变阵线黑卫获得球时, 累积0/0/0/0/1层充能, 达到20层时, 在随机敌方位置召唤离子风暴, 每秒对范围内敌人进行打击, 造成800%法术强度的闪电伤害, 持续5秒, CD 10秒',
@@ -1960,10 +2061,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  回馈: {
+  '8759154e-1d77-42e6-9117-6ef621ce0259': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '回馈',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '8759154e-1d77-42e6-9117-6ef621ce0259',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 6,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 3,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '回馈',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '回馈阵线达到2/3/4/5时, 属于自身的召唤物死亡时, 召唤者获得25%/50%/75%/100%强度的魔法盾, 该效果5秒触发1次. 召唤物死亡, 召唤者还会恢复0/0/0/250点怒气, 该效果10秒触发一次',
@@ -2011,10 +2113,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  灭法: {
+  '0e817b77-0591-4e44-9cf5-8918fe31ab43': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '灭法',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: '0e817b77-0591-4e44-9cf5-8918fe31ab43',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '灭法',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '灭法阵线达到2/3/4级时, 队伍中灭法阵线黑卫死亡时, 会沉默所有敌方黑卫3/4/5秒',
@@ -2050,10 +2153,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  咒蚀: {
+  'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '咒蚀',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '咒蚀',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '咒蚀阵线达到2/3/4时, 每当队伍中有角色对敌人造成冰缓,感电,中毒,点燃状态时, 咒蚀阵线的黑卫将获得1个随机球, 触发间隔为3/1.5/0.5秒',
@@ -2090,10 +2194,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  雷暴: {
+  'b6205add-6954-4a3e-8399-7ac8e624f05f': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '雷暴',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'b6205add-6954-4a3e-8399-7ac8e624f05f',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 4,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '雷暴',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '雷暴阵线达到2/3/4级时, 队伍中的该阵线黑卫在释放必杀技同时, 朝随机敌人释放2/4/8道闪电, 对落点附近敌人造成800%法术强度闪电伤害. (该伤害视为技能伤害，且只会受到全伤害增幅和闪电伤害增幅的影响)',
@@ -2131,10 +2236,11 @@ export const RAW_FORMATION_DATA = {
       );
     },
   },
-  共鸣: {
+  'ca820d71-cb69-4f89-b043-d58bb757fc39': {
+    [RAW_FORMATION_CONFIG_KEYS.NAME]: '共鸣',
+    [RAW_FORMATION_CONFIG_KEYS.UUID4]: 'ca820d71-cb69-4f89-b043-d58bb757fc39',
     [RAW_FORMATION_CONFIG_KEYS.MAX_LVL]: 3,
     [RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]: 2,
-    [RAW_FORMATION_CONFIG_KEYS.NAME]: '共鸣',
     [RAW_FORMATION_CONFIG_KEYS.CATEGORY]: 'EXTRA',
     [RAW_FORMATION_CONFIG_KEYS.DESCRIPTION]:
       '共鸣阵线达到2/3级时, 共鸣阵线的黑卫所有球的上限增加1/2个',

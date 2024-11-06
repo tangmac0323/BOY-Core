@@ -104,6 +104,7 @@ export const calculateTotalFormationLvl = ({
   if (!formFormationConfigValues) return curTotalFormationLvl;
 
   for (const formFormationConfigValue of formFormationConfigValues) {
+    if (!formFormationConfigValue) continue;
     curTotalFormationLvl +=
       formFormationConfigValue[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
   }
@@ -120,35 +121,35 @@ export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
     !(FORM_KEYS.TEAM.KEY_NAME in watchedValues)
   )
     return {
-      selectedHeroes: [],
-      currentSelectedHero: null,
+      selectedHeroeIDs: [],
+      currentSelectedHeroID: null,
     };
 
-  const selectedHeroes = [];
+  const selectedHeroeIDs = [];
 
   // loop through all team under team field
   for (const team of watchedValues[FORM_KEYS.TEAM.KEY_NAME]) {
     // register the heroes into the list
     for (const hero of team[FORM_KEYS.TEAM.HERO.KEY_NAME]) {
       if (hero[FORM_KEYS.TEAM.HERO.NAME]) {
-        selectedHeroes.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
+        selectedHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       }
     }
   }
 
-  if (selectedHeroes.length == 0) {
+  if (selectedHeroeIDs.length == 0) {
     return {
-      selectedHeroes: [],
-      currentSelectedHero: null,
+      selectedHeroeIDs: [],
+      currentSelectedHeroID: null,
     };
   }
 
-  const currentSelectedHero =
+  const currentSelectedHeroID =
     watchedValues[FORM_KEYS.TEAM.KEY_NAME][teamNumber][
       FORM_KEYS.TEAM.HERO.KEY_NAME
     ][heroIndex][FORM_KEYS.TEAM.HERO.NAME];
 
-  return { selectedHeroes, currentSelectedHero };
+  return { selectedHeroeIDs, currentSelectedHeroID };
 };
 
 // helper function to get the field name of the hero in the form
