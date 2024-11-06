@@ -12,10 +12,7 @@ export default defineConfig(({ mode }) => {
   if (mode === 'development') {
     env = loadEnv(mode, process.cwd(), '');
   }
-  return {
-    define: {
-      'process.env': env ? JSON.stringify(env) : null,
-    },
+  const config = {
     // root: 'src',
     // publicDir: 'src/public',
     build: {
@@ -57,4 +54,12 @@ export default defineConfig(({ mode }) => {
     },
     base: '/',
   };
+
+  if (mode === 'development') {
+    config['define'] = {
+      'process.env': env ? JSON.stringify(env) : null,
+    };
+  }
+
+  return config;
 });
