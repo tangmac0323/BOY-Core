@@ -38,7 +38,10 @@ export default defineConfig(({ mode }) => {
   const config = {
     // root: 'src',
     // publicDir: 'src/public',
-    define: injectedEnv,
+    // define: injectedEnv,
+    define: {
+      'process.env': env ? JSON.stringify(env) : null,
+    },
     build: {
       outDir: './dist',
       emptyOutDir: true,
