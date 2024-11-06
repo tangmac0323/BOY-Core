@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
   injectedEnv[`process.env.POSTGRES_URL_NON_POOLING`] = JSON.stringify(
     env.POSTGRES_URL_NON_POOLING
   );
-  injectedEnv[`process.env.POSTGRES_URL`] = JSON.stringify(env.POSTGRES_UR);
+  injectedEnv[`process.env.POSTGRES_URL`] = JSON.stringify(env.POSTGRES_URL);
 
   const config = {
     // root: 'src',
@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
     // define: injectedEnv,
     define: {
       'process.env': {
-        POSTGRES_URL: JSON.stringify(env.POSTGRES_UR),
+        POSTGRES_URL: JSON.stringify(env.POSTGRES_URL),
       },
     },
     build: {
