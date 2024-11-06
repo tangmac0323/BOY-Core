@@ -1,45 +1,94 @@
-import { sql } from '@vercel/postgres';
+// import { sql } from '@vercel/postgres';
 import { useState } from 'react';
 
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
 
 // utils
-import { decryptObject, encryptObject, generateHash } from '@src/crypto/Utils';
+import { encryptObject, decryptObject, generateHash } from '@src/crypto/Utils';
 
-export const retrieveSetupFromDatabase = async ({
-  hashedSetupCode,
-  resetForm,
-}) => {
-  console.log('GETTING DATA FROM DATABASE');
-  // get the code from the database
-  const { rows } =
-    await sql`SELECT * FROM hashed_formation_setup WHERE hashed_setup_code = ${hashedSetupCode};`;
+const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
+  console.log(`writeHashedSetup - start`);
+  const response = await fetch('/api/writesetup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ hashBuffer, encryptedFormValues }),
+  });
 
-  console.log('ROWS:', rows);
-  // check the length of the rows
-  if (rows.length === 0) {
-    return;
-  }
-
-  // get the first one in the rows
-  const row = rows[0];
-
-  console.log('row:', row);
-
-  // get the encrypted setup code
-  const encryptedSetupCode = row.encrypted_setup_code;
-
-  console.log('encryptedSetupCode:', encryptedSetupCode);
-
-  // decrypt the code first
-  const decryptedSetupCode = decryptObject(encryptedSetupCode);
-
-  console.log('decryptedSetupCode:', decryptedSetupCode);
-
-  console.log('retrieveSetupFromDatabase - load data from hash code');
-  resetForm(decryptedSetupCode);
+  const data = await response.json();
+  console.log('writeHashedSetup - get data: ', data);
 };
+
+export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
+  console.log('retrieveHashedSetup - start process: ', hashedSetupCode);
+  const params = new URLSearchParams({
+    hashedSetupCode,
+  });
+
+  fetch(`/api/readsetup?${params}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('retrieveHashedSetup - Network response was not ok');
+      }
+
+      return response.json(); // Parse the response JSON
+    })
+    .then((data) => {
+      console.log('retrieveHashedSetup - get response data: ', data);
+      // get the encrypted setup code
+      const { encryptedSetupCode } = data;
+
+      // decrypt the code first
+      const decryptedSetupCode = decryptObject(encryptedSetupCode);
+
+      // reset the form with the decrypted state
+      resetForm(decryptedSetupCode);
+    })
+    .catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+};
+
+// export const retrieveSetupFromDatabase = async ({
+//   hashedSetupCode,
+//   resetForm,
+// }) => {
+//   console.log('GETTING DATA FROM DATABASE');
+//   // get the code from the database
+//   const { rows } =
+//     await sql`SELECT * FROM hashed_formation_setup WHERE hashed_setup_code = ${hashedSetupCode};`;
+
+//   console.log('ROWS:', rows);
+//   // check the length of the rows
+//   if (rows.length === 0) {
+//     return;
+//   }
+
+//   // get the first one in the rows
+//   const row = rows[0];
+
+//   console.log('row:', row);
+
+//   // get the encrypted setup code
+//   const encryptedSetupCode = row.encrypted_setup_code;
+
+//   console.log('encryptedSetupCode:', encryptedSetupCode);
+
+//   // decrypt the code first
+//   const decryptedSetupCode = decryptObject(encryptedSetupCode);
+
+//   console.log('decryptedSetupCode:', decryptedSetupCode);
+
+//   console.log('retrieveSetupFromDatabase - load data from hash code');
+//   resetForm(decryptedSetupCode);
+// };
 
 const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
   const { watchForm } = useFormation();
@@ -56,10 +105,13 @@ const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
     // hash the value
     const hashBuffer = await generateHash(encryptedFormValues);
 
-    await sql`INSERT INTO hashed_formation_setup (hashed_setup_code, encrypted_setup_code) 
-                VALUES (${hashBuffer}, ${encryptedFormValues}) 
-                ON CONFLICT (hashed_setup_code) DO UPDATE
-                SET encrypted_setup_code=${encryptedFormValues}`;
+    //  update the database with the hashed setup code
+    await writeHashedSetup({ hashBuffer, encryptedFormValues });
+
+    // await sql`INSERT INTO hashed_formation_setup (hashed_setup_code, encrypted_setup_code)
+    //             VALUES (${hashBuffer}, ${encryptedFormValues})
+    //             ON CONFLICT (hashed_setup_code) DO UPDATE
+    //             SET encrypted_setup_code=${encryptedFormValues}`;
 
     const completeUrl = baseURL + `?setupcode=${hashBuffer}`;
 

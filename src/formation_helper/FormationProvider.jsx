@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 // context
 import FormationContext from './FormationContext';
 import FormationEncryptUrl, {
-  retrieveSetupFromDatabase,
+  retrieveHashedSetup,
 } from './FormationEncryptUrl';
 import { HEROES_NAME_UUID4_MAPPING } from '@src/formation_helper/shared/HeroData';
 
@@ -41,7 +41,7 @@ const FormationProvider = ({ children }) => {
 
   // we only try to retrieve the decrypted setup code from the db on the very first render
   useEffect(() => {
-    retrieveSetupFromDatabase({
+    retrieveHashedSetup({
       hashedSetupCode: setupcode,
       resetForm,
     });

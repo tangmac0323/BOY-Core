@@ -41,11 +41,9 @@ export default defineConfig(({ mode }) => {
     // define: injectedEnv,
     define: {
       'process.env': {
-        POSTGRES_URL: encodeURIComponent(env.POSTGRES_URL),
-        POSTGRES_URL_NO_SSL: encodeURIComponent(env.POSTGRES_URL_NO_SSL),
-        POSTGRES_URL_NON_POOLING: encodeURIComponent(
-          env.POSTGRES_URL_NON_POOLING
-        ),
+        POSTGRES_URL: env.POSTGRES_URL,
+        POSTGRES_URL_NO_SSL: env.POSTGRES_URL_NO_SSL,
+        POSTGRES_URL_NON_POOLING: env.POSTGRES_URL_NON_POOLING,
       },
     },
     build: {
