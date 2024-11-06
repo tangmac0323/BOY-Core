@@ -9,16 +9,37 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   let env;
-  if (mode === 'development') {
-    env = loadEnv(mode, process.cwd(), '');
-  }
+
+  env = loadEnv(mode, process.cwd(), '');
+
+  // inject Psogres ENV
+  const injectedEnv = {};
+
+  injectedEnv[`process.env.POSTGRES_DATABASE`] = JSON.stringify(
+    env.POSTGRES_DATABASE
+  );
+
+  injectedEnv[`process.env.POSTGRES_HOST`] = JSON.stringify(env.POSTGRES_HOST);
+  injectedEnv[`process.env.POSTGRES_PASSWORD`] = JSON.stringify(
+    env.POSTGRES_PASSWORD
+  );
+  injectedEnv[`process.env.POSTGRES_USER`] = JSON.stringify(env.POSTGRES_USER);
+  injectedEnv[`process.env.POSTGRES_PRISMA_URL`] = JSON.stringify(
+    env.POSTGRES_PRISMA_URL
+  );
+  injectedEnv[`process.env.POSTGRES_URL_NO_SSL`] = JSON.stringify(
+    env.POSTGRES_URL_NO_SSL
+  );
+  injectedEnv[`process.env.POSTGRES_URL_NON_POOLING`] = JSON.stringify(
+    env.POSTGRES_URL_NON_POOLING
+  );
+  injectedEnv[`process.env.POSTGRES_UR`] = JSON.stringify(env.POSTGRES_UR);
+
   const config = {
-    define: {
-      'process.env': env ? JSON.stringify(env) : null,
-    },
     // root: 'src',
     // publicDir: 'src/public',
     build: {
+      define: injectedEnv,
       outDir: './dist',
       emptyOutDir: true,
       rollupOptions: {
