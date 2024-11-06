@@ -1,8 +1,5 @@
 import { sql } from '@vercel/postgres';
 
-// utils
-import { decryptObject } from '@src/crypto/Utils';
-
 const retrieveSetupFromDatabase = async (request, response) => {
   const hashedSetupCode = request.query.hashedSetupCode;
 
