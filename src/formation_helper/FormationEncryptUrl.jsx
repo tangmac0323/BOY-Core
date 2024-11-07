@@ -30,10 +30,12 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
   // console.log('writeHashedSetup - get data: ', data);
 };
 
-export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
+export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm, setIsLoading }) => {
+  setIsLoading(true);
   console.log('retrieveHashedSetup - start process: ', hashedSetupCode);
 
   if (!hashedSetupCode) {
+    setIsLoading(false);
     return;
   }
   const params = new URLSearchParams({
@@ -50,8 +52,8 @@ export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
       if (!response.ok) {
         throw new Error('retrieveHashedSetup - Network response was not ok');
       }
-
-      return response.json(); // Parse the response JSON
+      
+      return response.json();
     })
     .then((data) => {
       console.log('retrieveHashedSetup - get response data: ', data);
@@ -70,6 +72,7 @@ export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
       const decryptedSetupCode = decryptObject(encryptedSetupCode);
 
       // reset the form with the decrypted state
+      setIsLoading(false);
       resetForm(decryptedSetupCode);
     })
     .catch((error) => {
