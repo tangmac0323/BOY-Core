@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 
 const writesetup = async (request, response) => {
+  console.log('writesetup - getting request');
   try {
     if (request.method === 'POST') {
       const data = request.body;
