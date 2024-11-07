@@ -8,6 +8,7 @@ import FormationEncryptUrl, {
   retrieveHashedSetup,
 } from './FormationEncryptUrl';
 import { HEROES_NAME_UUID4_MAPPING } from '@src/formation_helper/shared/HeroData';
+import Loading from '@src/formation_helper/shared/Loading/Loading';
 
 const FormationProvider = ({ children }) => {
   // Extracts the setupcode for initialize form
@@ -20,6 +21,9 @@ const FormationProvider = ({ children }) => {
 
   const baseURL = `${currentDomain}/formation-helper`;
   const [encryptedUrl, setEncryptedUrl] = useState(currentUrl);
+
+  // state to indicate loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   // decrypt the form state from the setupcode
   const HERO_UUID4_LIST = useMemo(
@@ -44,6 +48,7 @@ const FormationProvider = ({ children }) => {
     retrieveHashedSetup({
       hashedSetupCode: setupcode,
       resetForm,
+      setIsLoading
     });
   }, [setupcode]);
 
@@ -71,6 +76,7 @@ const FormationProvider = ({ children }) => {
 
   return (
     <FormationContext.Provider value={value}>
+    {isLoading ? <Loading /> :
       <form>
         <FormationEncryptUrl
           baseURL={baseURL}
@@ -78,7 +84,7 @@ const FormationProvider = ({ children }) => {
           setEncryptedUrl={setEncryptedUrl}
         />
         {children}
-      </form>
+      </form>}
     </FormationContext.Provider>
   );
 };
