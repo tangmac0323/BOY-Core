@@ -6,6 +6,8 @@ const writesetup = async (request, response) => {
     if (request.method === 'POST') {
       const data = request.body;
 
+      console.log('writesetup - getting data from body', data);
+
       // conver the body to JSON object
       const jsonData = JSON.parse(data);
 
