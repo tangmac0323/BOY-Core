@@ -9,16 +9,26 @@ import { encryptObject, decryptObject, generateHash } from '@src/crypto/Utils';
 
 const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
   console.log(`writeHashedSetup - start`);
-  const response = await fetch('/api/writesetup', {
+  fetch('/api/writesetup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ hashBuffer, encryptedFormValues }),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error('writeHashedSetup - Network response was not ok');
+    }
+
+    return response.json(); // Parse the response JSON
+  }).then((data) => {
+      console.log('writeHashedSetup - get data: ', data);
   });
 
-  const data = await response.json();
-  console.log('writeHashedSetup - get data: ', data);
+  // TODO: add following process logic
+
+  // const data = await response.json();
+  // console.log('writeHashedSetup - get data: ', data);
 };
 
 export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm }) => {
