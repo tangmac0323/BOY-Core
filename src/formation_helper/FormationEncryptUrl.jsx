@@ -1,5 +1,3 @@
-// import { sql } from '@vercel/postgres';
-import { useState } from 'react';
 
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
@@ -19,11 +17,12 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
     if (!response.ok) {
       throw new Error(`writeHashedSetup - Network response was not ok`);
     }
-
     return response.json(); // Parse the response JSON
   }).then((data) => {
-      console.log('writeHashedSetup - get data: ', data);
-  });
+      // console.log('writeHashedSetup - get data: ', data);
+  }).catch(error => {
+    console.error('writeHashedSetup - Error:', error);
+  });;
 
   // TODO: add following process logic
 

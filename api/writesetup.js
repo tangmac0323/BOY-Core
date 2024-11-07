@@ -8,11 +8,9 @@ const writesetup = async (request, response) => {
 
       console.log('writesetup - getting data from body', data);
 
-      // conver the body to JSON object
-      const jsonData = JSON.parse(data);
-
+        // Vercel automatically parses JSON if the "Content-Type" is "application/json"
       // get the hashed setup code and encryptedFormValues from the JSON object
-      const { hashBuffer, encryptedFormValues } = jsonData;
+      const { hashBuffer, encryptedFormValues } = data;
 
       if (!hashBuffer || !encryptedFormValues)
         throw new Error('hashBuffer and encryptedFormValues required');
