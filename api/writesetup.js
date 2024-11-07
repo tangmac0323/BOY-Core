@@ -25,6 +25,7 @@ const writesetup = async (request, response) => {
       response.status(405).end(); // Method Not Allowed
     }
   } catch (error) {
+    console.log('writesetup - getting error:', error.message);
     return response.status(500).json({ error });
   }
 
