@@ -16,10 +16,10 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
     },
     body: JSON.stringify({ hashBuffer, encryptedFormValues }),
   }).then((response) => {
+    console.log(`writeHashedSetup - get data: ${response.json()}`);
 
-    
     if (!response.ok) {
-      throw new Error('writeHashedSetup - Network response was not ok, with response',  response.json());
+      throw new Error(`writeHashedSetup - Network response was not ok, with response: ${response.json()}`);
     }
 
     return response.json(); // Parse the response JSON
