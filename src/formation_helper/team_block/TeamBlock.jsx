@@ -4,6 +4,7 @@ import './TeamBlock.css';
 // components
 import HeroSetup from './HeroSetup';
 import FormationEffectSummary from './FormationEffectSummary';
+import TeamNote from './TeamNote';
 
 // constants
 import { TEAM_HERO_LIMIT, FORM_KEYS, generateArray } from '../Utils';
@@ -18,7 +19,10 @@ const TeamBlock = ({ teamNumber }) => {
         style={{ marginBottom: '16px' }}
       >
         <h2>{teamLabel}</h2>
-        <label>上阵：</label>
+        <TeamNote teamNumber={teamNumber} />
+        <label>
+          <b>上阵：</b>
+        </label>
         {generateArray(TEAM_HERO_LIMIT[teamNumber].MAIN).map((heroIndex) => (
           <HeroSetup
             key={`${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}]`}
@@ -26,7 +30,9 @@ const TeamBlock = ({ teamNumber }) => {
             heroIndex={heroIndex}
           />
         ))}
-        <label>支援:</label>
+        <label>
+          <b>支援:</b>
+        </label>
         {generateArray(TEAM_HERO_LIMIT[teamNumber].SUPPORT).map((heroIndex) => (
           <HeroSetup
             key={`${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${

@@ -1,5 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useMemo } from 'react';
 
 // hooks
 import useFormation from '../useFormation';
@@ -113,32 +112,64 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
 const FormationEffect = ({ heroFormationData }) => {
   const formationDataList = Object.entries(heroFormationData);
 
-  return formationDataList.map(([formationID, formationLvl]) => {
-    let tempFormationLvl = formationLvl;
+  const display_list = formationDataList.map(([formationID, formationLvl]) => {
+    let curFormationLvl = formationLvl;
     const formationRawData = RAW_FORMATION_DATA[formationID];
 
-    if (formationLvl < 2) {
-      return null;
+    // this decide the opacity of the effect detail description
+    // if there is no effect activated, it should be transparent
+    const displayClassName = ['padding-3', 'margin-5', 'font-size-13'];
+
+    if (
+      curFormationLvl <
+      formationRawData[RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]
+    ) {
+      displayClassName.push('opacity-70');
+    } else {
+      displayClassName.push('opacity-100');
     }
     const maxFormationLvl = formationRawData[RAW_FORMATION_CONFIG_KEYS.MAX_LVL];
-    if (formationLvl > maxFormationLvl) {
-      tempFormationLvl = maxFormationLvl;
-    }
+    // if (formationLvl > maxFormationLvl) {
+    //   curFormationLvl = maxFormationLvl;
+    // }
 
     const effectDetailDescriptionHandler =
       formationRawData[RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER];
 
-    return (
-      <div key={`${formationID}-${tempFormationLvl}`}>
-        {`${formationRawData[RAW_FORMATION_CONFIG_KEYS.NAME]}(LVL`}
-        <ColoredText color="blue" text={tempFormationLvl} />
-        {`/`}
-        <ColoredText color="blue" text={maxFormationLvl} />
-        {`) - `}
-        {effectDetailDescriptionHandler(formationLvl)}
-      </div>
-    );
+    let formationLvlColor = 'blue';
+    // set the current formation lvl color and border color
+    if (curFormationLvl == maxFormationLvl) {
+      displayClassName.push('boder-light-green');
+      formationLvlColor = 'green';
+    } else if (curFormationLvl > maxFormationLvl) {
+      displayClassName.push('boder-light-red');
+      formationLvlColor = 'red';
+    } else {
+      displayClassName.push('boder-light-blue');
+    }
+
+    return {
+      curFormationLvl,
+      comp: (
+        <div
+          key={`${formationID}-${curFormationLvl}`}
+          className={displayClassName.join(' ')}
+        >
+          <b>{`${formationRawData[RAW_FORMATION_CONFIG_KEYS.NAME]}`}</b>
+          {`  (等级`}
+          <ColoredText color={formationLvlColor} text={curFormationLvl} />
+          {`/`}
+          <ColoredText color="blue" text={maxFormationLvl} />
+          {`) - `}
+          {effectDetailDescriptionHandler(formationLvl)}
+        </div>
+      ),
+    };
   });
+
+  display_list.sort((a, b) => b.curFormationLvl - a.curFormationLvl);
+
+  return display_list.map(({ comp }) => comp);
 };
 
 const FormationEffectSummary = ({ teamNumber }) => {

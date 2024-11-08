@@ -29,3 +29,13 @@
   justify-content: space-evenly;
   margin-bottom: '16px';
 }
+
+.note-input-style {
+  position: relative; /* Make the input wrapper relative */
+  margin: 0 auto; /* Center the input horizontally */
+  width: 80%; /* Make the textarea fill the wrapper */
+  font-size: 15px;
+  padding: 8px;
+  box-sizing: border-box; /* Include padding in the width */
+  resize: none; /* Disable manual resizing by the user */
+}
