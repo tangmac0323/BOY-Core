@@ -1,0 +1,12 @@
+.title-input {
+  width: 100%; /* Make the input fill the wrapper */
+  font-size: 20px;
+  padding: 8px;
+  box-sizing: border-box; /* Include padding in the width */
+}
+
+.input-wrapper {
+  position: relative; /* Make the input wrapper relative */
+  width: 40%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the input horizontally */
+}

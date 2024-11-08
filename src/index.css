@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.boder-light-green {
+  border: 1px solid green;
+}
+
+.boder-light-red {
+  border: 1px solid red;
+}
+
+.boder-light-blue {
+  border: 1px solid blue;
+}
+
+.padding-3 {
+  padding: 3px;
+}
+
+.margin-5 {
+  margin: 5px;
+}
+
+.font-size-13 {
+  font-size: 13px;
+}
+
+.font-size-15 {
+  font-size: 15px;
+}
+
+/* Below are for character counter */
+.char-count {
+  position: sticky;
+  bottom: 5px; /* Adjust to position close to the bottom of the input */
+  right: 10px; /* Adjust to position close to the right edge of the input */
+  font-size: 12px;
+  color: #555; /* Customize the color as needed */
+}

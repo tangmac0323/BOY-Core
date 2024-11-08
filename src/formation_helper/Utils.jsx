@@ -1,8 +1,10 @@
 // this is used to map the key in form
 export const FORM_KEYS = {
   CATHEDRAL_BONUS: 'cathedralBonus',
+  TITLE: 'title',
   TEAM: {
     KEY_NAME: 'team',
+    NOTE: 'note',
     HERO: {
       KEY_NAME: 'hero',
       NAME: 'heroName',
