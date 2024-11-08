@@ -7,7 +7,7 @@ import FormationContext from './FormationContext';
 import FormationEncryptUrl, {
   retrieveHashedSetup,
 } from './FormationEncryptUrl';
-import { HEROES_NAME_UUID4_MAPPING } from '@src/formation_helper/shared/HeroData';
+import { HEROES_NAME_UUID4_MAPPING } from '@src/raw_data/HeroData';
 import Loading from '@src/formation_helper/shared/Loading/Loading';
 
 const FormationProvider = ({ children }) => {
@@ -48,7 +48,7 @@ const FormationProvider = ({ children }) => {
     retrieveHashedSetup({
       hashedSetupCode: setupcode,
       resetForm,
-      setIsLoading
+      setIsLoading,
     });
   }, [setupcode]);
 
@@ -76,15 +76,18 @@ const FormationProvider = ({ children }) => {
 
   return (
     <FormationContext.Provider value={value}>
-    {isLoading ? <Loading /> :
-      <form>
-        <FormationEncryptUrl
-          baseURL={baseURL}
-          encryptedUrl={encryptedUrl}
-          setEncryptedUrl={setEncryptedUrl}
-        />
-        {children}
-      </form>}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <form>
+          <FormationEncryptUrl
+            baseURL={baseURL}
+            encryptedUrl={encryptedUrl}
+            setEncryptedUrl={setEncryptedUrl}
+          />
+          {children}
+        </form>
+      )}
     </FormationContext.Provider>
   );
 };

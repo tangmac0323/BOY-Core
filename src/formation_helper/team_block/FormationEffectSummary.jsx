@@ -16,7 +16,7 @@ import {
   RAW_FORMATION_CONFIG_KEYS,
   RAW_FORMATION_DATA,
   FORMATION_NAME_UUID4_REVERSE_MAPPING,
-} from '@src/formation_helper/shared/FormationData';
+} from '@src/raw_data/FormationData';
 
 // helper function to initialize fData in getFormationLvlMapping
 const initializeFormationData = ({ cathedralBonus }) => {
@@ -120,6 +120,7 @@ const FormationEffect = ({ heroFormationData }) => {
     // if there is no effect activated, it should be transparent
     const displayClassName = ['padding-3', 'margin-5', 'font-size-13'];
 
+    let hasEffect = false;
     if (
       curFormationLvl <
       formationRawData[RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL]
@@ -127,11 +128,9 @@ const FormationEffect = ({ heroFormationData }) => {
       displayClassName.push('opacity-70');
     } else {
       displayClassName.push('opacity-100');
+      hasEffect = true;
     }
     const maxFormationLvl = formationRawData[RAW_FORMATION_CONFIG_KEYS.MAX_LVL];
-    // if (formationLvl > maxFormationLvl) {
-    //   curFormationLvl = maxFormationLvl;
-    // }
 
     const effectDetailDescriptionHandler =
       formationRawData[RAW_FORMATION_CONFIG_KEYS.EFFECTS_DESCRIPTION_HANDLER];
@@ -161,7 +160,9 @@ const FormationEffect = ({ heroFormationData }) => {
           {`/`}
           <ColoredText color="blue" text={maxFormationLvl} />
           {`) - `}
-          {effectDetailDescriptionHandler(formationLvl)}
+          {hasEffect
+            ? effectDetailDescriptionHandler(formationLvl)
+            : '效果未激活'}
         </div>
       ),
     };

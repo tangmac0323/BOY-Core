@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useMemo } from 'react';
+import { Controller } from 'react-hook-form';
 
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
@@ -10,10 +10,7 @@ import RotatingButton from '@src/formation_helper/shared/RotatingButton';
 // utils
 import {
   FORM_KEYS,
-  // RAW_DATA_HERO_CONFIG_KEYS,
-  // RAW_DATA_HERO_FORMATION_CONFIG_KEYS,
   HERO_FORMATION_RULE,
-  isEmptyObject,
   getSelectedMaxFormationLvl,
   calculateTotalFormationLvl,
   getSelectedHeroes,
@@ -23,12 +20,12 @@ import {
 import {
   RAW_FORMATION_CONFIG_KEYS,
   RAW_FORMATION_DATA,
-} from '@src/formation_helper/shared/FormationData';
+} from '@src/raw_data/FormationData';
 import {
   RAW_HEROES_DATA,
   RAW_HERO_CONFIG_KEYS,
   RAW_HERO_FORMATION_CONFIG_KEYS,
-} from '@src/formation_helper/shared/HeroData';
+} from '@src/raw_data/HeroData';
 
 // NOTE: hard code here to use the first formation in the list, as it should always be the major foramtion
 const getFormationLvl = ({ curFormationInfo, formationID }) => {
@@ -94,15 +91,6 @@ const FormationLvlConfigurator = ({
       extraFormationIDs: tempExtraFormationIDs,
     };
   }, [selectedHeroID]);
-
-  // const extraFormationNames = useMemo(() => {
-  //   if (!selectedHeroID) return null;
-
-  //   // get the extra FORMATIONS_RAW_DATA list
-  //   return RAW_HEROES_DATA[selectedHeroID][
-  //     RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG
-  //   ][RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA];
-  // }, [selectedHeroID]);
 
   // get the valid extra_formations for the hero
   const buttonKeyBase = `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`;

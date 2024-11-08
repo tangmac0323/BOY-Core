@@ -1,14 +1,9 @@
-import { useEffect, useState } from 'react';
-
-// hooks
-import useFormation from '../useFormation';
-
 // css
 import './RotatingButton.css';
 
 // constants
 import { FORM_KEYS } from '../Utils';
-import { RAW_FORMATION_CONFIG_KEYS } from '@src/formation_helper/shared/FormationData';
+import { RAW_FORMATION_CONFIG_KEYS } from '@src/raw_data/FormationData';
 
 // helper function to check if exceeding the max total formation lvl
 const isExceedMaxTotalFormationLvl = ({
