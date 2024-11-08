@@ -20,7 +20,7 @@ const CustomizedTitle = ({ teamNumber }) => {
       <Controller
         name={`${FORM_KEYS.TITLE}`}
         control={control}
-        defaultValue={'标题'}
+        defaultValue={''}
         rules={{
           maxLength: MAX_CHAR_LIMIT, // Limits the input to 200 characters
         }}
