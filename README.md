@@ -1,6 +1,6 @@
 # BOOKOFYOG-Core
-mock build of Book of Yog
 
+mock build of Book of Yog
 
 # Getting Started with Create React App
 
@@ -34,3 +34,14 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
+
+### Update Note
+
+v 0.1.2
+
+- fix support hero limitation issue
+- disable decremental on major if the max formation allowed is larger than 4
+
+v 0.1.1
+
+- add rarity to hero
