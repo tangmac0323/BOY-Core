@@ -2,7 +2,7 @@
 import './RotatingButton.css';
 
 // constants
-import { FORM_KEYS } from '../Utils';
+import { FORM_KEYS, HERO_FORMATION_RULE } from '../Utils';
 import { RAW_FORMATION_CONFIG_KEYS } from '@src/raw_data/FormationData';
 
 // helper function to check if exceeding the max total formation lvl
@@ -28,6 +28,7 @@ const isExceedMaxTotalFormationLvl = ({
 };
 
 const RotatingButton = ({
+  isMajor,
   formationConfig,
   count,
   minCount,
@@ -37,7 +38,15 @@ const RotatingButton = ({
   field,
   disabled = false,
 }) => {
-  const disableDecremental = count <= minCount;
+  // ------------------------- disable deremental -------------------------
+  let disableDecremental = count <= minCount;
+  // if this is a major formation
+  // we dont allow decremental, if the maxTotalFormationLvl is larger than the extra unlock lvl
+  if (isMajor && maxTotalFormationLvl >= HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
+    disableDecremental = true;
+  }
+
+  // ------------------------- disable incremental -------------------------
   const disabledIncremental = isExceedMaxTotalFormationLvl({
     maxCount,
     count,
@@ -66,8 +75,14 @@ const RotatingButton = ({
 
   const displayCount = count < minCount ? minCount : count;
 
+  // if there is value in this formation
+  // high light it with blue
+  const isHighlighted = field.value.level > 0;
+
   return (
-    <div className="rotating-button">
+    <div
+      className={`${isHighlighted ? 'boder-light-blue' : null} rotating-button`}
+    >
       {formationConfig[RAW_FORMATION_CONFIG_KEYS.NAME]}:
       <div className="rotating-button-control">
         <button

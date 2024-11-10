@@ -116,32 +116,44 @@ export const calculateTotalFormationLvl = ({
 
 // helper function to return all selected heroes from the form state
 // and the current selected hero by hero index in this team
-export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
+export const getSelectedHeroes = ({
+  watchForm,
+  teamNumber,
+  heroIndex,
+  // if this is a support hero selector, we allow duplicated support hero as the other team's support hero
+  isSupport,
+}) => {
   const watchedValues = watchForm();
   if (
     isEmptyObject(watchedValues) ||
     !(FORM_KEYS.TEAM.KEY_NAME in watchedValues)
   )
     return {
-      selectedHeroeIDs: [],
+      selectedHeroesIDs: [],
       currentSelectedHeroID: null,
     };
 
-  const selectedHeroeIDs = [];
+  const selectedBattleHeroeIDs = [];
+  const selectedSupportHeroeIDs = [];
 
   // loop through all team under team field
   for (const team of watchedValues[FORM_KEYS.TEAM.KEY_NAME]) {
-    // register the heroes into the list
-    for (const hero of team[FORM_KEYS.TEAM.HERO.KEY_NAME]) {
-      if (hero[FORM_KEYS.TEAM.HERO.NAME]) {
-        selectedHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
+    for (const [index, hero] of team[FORM_KEYS.TEAM.HERO.KEY_NAME].entries()) {
+      if (index < TEAM_HERO_LIMIT[0].MAIN) {
+        // register battle heroes into battle list
+        // which index is less than 4
+        selectedBattleHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
+      } else if (hero[FORM_KEYS.TEAM.HERO.NAME]) {
+        // register support heroes into support list
+        // which index is equal or greater than 4
+        selectedSupportHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       }
     }
   }
 
-  if (selectedHeroeIDs.length == 0) {
+  if ([...selectedBattleHeroeIDs, ...selectedSupportHeroeIDs].length == 0) {
     return {
-      selectedHeroeIDs: [],
+      selectedHeroesIDs: [],
       currentSelectedHeroID: null,
     };
   }
@@ -151,7 +163,13 @@ export const getSelectedHeroes = ({ watchForm, teamNumber, heroIndex }) => {
       FORM_KEYS.TEAM.HERO.KEY_NAME
     ][heroIndex][FORM_KEYS.TEAM.HERO.NAME];
 
-  return { selectedHeroeIDs, currentSelectedHeroID };
+  let selectedHeroesIDs = selectedBattleHeroeIDs;
+  if (!isSupport) {
+    // if this is a support hero selector, we allow duplicated support hero as the other team's support hero
+    // if it is not we need to exclude all support hero selected
+    selectedHeroesIDs.push(...selectedSupportHeroeIDs);
+  }
+  return { selectedHeroesIDs, currentSelectedHeroID };
 };
 
 // helper function to get the field name of the hero in the form

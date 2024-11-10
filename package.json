@@ -1,6 +1,6 @@
 {
   "name": "boy-helper-core",
-  "version": "0.9.9",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "dependencies": {

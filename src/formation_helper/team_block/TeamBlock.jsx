@@ -28,6 +28,7 @@ const TeamBlock = ({ teamNumber }) => {
             key={`${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}]`}
             teamNumber={teamNumber}
             heroIndex={heroIndex}
+            isSupport={false}
           />
         ))}
         <label>
@@ -40,6 +41,7 @@ const TeamBlock = ({ teamNumber }) => {
             }[${heroIndex + TEAM_HERO_LIMIT[teamNumber].MAIN}]`}
             teamNumber={teamNumber}
             heroIndex={heroIndex + TEAM_HERO_LIMIT[teamNumber].MAIN}
+            isSupport={true}
           />
         ))}
         {/* TODO: add formation effect */}

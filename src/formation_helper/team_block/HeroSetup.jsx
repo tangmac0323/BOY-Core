@@ -117,11 +117,12 @@ const FormationLvlConfigurator = ({
           control={control}
           defaultValue={{
             [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
-            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 0,
+            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 1,
           }}
           render={({ field }) =>
             rawMajorForamtionConfig ? (
               <RotatingButton
+                isMajor={true}
                 maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                 curTotalFormationLvl={curTotalFormationLvl}
                 formationConfig={rawMajorForamtionConfig}
@@ -155,6 +156,7 @@ const FormationLvlConfigurator = ({
                   }}
                   render={({ field }) => (
                     <RotatingButton
+                      isMajor={false}
                       maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                       curTotalFormationLvl={curTotalFormationLvl}
                       formationConfig={curFormationConfig}
@@ -282,16 +284,17 @@ const HeroFormationMaxLvlSelector = ({
   );
 };
 
-const HeroSetup = ({ teamNumber, heroIndex }) => {
+const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
   // get information from the provider
   const { control, HERO_UUID4_LIST, watchForm, setFormValue } = useFormation();
 
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
 
-  const { selectedHeroeIDs, currentSelectedHeroID } = getSelectedHeroes({
+  const { selectedHeroesIDs, currentSelectedHeroID } = getSelectedHeroes({
     watchForm,
     teamNumber,
     heroIndex,
+    isSupport,
   });
 
   //   this function will generate the valid hero options for each team
@@ -300,7 +303,7 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
     // get the non empty values from the form state
     const valieOptions = HERO_UUID4_LIST.filter(
       (heroID) =>
-        heroID === currentSelectedHeroID || !selectedHeroeIDs.includes(heroID)
+        heroID === currentSelectedHeroID || !selectedHeroesIDs.includes(heroID)
     );
 
     return valieOptions;
@@ -341,10 +344,23 @@ const HeroSetup = ({ teamNumber, heroIndex }) => {
       ];
 
     // reset the formation config in form
-    setFormValue(
-      `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
-      [{ name: majorFormationID, level: 1 }]
-    );
+    // if the max formation lvl is equal or larger than 4, we set the major to 4
+    if (value >= HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
+      setFormValue(
+        `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
+        [
+          {
+            name: majorFormationID,
+            level: HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL,
+          },
+        ]
+      );
+    } else {
+      setFormValue(
+        `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
+        [{ name: majorFormationID, level: 1 }]
+      );
+    }
   };
 
   return (
