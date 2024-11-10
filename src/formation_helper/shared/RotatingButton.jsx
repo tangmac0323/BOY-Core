@@ -90,7 +90,7 @@ const RotatingButton = ({
 
   // if there is value in this formation
   // high light it with blue
-  const isHighlighted = field.value.level > 0;
+  const isHighlighted = field && field.value && field.value.level > 0;
 
   // we need to check if this formation ever got a chance to be acticated with this team setup
 
