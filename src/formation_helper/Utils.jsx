@@ -1,3 +1,14 @@
+// constants
+import {
+  RAW_HEROES_DATA,
+  RAW_HERO_CONFIG_KEYS,
+  RAW_HERO_FORMATION_CONFIG_KEYS,
+} from '@src/raw_data/HeroData';
+import {
+  RAW_FORMATION_CONFIG_KEYS,
+  RAW_FORMATION_DATA,
+} from '@src/raw_data/FormationData';
+
 // this is used to map the key in form
 export const FORM_KEYS = {
   CATHEDRAL_BONUS: 'cathedralBonus',
@@ -16,16 +27,7 @@ export const FORM_KEYS = {
       },
     },
   },
-  // TEAM: 'team',
-  // HERO: 'hero',
-  // HERO_NAME: 'heroName',
-  // HERO_FORMATION_MAX_LVL: 'formationsMaxLevel',
-  // FORMATION_CONFIGURATOR: 'formationsConfig',
-  // FORMATION_CONFIGURATOR_LVL: 'level',
-  // FORMATION_CONFIGURATOR_NAME: 'name',
 };
-
-// export const HERO_INDEX = [0, 1, 2, 3];
 
 export const TEAM_HERO_LIMIT = {
   0: {
@@ -44,12 +46,6 @@ export const TEAM_HERO_LIMIT = {
 
 export const RAW_DATA_HERO_CONFIG_KEYS = {
   FORMATION_CONFIG: 'formation_config',
-};
-
-export const RAW_DATA_HERO_FORMATION_CONFIG_KEYS = {
-  MAX_LVL: 'max_lvl',
-  MAJOR: 'major',
-  EXTRA: 'extra',
 };
 
 export const FORMATION_CATEGORY_ENUM = {
@@ -170,6 +166,79 @@ export const getSelectedHeroes = ({
     selectedHeroesIDs.push(...selectedSupportHeroeIDs);
   }
   return { selectedHeroesIDs, currentSelectedHeroID };
+};
+
+// helper function to get all selected heroes in this team
+export const getTriggerableFormationIDsInTeam = ({ watchForm, teamNumber }) => {
+  const watchedValues = watchForm();
+  if (
+    isEmptyObject(watchedValues) ||
+    !(FORM_KEYS.TEAM.KEY_NAME in watchedValues)
+  )
+    return [];
+
+  const selectedBattleHeroeIDs = [];
+  const selectedSupportHeroeIDs = [];
+
+  const curTeamInfo = watchedValues[FORM_KEYS.TEAM.KEY_NAME][teamNumber];
+
+  // loop through all team under team field
+
+  for (const [index, hero] of curTeamInfo[
+    FORM_KEYS.TEAM.HERO.KEY_NAME
+  ].entries()) {
+    if (index < TEAM_HERO_LIMIT[0].MAIN) {
+      // register battle heroes into battle list
+      // which index is less than 4
+      selectedBattleHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
+    } else if (hero[FORM_KEYS.TEAM.HERO.NAME]) {
+      // register support heroes into support list
+      // which index is equal or greater than 4
+      selectedSupportHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
+    }
+  }
+
+  const selectedHeroIDs = [
+    ...selectedBattleHeroeIDs,
+    ...selectedSupportHeroeIDs,
+  ];
+
+  // filter out empty string
+  const filteredHeroIDs = selectedHeroIDs.filter((heroID) => heroID);
+
+  // we need to then find out the tirggerable formation among these heroes
+  // for example, if a formation has the minimum trigger lvl of 2, and only one
+  // hero has that formation, this formation is not triggerable
+
+  const triggerableFormationIDs = [];
+
+  // get the list of extra formation list of selected heroes
+  const selectHeroExtraFormations = filteredHeroIDs.map((heroID) => {
+    return RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+      RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA
+    ];
+  });
+
+  const filteredExtraFormations = selectHeroExtraFormations.filter(
+    (extraFormation) => extraFormation
+  );
+
+  for (let formationID in RAW_FORMATION_DATA) {
+    const minEffectiveLvl =
+      RAW_FORMATION_DATA[formationID][RAW_FORMATION_CONFIG_KEYS.MIN_EFFECT_LVL];
+
+    // Count how many HERO objects have this formationID
+    const count = filteredExtraFormations.filter((extraFormations) =>
+      extraFormations.includes(formationID)
+    ).length;
+
+    // Check if the count meets or exceeds the minTrigger
+    if (count >= minEffectiveLvl) {
+      triggerableFormationIDs.push(formationID);
+    }
+  }
+
+  return triggerableFormationIDs;
 };
 
 // helper function to get the field name of the hero in the form

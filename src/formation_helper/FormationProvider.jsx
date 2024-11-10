@@ -52,18 +52,6 @@ const FormationProvider = ({ children }) => {
     });
   }, [setupcode]);
 
-  // Watch all fields
-  // const watchedValues = watchForm();
-
-  // const handleFormChange = (values) => {
-  //   console.log('Form changed:', values);
-  // };
-
-  // // Custom function to run on every change
-  // useEffect(() => {
-  //   handleFormChange(watchedValues);
-  // }, [watchedValues]);
-
   const value = {
     HERO_UUID4_LIST,
 

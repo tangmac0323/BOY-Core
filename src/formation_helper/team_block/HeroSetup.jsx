@@ -15,6 +15,7 @@ import {
   calculateTotalFormationLvl,
   getSelectedHeroes,
   getHeroFieldName,
+  getTriggerableFormationIDsInTeam,
 } from '@src/formation_helper/Utils';
 
 import {
@@ -49,6 +50,10 @@ const FormationLvlConfigurator = ({
   const { watchForm } = useFormation();
 
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
+  const triggerableFormationIDs = getTriggerableFormationIDsInTeam({
+    watchForm,
+    teamNumber,
+  });
 
   // Watch all fields
   const curTotalFormationLvl = useMemo(
@@ -132,6 +137,7 @@ const FormationLvlConfigurator = ({
                   rawMajorForamtionConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL]
                 }
                 field={field}
+                triggerable={true}
               />
             ) : null
           }
@@ -144,7 +150,6 @@ const FormationLvlConfigurator = ({
           ? extraFormationIDs.map((extraFormationID, index) => {
               const curFormationButtonKey = `${buttonKeyBase}[${index + 1}]`;
               const curFormationConfig = RAW_FORMATION_DATA[extraFormationID];
-
               return (
                 <Controller
                   key={curFormationButtonKey}
@@ -172,6 +177,9 @@ const FormationLvlConfigurator = ({
                         curMajorFormationLvl <
                         HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL
                       }
+                      triggerable={triggerableFormationIDs.includes(
+                        extraFormationID
+                      )}
                     />
                   )}
                 />

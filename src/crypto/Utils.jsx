@@ -46,6 +46,5 @@ export const decryptObject = (encryptedData) => {
 
   // Convert decrypted data back to JSON object
   const decryptedJson = JSON.parse(decryptedData.toString(CryptoJS.enc.Utf8));
-  console.log('Decrypted data:', decryptedJson);
   return decryptedJson;
 };

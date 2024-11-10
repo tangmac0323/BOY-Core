@@ -37,6 +37,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.1.4
+
+- add feature to list formations which are available to be activated in a team
+- add rarity to hero codex
+
+v 0.1.3
+
+- fix issue that fox missing thunderstorm formation
+
 v 0.1.2
 
 - fix support hero limitation issue

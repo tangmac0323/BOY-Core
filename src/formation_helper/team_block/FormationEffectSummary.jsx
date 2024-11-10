@@ -194,7 +194,7 @@ const FormationEffectSummary = ({ teamNumber }) => {
 
   return (
     <div key={teamNumber}>
-      FormationEffectSummary:
+      阵线总结:
       {heroFormationData ? (
         <FormationEffect heroFormationData={heroFormationData} />
       ) : null}

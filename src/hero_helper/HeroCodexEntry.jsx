@@ -21,6 +21,8 @@ const constructTableDataList = () => {
       heroData[RAW_HERO_CONFIG_KEYS.TITLE]
     }`;
 
+    const heroRarity = `${heroData[RAW_HERO_CONFIG_KEYS.RARITY]}`;
+
     // get the name of the major formation
     const majorFormmationID =
       heroData[RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
@@ -41,6 +43,7 @@ const constructTableDataList = () => {
     });
     return {
       hero: heroFullName,
+      rarity: heroRarity,
       majorFormation: {
         id: majorFormmationID,
         name: majorFormationName,
@@ -64,7 +67,8 @@ const HeroesHelperEntry = () => {
         .includes(searchTerm.toLowerCase()) ||
       item.extraFormations.some((extraFromation) =>
         extraFromation.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      ) ||
+      item.rarity.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -100,6 +104,15 @@ const HeroesHelperEntry = () => {
                 padding: '8px',
               }}
             >
+              Rarity
+            </th>
+            <th
+              style={{
+                borderBottom: '1px solid #ddd',
+                textAlign: 'left',
+                padding: '8px',
+              }}
+            >
               Major Formation
             </th>
             <th
@@ -118,6 +131,9 @@ const HeroesHelperEntry = () => {
             <tr key={index}>
               <td style={{ borderBottom: '1px solid #ddd', padding: '8px' }}>
                 {item.hero}
+              </td>
+              <td style={{ borderBottom: '1px solid #ddd', padding: '8px' }}>
+                {item.rarity}
               </td>
               <td style={{ borderBottom: '1px solid #ddd', padding: '8px' }}>
                 <FormationTooltip formation={item.majorFormation} />
