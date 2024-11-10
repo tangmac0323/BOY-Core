@@ -1,4 +1,3 @@
-
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
 
@@ -13,16 +12,19 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ hashBuffer, encryptedFormValues }),
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(`writeHashedSetup - Network response was not ok`);
-    }
-    return response.json(); // Parse the response JSON
-  }).then((data) => {
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`writeHashedSetup - Network response was not ok`);
+      }
+      return response.json(); // Parse the response JSON
+    })
+    .then((data) => {
       // console.log('writeHashedSetup - get data: ', data);
-  }).catch(error => {
-    console.error('writeHashedSetup - Error:', error);
-  });;
+    })
+    .catch((error) => {
+      console.error('writeHashedSetup - Error:', error);
+    });
 
   // TODO: add following process logic
 
@@ -30,7 +32,11 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
   // console.log('writeHashedSetup - get data: ', data);
 };
 
-export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm, setIsLoading }) => {
+export const retrieveHashedSetup = async ({
+  hashedSetupCode,
+  resetForm,
+  setIsLoading,
+}) => {
   setIsLoading(true);
   console.log('retrieveHashedSetup - start process: ', hashedSetupCode);
 
@@ -38,6 +44,7 @@ export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm, setIsLoa
     setIsLoading(false);
     return;
   }
+
   const params = new URLSearchParams({
     hashedSetupCode,
   });
@@ -52,7 +59,7 @@ export const retrieveHashedSetup = async ({ hashedSetupCode, resetForm, setIsLoa
       if (!response.ok) {
         throw new Error('retrieveHashedSetup - Network response was not ok');
       }
-      
+
       return response.json();
     })
     .then((data) => {
