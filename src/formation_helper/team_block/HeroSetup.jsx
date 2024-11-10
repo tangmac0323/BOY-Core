@@ -212,8 +212,10 @@ const HeroSelector = ({
           </option>
           {getValidHeroOptions(formFieldName).map((option) => {
             const label = `${
-              RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.NAME]
-            } - ${RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.TITLE]}`;
+              RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.RARITY]
+            } - ${RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.NAME]} - ${
+              RAW_HEROES_DATA[option][RAW_HERO_CONFIG_KEYS.TITLE]
+            }`;
             return (
               <option key={option} value={option}>
                 {label}
