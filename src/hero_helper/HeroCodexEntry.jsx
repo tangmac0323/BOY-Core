@@ -10,52 +10,48 @@ import {
   RAW_FORMATION_DATA,
   RAW_FORMATION_CONFIG_KEYS,
 } from '@src/raw_data/FormationData';
+import FormationTooltip from '@src/hero_helper/FormationTooltip/FormationTooltip';
 
 // use the import raw data to create the table data list
 const constructTableDataList = () => {
   const rawHeroData = Object.entries(RAW_HEROES_DATA);
 
-  console.log(rawHeroData);
   return rawHeroData.map(([heroID, heroData]) => {
     const heroFullName = `${heroData[RAW_HERO_CONFIG_KEYS.NAME]} - ${
       heroData[RAW_HERO_CONFIG_KEYS.TITLE]
     }`;
 
-    console.log(heroData);
-
     // get the name of the major formation
-    const majorFormmationName =
-      RAW_FORMATION_DATA[
-        heroData[RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-          RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
-        ]
-      ][RAW_FORMATION_CONFIG_KEYS.NAME];
-
-    const extraFormationNameList = heroData[
-      RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG
-    ][RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA].map((extraFormationID) => {
-      return RAW_FORMATION_DATA[extraFormationID][
-        RAW_FORMATION_CONFIG_KEYS.NAME
+    const majorFormmationID =
+      heroData[RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
       ];
+    const majorFormationName =
+      RAW_FORMATION_DATA[majorFormmationID][RAW_FORMATION_CONFIG_KEYS.NAME];
+
+    const extraFormationList = heroData[RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+      RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA
+    ].map((extraFormationID) => {
+      return {
+        id: extraFormationID,
+        name: RAW_FORMATION_DATA[extraFormationID][
+          RAW_FORMATION_CONFIG_KEYS.NAME
+        ],
+      };
     });
     return {
       hero: heroFullName,
-      majorFormation: majorFormmationName,
-      extraFormationNames: extraFormationNameList.join(', '),
+      majorFormation: {
+        id: majorFormmationID,
+        name: majorFormationName,
+      },
+      extraFormations: extraFormationList,
     };
   });
 };
 
 const HeroesHelperEntry = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  // const data = [
-  //   { hero: 'Iron Man', formations: 'Avengers' },
-  //   { hero: 'Captain America', formations: 'Avengers' },
-  //   { hero: 'Thor', formations: 'Asgardians' },
-  //   { hero: 'Hulk', formations: 'Avengers' },
-  //   { hero: 'Black Widow', formations: 'Avengers' },
-  //   { hero: 'Doctor Strange', formations: 'Masters of the Mystic Arts' },
-  // ];
 
   const tableData = constructTableDataList();
 
@@ -120,10 +116,14 @@ const HeroesHelperEntry = () => {
                 {item.hero}
               </td>
               <td style={{ borderBottom: '1px solid #ddd', padding: '8px' }}>
-                {item.majorFormation}
+                <FormationTooltip formation={item.majorFormation} />
               </td>
               <td style={{ borderBottom: '1px solid #ddd', padding: '8px' }}>
-                {item.extraFormationNames}
+                {item.extraFormations.map((extraFormation) => (
+                  <div key={`${item.hero.id}-${extraFormation.id}`}>
+                    <FormationTooltip formation={extraFormation} />
+                  </div>
+                ))}
               </td>
             </tr>
           ))}

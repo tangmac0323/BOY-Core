@@ -28,7 +28,7 @@ const MainSideNav = () => {
           </Link>
         </li>
         <li>
-          <Link to="/heroes-helper" onClick={handleChildClick}>
+          <Link to="/heroes-codex" onClick={handleChildClick}>
             黑卫阵线检索
           </Link>
         </li>
