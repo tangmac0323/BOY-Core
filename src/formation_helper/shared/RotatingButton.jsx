@@ -55,8 +55,16 @@ const RotatingButton = ({
   let disableDecremental = count <= minCount;
   // if this is a major formation
   // we dont allow decremental, if the maxTotalFormationLvl is larger than the extra unlock lvl
-  if (isMajor && maxTotalFormationLvl >= HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
-    disableDecremental = true;
+  if (isMajor) {
+    // we have special case to handle decremental of major formation
+    if (maxTotalFormationLvl >= HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
+      // if the user selected max formation lvl is larger then extra threshold
+      // check if the major is larger than the threshold, if it is equal to threshold, we dont allow
+      // decremental
+      if (count === HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
+        disableDecremental = true;
+      }
+    }
   }
 
   // ------------------------- disable incremental -------------------------

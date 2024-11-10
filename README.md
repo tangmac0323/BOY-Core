@@ -37,6 +37,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.1.7
+
+- fix issue when major cannot be decremented
+
 v 0.1.6
 
 - fix issue with null field value
