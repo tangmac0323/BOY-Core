@@ -59,8 +59,12 @@ const HeroesHelperEntry = () => {
   const filteredData = tableData.filter(
     (item) =>
       item.hero.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.majorFormation.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.extraFormationNames.toLowerCase().includes(searchTerm.toLowerCase())
+      item.majorFormation.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      item.extraFormations.some((extraFromation) =>
+        extraFromation.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
   );
 
   return (
