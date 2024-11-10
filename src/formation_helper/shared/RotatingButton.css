@@ -12,3 +12,48 @@
 .rotating-button-display {
   margin: 0 10px;
 }
+
+.rotating-button-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 11px;
+  color: red;
+}
+
+.rotating-button-tooltip .rotating-button-tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Positioning */
+  position: absolute;
+  top: 50%;
+  right: 125%;
+  transform: translateY(-50%);
+
+  /* Fade-in effect */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rotating-button-tooltip .rotating-button-tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #555;
+}
+
+.rotating-button-tooltip:hover .rotating-button-tooltiptext,
+.rotating-button-tooltip:focus .rotating-button-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

@@ -5,6 +5,17 @@ import './RotatingButton.css';
 import { FORM_KEYS, HERO_FORMATION_RULE } from '../Utils';
 import { RAW_FORMATION_CONFIG_KEYS } from '@src/raw_data/FormationData';
 
+const TriggerableFormationTooltip = ({ triggerable }) => {
+  return (
+    <span className="rotating-button-tooltip">
+      {!triggerable ? '(无法激活)' : null}
+      <span className="rotating-button-tooltiptext">
+        此队伍中没有足够的黑卫拥有该阵线以满足激活条件
+      </span>
+    </span>
+  );
+};
+
 // helper function to check if exceeding the max total formation lvl
 const isExceedMaxTotalFormationLvl = ({
   maxCount,
@@ -36,7 +47,9 @@ const RotatingButton = ({
   maxTotalFormationLvl,
   curTotalFormationLvl,
   field,
+  triggerable,
   disabled = false,
+  // major formation is always triggerable
 }) => {
   // ------------------------- disable deremental -------------------------
   let disableDecremental = count <= minCount;
@@ -79,11 +92,16 @@ const RotatingButton = ({
   // high light it with blue
   const isHighlighted = field.value.level > 0;
 
+  // we need to check if this formation ever got a chance to be acticated with this team setup
+
   return (
     <div
       className={`${isHighlighted ? 'boder-light-blue' : null} rotating-button`}
     >
-      {formationConfig[RAW_FORMATION_CONFIG_KEYS.NAME]}:
+      <div>
+        {formationConfig[RAW_FORMATION_CONFIG_KEYS.NAME]}
+        <TriggerableFormationTooltip triggerable={triggerable} />
+      </div>
       <div className="rotating-button-control">
         <button
           type="button"
