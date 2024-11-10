@@ -298,7 +298,11 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
 
   const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
 
-  const { selectedHeroesIDs, currentSelectedHeroID } = getSelectedHeroes({
+  const {
+    selectedHeroesIDs,
+    selectedSupportHeroeesCurTeam,
+    currentSelectedHeroID,
+  } = getSelectedHeroes({
     watchForm,
     teamNumber,
     heroIndex,
@@ -309,10 +313,19 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
   const getValidHeroOptions = () => {
     // watchedValues;
     // get the non empty values from the form state
-    const valieOptions = HERO_UUID4_LIST.filter(
+    let valieOptions = HERO_UUID4_LIST.filter(
       (heroID) =>
         heroID === currentSelectedHeroID || !selectedHeroesIDs.includes(heroID)
     );
+
+    if (isSupport) {
+      // if this is a support hero selector, we also dont allow select the hero which is in the support position in the same team
+      for (const heroInfo of selectedSupportHeroeesCurTeam) {
+        valieOptions = valieOptions.filter(
+          (heroID) => heroID !== heroInfo.ID || heroID === currentSelectedHeroID
+        );
+      }
+    }
 
     return valieOptions;
   };

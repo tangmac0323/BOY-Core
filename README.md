@@ -37,6 +37,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.1.5
+
+- fix support hero duplicates issue
+
 v 0.1.4
 
 - add feature to list formations which are available to be activated in a team

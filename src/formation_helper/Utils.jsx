@@ -126,22 +126,35 @@ export const getSelectedHeroes = ({
   )
     return {
       selectedHeroesIDs: [],
+      selectedSupportHeroeesCurTeam: [],
       currentSelectedHeroID: null,
     };
 
   const selectedBattleHeroeIDs = [];
   const selectedSupportHeroeIDs = [];
+  const selectedSupportHeroeesCurTeam = [];
 
   // loop through all team under team field
-  for (const team of watchedValues[FORM_KEYS.TEAM.KEY_NAME]) {
-    for (const [index, hero] of team[FORM_KEYS.TEAM.HERO.KEY_NAME].entries()) {
-      if (index < TEAM_HERO_LIMIT[0].MAIN) {
+  for (const [teamIndex, team] of watchedValues[
+    FORM_KEYS.TEAM.KEY_NAME
+  ].entries()) {
+    for (const [heroIndex, hero] of team[
+      FORM_KEYS.TEAM.HERO.KEY_NAME
+    ].entries()) {
+      if (heroIndex < TEAM_HERO_LIMIT[0].MAIN) {
         // register battle heroes into battle list
-        // which index is less than 4
+        // which heroIndex is less than 4
         selectedBattleHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       } else if (hero[FORM_KEYS.TEAM.HERO.NAME]) {
         // register support heroes into support list
-        // which index is equal or greater than 4
+        // which heroIndex is equal or greater than 4
+        // in current team
+        if (teamIndex.toString() === teamNumber) {
+          selectedSupportHeroeesCurTeam.push({
+            heroIndex,
+            ID: hero[FORM_KEYS.TEAM.HERO.NAME],
+          });
+        }
         selectedSupportHeroeIDs.push(hero[FORM_KEYS.TEAM.HERO.NAME]);
       }
     }
@@ -149,7 +162,8 @@ export const getSelectedHeroes = ({
 
   if ([...selectedBattleHeroeIDs, ...selectedSupportHeroeIDs].length == 0) {
     return {
-      selectedHeroesIDs: [],
+      selectedHeroeIDs: [],
+      selectedSupportHeroeesCurTeam: [],
       currentSelectedHeroID: null,
     };
   }
@@ -165,7 +179,11 @@ export const getSelectedHeroes = ({
     // if it is not we need to exclude all support hero selected
     selectedHeroesIDs.push(...selectedSupportHeroeIDs);
   }
-  return { selectedHeroesIDs, currentSelectedHeroID };
+  return {
+    selectedHeroesIDs,
+    selectedSupportHeroeesCurTeam,
+    currentSelectedHeroID,
+  };
 };
 
 // helper function to get all selected heroes in this team
