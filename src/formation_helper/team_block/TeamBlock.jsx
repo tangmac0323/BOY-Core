@@ -5,6 +5,7 @@ import './TeamBlock.css';
 import HeroSetup from './HeroSetup';
 import FormationEffectSummary from './FormationEffectSummary';
 import TeamNote from './TeamNote';
+import { TeamResetButton } from '@src/formation_helper/team_block/ResetButton';
 
 // constants
 import { TEAM_HERO_LIMIT, FORM_KEYS, generateArray } from '../Utils';
@@ -12,13 +13,18 @@ import { TEAM_HERO_LIMIT, FORM_KEYS, generateArray } from '../Utils';
 const TeamBlock = ({ teamNumber }) => {
   const teamLabel = `队伍 #${teamNumber}`;
   // const formationCategories =
+
   return (
-    <div className=".team-block">
+    <div className="team-block">
       <div
         key={`${FORM_KEYS.TEAM.KEY_NAME}-${teamNumber}`}
         style={{ marginBottom: '16px' }}
       >
-        <h2>{teamLabel}</h2>
+        <div className="team-block-header">
+          <h2>{teamLabel}</h2>
+          <TeamResetButton teamNumber={teamNumber} />
+        </div>
+
         <TeamNote teamNumber={teamNumber} />
         <label>
           <b>上阵：</b>

@@ -37,6 +37,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.2.0
+
+- add cookie to store the latest edits
+
 v 0.1.7
 
 - fix issue when major cannot be decremented

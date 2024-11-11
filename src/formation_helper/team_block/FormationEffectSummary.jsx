@@ -74,7 +74,7 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
       const fLvl = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
 
       // we skip null, cuz null in {} is true
-      if (formationID == null) {
+      if (!formationID) {
         continue;
       }
 
