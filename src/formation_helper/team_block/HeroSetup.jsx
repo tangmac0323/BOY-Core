@@ -27,6 +27,7 @@ import {
   RAW_HERO_CONFIG_KEYS,
   RAW_HERO_FORMATION_CONFIG_KEYS,
 } from '@src/raw_data/HeroData';
+import { resetHero } from './Utils';
 
 // NOTE: hard code here to use the first formation in the list, as it should always be the major foramtion
 const getFormationLvl = ({ curFormationInfo, formationID }) => {
@@ -120,10 +121,10 @@ const FormationLvlConfigurator = ({
         <Controller
           name={`${buttonKeyBase}[0]`}
           control={control}
-          defaultValue={{
-            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
-            [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 1,
-          }}
+          // defaultValue={{
+          //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
+          //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 1,
+          // }}
           render={({ field }) =>
             rawMajorForamtionConfig ? (
               <RotatingButton
@@ -256,6 +257,14 @@ const HeroFormationMaxLvlSelector = ({
     heroIndex,
   });
 
+  // const curHeroSelectedMaxFormationLvl = useMemo(
+  //   () =>
+  //     watchForm(
+  //       `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.FORMATION_MAX_LVL}`
+  //     ),
+  //   [watchedValues]
+  // );
+
   // get the max formation lvl for the selected hero from the raw data
   const maxFormationLvl = useMemo(() => {
     if (!selectedHeroID) return 1;
@@ -334,22 +343,8 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
   const handleHeroSelect = ({ field, value }) => {
     // Update react-hook-form's state with field.onChange
     field.onChange(value);
-    // reset the max formation lvl selected for this hero in form
-    setFormValue(
-      `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_MAX_LVL}`,
-      1
-    );
-
-    const majorFormationId =
-      RAW_HEROES_DATA[value][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
-      ];
-
-    // reset the formation config in form to major formation with lvl 1
-    setFormValue(
-      `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
-      [{ name: majorFormationId, level: 1 }]
-    );
+    // --------------------------- prefeed formation default data --------------------------
+    resetHero({ heroFieldName, heroID: value, setFormValue });
   };
 
   // Function to handle formation lvl selection

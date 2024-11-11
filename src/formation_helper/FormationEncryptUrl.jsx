@@ -174,7 +174,7 @@ const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
         }}
         onClick={generateShareLink}
       >
-        Generate Share Link
+        生成分享链接
       </button>
       <p
         style={{
