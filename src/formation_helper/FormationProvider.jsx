@@ -69,7 +69,7 @@ const FormationProvider = ({ children }) => {
 
   // only load the cookie upon first render
   useEffect(() => {
-    if (!setupcode) {
+    if (!setupcode && userCookieData) {
       console.log('reset with cookie data');
       resetForm(userCookieData);
     }
