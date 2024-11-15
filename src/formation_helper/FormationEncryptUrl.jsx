@@ -150,10 +150,10 @@ const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
       .writeText(completeUrl)
       .then(() => {
         setEncryptedUrl(completeUrl);
-        alert('URL copied to clipboard!');
+        alert('生成的链接已保存在剪切板，如需保留请复制下来以供以后使用');
       })
       .catch((error) => {
-        console.error('Failed to copy: ', error);
+        console.error('链接生成失败', error);
       });
   };
 
