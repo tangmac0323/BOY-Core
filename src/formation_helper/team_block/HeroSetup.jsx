@@ -1,11 +1,15 @@
 import { useMemo } from 'react';
 import { Controller } from 'react-hook-form';
 
+// css
+import './TeamBlock.css';
+
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
 
 // components
-import RotatingButton from '@src/formation_helper/shared/RotatingButton';
+import RotatingButton from '@src/formation_helper/shared/RotatingButton/RotatingButton';
+import MajorFormationOverride from '@src/formation_helper/team_block/HeroBasicSetup/MajorFormationOverride';
 
 // utils
 import {
@@ -121,10 +125,6 @@ const FormationLvlConfigurator = ({
         <Controller
           name={`${buttonKeyBase}[0]`}
           control={control}
-          // defaultValue={{
-          //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
-          //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 1,
-          // }}
           render={({ field }) =>
             rawMajorForamtionConfig ? (
               <RotatingButton
@@ -209,6 +209,7 @@ const HeroSelector = ({
       defaultValue=""
       render={({ field }) => (
         <select
+          className="hero-setup-hero_selector"
           {...field}
           value={field.value || ''}
           onChange={(e) =>
@@ -256,14 +257,6 @@ const HeroFormationMaxLvlSelector = ({
     teamNumber,
     heroIndex,
   });
-
-  // const curHeroSelectedMaxFormationLvl = useMemo(
-  //   () =>
-  //     watchForm(
-  //       `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.FORMATION_MAX_LVL}`
-  //     ),
-  //   [watchedValues]
-  // );
 
   // get the max formation lvl for the selected hero from the raw data
   const maxFormationLvl = useMemo(() => {
@@ -380,15 +373,21 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
   };
 
   return (
-    <div key={heroFieldName} className="hero-setup">
+    <div
+      key={heroFieldName}
+      className={`hero-setup border-radius-10 ${
+        currentSelectedHeroID ? 'boder-light-purple' : ''
+      }`}
+    >
+      <HeroSelector
+        teamNumber={teamNumber}
+        heroIndex={heroIndex}
+        control={control}
+        handleHeroSelect={handleHeroSelect}
+        getValidHeroOptions={getValidHeroOptions}
+      />
       <div className="hero-basic team-block-item">
-        <HeroSelector
-          teamNumber={teamNumber}
-          heroIndex={heroIndex}
-          control={control}
-          handleHeroSelect={handleHeroSelect}
-          getValidHeroOptions={getValidHeroOptions}
-        />
+        <MajorFormationOverride />
         {/* Slider to set the number of extra dropdowns */}
         <HeroFormationMaxLvlSelector
           teamNumber={teamNumber}

@@ -2,7 +2,7 @@
 import './RotatingButton.css';
 
 // constants
-import { FORM_KEYS, HERO_FORMATION_RULE } from '../Utils';
+import { FORM_KEYS, HERO_FORMATION_RULE } from '@src/formation_helper/Utils';
 import { RAW_FORMATION_CONFIG_KEYS } from '@src/raw_data/FormationData';
 
 const TriggerableFormationTooltip = ({ triggerable }) => {

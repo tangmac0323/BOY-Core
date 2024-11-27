@@ -3,7 +3,7 @@ import './FormationSetup.css';
 
 // components
 import TeamBlock from '../team_block/TeamBlock';
-import CathedralToggle from '../shared/CathedralToggle';
+import CathedralToggle from '../shared/CathedralToggle/CathedralToggle';
 import CustomizedTitle from '../shared/CustomizedTitle/CustomizedTitle';
 import { AllResetButton } from '@src/formation_helper/team_block/ResetButton';
 
