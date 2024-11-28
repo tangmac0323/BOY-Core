@@ -40,6 +40,7 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
   // console.log('writeHashedSetup - get data: ', data);
 };
 
+// NOTE: following is in prod
 export const retrieveHashedSetup = async ({
   hashedSetupCode,
   resetForm,
@@ -95,7 +96,7 @@ export const retrieveHashedSetup = async ({
     });
 };
 
-// export const retrieveSetupFromDatabase = async ({
+// export const retrieveHashedSetup = async ({
 //   hashedSetupCode,
 //   resetForm,
 // }) => {
@@ -183,6 +184,7 @@ const FormationEncryptedCode = ({
   };
 
   const onSubmitModal = () => {
+    console.log('onSubmitModal', inputSetupCode);
     setEncryptedSetupCode(inputSetupCode);
     closeModal();
     setInputSetupCode('');

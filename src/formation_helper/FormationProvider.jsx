@@ -50,6 +50,7 @@ const FormationProvider = ({ children }) => {
 
   // we only try to retrieve the decrypted setup code from the db on the very first render
   useEffect(() => {
+    console.log('getting encrypted setup code', encryptedSetupCode);
     // TODO: PRODUCTION: comment back once deployed
     if (encryptedSetupCode) {
       retrieveHashedSetup({
