@@ -8,17 +8,12 @@ import './MajorFormationOverride.css';
 import useFormation from '@src/formation_helper/useFormation';
 import {
   FORM_KEYS,
-  HERO_FORMATION_RULE,
-  getSelectedMaxFormationLvl,
-  calculateTotalFormationLvl,
   getSelectedHeroes,
   getHeroFieldName,
-  getTriggerableFormationIDsInTeam,
+  getMajorFormationOverrode,
 } from '@src/formation_helper/Utils';
 
 import {
-  RAW_FORMATION_CONFIG_KEYS,
-  RAW_FORMATION_DATA,
   RAW_FORMATION_OVERRIDE,
   FORMATION_NAME_UUID4_MAPPING,
 } from '@src/raw_data/FormationData';
@@ -36,10 +31,42 @@ import {
 //  major formation, thus we can only consider about the boolea solution so far
 
 // this to indicate if the player has the cathedral lvl maxed out
-const Toggle = ({ field }) => {
+const Toggle = ({ field, teamNumber, heroIndex }) => {
+  const { watchForm, setFormValue } = useFormation();
   const onChange = (e) => {
     //update the field value
     field.onChange(e.target.checked);
+
+    const heroFieldName = getHeroFieldName({ teamNumber, heroIndex });
+    const curFormConfig = watchForm(
+      `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`
+    );
+
+    const curMajorFormationID = getMajorFormationOverrode({
+      watchForm,
+      teamNumber,
+      heroIndex,
+    });
+
+    console.log('curID', curMajorFormationID);
+
+    if (curFormConfig.length > 0) {
+      const majorFormConfig = curFormConfig[0];
+      curFormConfig[0] = {
+        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: curMajorFormationID,
+
+        [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]:
+          majorFormConfig[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL],
+      };
+
+      console.log(curFormConfig[0]);
+
+      // need to set the first item in the formationsConfig to new MajorFormation
+      setFormValue(
+        `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`,
+        curFormConfig
+      );
+    }
   };
 
   return (
@@ -95,7 +122,7 @@ const MajorFormationOverride = ({ teamNumber, heroIndex }) => {
               `(${FORMATION_NAME_UUID4_MAPPING[majorFormationID]} -> ${FORMATION_NAME_UUID4_MAPPING[overrideFormationID]})`}
             :
           </label>
-          <Toggle field={field} />
+          <Toggle field={field} teamNumber={teamNumber} heroIndex={heroIndex} />
         </div>
       )}
     />

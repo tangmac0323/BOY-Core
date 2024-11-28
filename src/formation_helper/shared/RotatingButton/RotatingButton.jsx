@@ -86,18 +86,6 @@ const RotatingButton = ({
     }
   }
 
-  // const trueFormationID = useMemo(() => {
-  //   if (isMajor) {
-  //     return getMajorFormationOverrode({
-  //       watchForm,
-  //       teamNumber,
-  //       heroIndex,
-  //     });
-  //   }
-
-  //   return formationID;
-  // }, [watchForm, teamNumber, heroIndex]);
-
   const { formationConfig, maxCount } = useMemo(() => {
     let trueFormationID = formationID;
     if (isMajor) {

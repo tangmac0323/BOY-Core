@@ -82,16 +82,32 @@ const FormationLvlConfigurator = ({
     [watchForm]
   );
 
+  // const hasMajorOverride = useMemo(() => {
+  //   return watchForm(
+  //     `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.MAJOR_OVERRIDE}`
+  //   );
+  // }, [watchForm]);
+
   // get the main formation for the hero
-  const { majorFormationID, extraFormationIDs } = useMemo(() => {
+  const {
+    majorFormationID,
+    extraFormationIDs,
+    curFormationInfo,
+    curMajorFormationLvl,
+  } = useMemo(() => {
     if (!selectedHeroID) return {};
 
-    // get the major formation config
-    const majorFormationID =
-      RAW_HEROES_DATA[selectedHeroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
-      ];
+    // // get the major formation config
+    // const majorFormationID =
+    //   RAW_HEROES_DATA[selectedHeroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+    //     RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
+    //   ];
 
+    const majorFormationID = getMajorFormationOverrode({
+      watchForm,
+      teamNumber,
+      heroIndex,
+    });
     // we should use the overrode one if there is override
     // const majorFormationID = getMajorFormationOverrode({
     //   watchForm,
@@ -104,26 +120,39 @@ const FormationLvlConfigurator = ({
         RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA
       ];
 
+    // get the current default formation lvl from form state
+    const curFormationInfo = watchForm(
+      `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`
+    );
+
+    // get the current major foramtion lvl
+    const curMajorFormationLvl = getFormationLvl({
+      curFormationInfo,
+      formationID: majorFormationID,
+    });
+
     return {
       majorFormationID,
       // rawMajorForamtionConfig: RAW_FORMATION_DATA[majorFormationID],
       extraFormationIDs: tempExtraFormationIDs,
+      curFormationInfo,
+      curMajorFormationLvl,
     };
-  }, [selectedHeroID]);
+  }, [selectedHeroID, watchForm, teamNumber, heroIndex]);
 
   // get the valid extra_formations for the hero
   const buttonKeyBase = `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`;
 
-  // get the current default formation lvl from form state
-  const curFormationInfo = watchForm(
-    `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`
-  );
+  // // get the current default formation lvl from form state
+  // const curFormationInfo = watchForm(
+  //   `${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME}`
+  // );
 
-  // get the current major foramtion lvl
-  const curMajorFormationLvl = getFormationLvl({
-    curFormationInfo,
-    formationID: majorFormationID,
-  });
+  // // get the current major foramtion lvl
+  // const curMajorFormationLvl = getFormationLvl({
+  //   curFormationInfo,
+  //   formationID: majorFormationID,
+  // });
 
   // render the button based on FORMATIONS_RAW_DATA
   return (
@@ -363,13 +392,11 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
     // Update react-hook-form's state with field.onChange
     field.onChange(value);
 
-    const heroID = watchForm(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.NAME}`);
-
-    const majorFormationID =
-      RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
-        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
-      ];
-
+    const majorFormationID = getMajorFormationOverrode({
+      watchForm,
+      teamNumber,
+      heroIndex,
+    });
     // reset the formation config in form
     // if the max formation lvl is equal or larger than 4, we set the major to 4
     if (value >= HERO_FORMATION_RULE.UNLOCK_EXTRA_LVL) {
