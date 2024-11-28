@@ -183,6 +183,11 @@ const FormationEncryptedCode = ({
       });
   };
 
+  const onOpenModal = () => {
+    // reset the encrypted code
+    setEncryptedSetupCode('');
+    openModal();
+  };
   const onSubmitModal = () => {
     console.log('onSubmitModal', inputSetupCode);
     setEncryptedSetupCode(inputSetupCode);
@@ -239,7 +244,7 @@ const FormationEncryptedCode = ({
             cursor: 'pointer',
             padding: '10px',
           }}
-          onClick={openModal}
+          onClick={onOpenModal}
         >
           读取分享码
         </button>

@@ -75,8 +75,6 @@ const FormationProvider = ({ children }) => {
   const watchedValues = watchForm();
 
   const handleFormChange = (watchedValues) => {
-    // reset the encrypted code
-    setEncryptedSetupCode('');
     Cookies.set(FORMATION_COOKIE_KEY, JSON.stringify(watchedValues), {
       expires: 7,
     }); // Expires in 7 days
@@ -84,7 +82,6 @@ const FormationProvider = ({ children }) => {
 
   // Custom function to run on every change
   useEffect(() => {
-    console.log('form', watchedValues);
     handleFormChange(watchedValues);
   }, [watchedValues]);
 
