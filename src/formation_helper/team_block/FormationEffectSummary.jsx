@@ -66,9 +66,9 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
 
     // check if there is override
     // only the first is major
-    const hasOverride = watchForm(
-      `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.MAJOR_OVERRIDE}`
-    );
+    // const hasOverride = watchForm(
+    //   `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.MAJOR_OVERRIDE}`
+    // );
 
     const hFormationConfig =
       hData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.KEY_NAME];
@@ -78,13 +78,23 @@ const getFormationLvlMapping = ({ watchForm, teamNumber }) => {
     }
 
     // loop through the formation config data to get the formation name and lvl
-    for (const hFormationData of hFormationConfig) {
+    for (const [
+      hFormationIndex,
+      hFormationData,
+    ] of hFormationConfig.entries()) {
       if (!hFormationData) continue;
 
       // get the formation name and formation lvl from the formation config data
-      const formationID = hasOverride
-        ? getMajorFormationOverrode({ watchForm, teamNumber, heroIndex })
-        : hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME];
+      // NOTE: we only use onverride formation ID if this is a major formation config
+      let formationID =
+        hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME];
+      if (hFormationIndex == 0) {
+        formationID = getMajorFormationOverrode({
+          watchForm,
+          teamNumber,
+          heroIndex,
+        });
+      }
 
       const fLvl = hFormationData[FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL];
 
