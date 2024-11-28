@@ -7,6 +7,7 @@ import {
 import {
   RAW_FORMATION_CONFIG_KEYS,
   RAW_FORMATION_DATA,
+  RAW_FORMATION_OVERRIDE,
 } from '@src/raw_data/FormationData';
 
 // this is used to map the key in form
@@ -19,7 +20,9 @@ export const FORM_KEYS = {
     HERO: {
       KEY_NAME: 'hero',
       NAME: 'heroName',
+
       FORMATION_MAX_LVL: 'formationsMaxLevel',
+      MAJOR_OVERRIDE: 'majorOverride',
       FORMATION_CONFIG: {
         KEY_NAME: 'formationsConfig',
         LEVEL: 'level',
@@ -110,6 +113,33 @@ export const calculateTotalFormationLvl = ({
   return curTotalFormationLvl;
 };
 
+// helper function to get the major formation override of target hero
+export const getMajorFormationOverrode = ({
+  watchForm,
+  teamNumber,
+  heroIndex,
+}) => {
+  const hasOverrode = watchForm(
+    `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.MAJOR_OVERRIDE}`
+  );
+
+  const heroID = watchForm(
+    `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.NAME}`
+  );
+  if (!heroID) {
+    return null;
+  } else {
+    // if we set override the major formation, we should use the overrode formation
+    const originalMajorFormationID =
+      RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
+        RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
+      ];
+    return hasOverrode
+      ? RAW_FORMATION_OVERRIDE[originalMajorFormationID]
+      : originalMajorFormationID;
+  }
+};
+
 // helper function to return all selected heroes from the form state
 // and the current selected hero by hero index in this team
 export const getSelectedHeroes = ({
@@ -117,7 +147,7 @@ export const getSelectedHeroes = ({
   teamNumber,
   heroIndex,
   // if this is a support hero selector, we allow duplicated support hero as the other team's support hero
-  isSupport,
+  isSupport = false,
 }) => {
   const watchedValues = watchForm();
   if (
@@ -138,6 +168,11 @@ export const getSelectedHeroes = ({
   for (const [teamIndex, team] of watchedValues[
     FORM_KEYS.TEAM.KEY_NAME
   ].entries()) {
+    // check if we have hero information or not
+    if (!(FORM_KEYS.TEAM.HERO.KEY_NAME in team)) {
+      continue;
+    }
+
     for (const [heroIndex, hero] of team[
       FORM_KEYS.TEAM.HERO.KEY_NAME
     ].entries()) {
@@ -162,16 +197,20 @@ export const getSelectedHeroes = ({
 
   if ([...selectedBattleHeroeIDs, ...selectedSupportHeroeIDs].length == 0) {
     return {
-      selectedHeroeIDs: [],
+      selectedHeroesIDs: [],
       selectedSupportHeroeesCurTeam: [],
       currentSelectedHeroID: null,
     };
   }
 
-  const currentSelectedHeroID =
-    watchedValues[FORM_KEYS.TEAM.KEY_NAME][teamNumber][
-      FORM_KEYS.TEAM.HERO.KEY_NAME
-    ][heroIndex][FORM_KEYS.TEAM.HERO.NAME];
+  // const currentSelectedHeroID =
+  //   watchedValues[FORM_KEYS.TEAM.KEY_NAME][teamNumber][
+  //     FORM_KEYS.TEAM.HERO.KEY_NAME
+  //   ][heroIndex][FORM_KEYS.TEAM.HERO.NAME];
+
+  const currentSelectedHeroID = watchForm(
+    `${FORM_KEYS.TEAM.KEY_NAME}[${teamNumber}].${FORM_KEYS.TEAM.HERO.KEY_NAME}[${heroIndex}].${FORM_KEYS.TEAM.HERO.NAME}`
+  );
 
   let selectedHeroesIDs = selectedBattleHeroeIDs;
   if (!isSupport) {

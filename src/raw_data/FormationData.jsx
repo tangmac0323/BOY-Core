@@ -1,5 +1,35 @@
 import { ColoredText } from '@src/formation_helper/Utils';
 
+// Formation Override
+// since formation overrides are all fix direction, like
+// 前锋 can only be overrided by 辅助
+// thus we do strict mapping here
+export const RAW_FORMATION_OVERRIDE = {
+  // 前锋 -> 辅助
+  '3ec87c68-f5d7-47f4-836e-e5adcea0b310':
+    'a2e8ca71-732c-428c-a0c7-6af9ea18068b',
+
+  // 封住 -> 前锋
+  'a2e8ca71-732c-428c-a0c7-6af9ea18068b':
+    '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+
+  // 守护 -> 狩魔
+  '2745a25d-a88a-4ad5-8bcc-53754ff8c842':
+    '1550231a-7ab7-4d66-a664-1eb44774da2c',
+
+  // 狩魔 -> 守护
+  '1550231a-7ab7-4d66-a664-1eb44774da2c':
+    '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
+
+  // 秘术 -> 刺杀
+  '98e9ad0d-663b-4e6b-b294-d52f1821b7c3':
+    'c47446e8-6e8c-48be-89ba-a235aed8aa70',
+
+  // 刺杀 -> 秘术
+  'c47446e8-6e8c-48be-89ba-a235aed8aa70':
+    '98e9ad0d-663b-4e6b-b294-d52f1821b7c3',
+};
+
 export const FORMATION_NAME_UUID4_MAPPING = {
   '691a320a-f5c6-497c-bf0c-26d3d53fdbdf': '组合阵线',
   '3ec87c68-f5d7-47f4-836e-e5adcea0b310': '前锋',

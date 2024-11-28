@@ -37,6 +37,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.5.0
+
+- add new hero 朱丽叶
+- allow user to override major formation
+
 v 0.2.1
 
 - fix 塞尔希娅 formation

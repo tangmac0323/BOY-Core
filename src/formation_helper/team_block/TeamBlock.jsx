@@ -51,7 +51,7 @@ const TeamBlock = ({ teamNumber }) => {
           />
         ))}
         {/* TODO: add formation effect */}
-        <FormationEffectSummary teamNumber={teamNumber} />
+        <FormationEffectSummary teamNumber={teamNumber} watc />
       </div>
     </div>
   );

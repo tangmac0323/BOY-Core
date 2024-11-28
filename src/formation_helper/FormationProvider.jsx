@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 // utils
 import FormationContext from './FormationContext';
-import FormationEncryptUrl, {
+import FormationEncryptedCode, {
   retrieveHashedSetup,
 } from './FormationEncryptUrl';
 import { HEROES_NAME_UUID4_MAPPING } from '@src/raw_data/HeroData';
@@ -14,9 +14,6 @@ import { FORMATION_COOKIE_KEY } from '@src/home_page/cookie_consent/CookieConsen
 
 const FormationProvider = ({ children }) => {
   // Extracts the setupcode for initialize form
-  const [searchParams] = useSearchParams();
-  const setupcode = searchParams.get('setupcode');
-
   // ------------------------- Cookie data for user setup -------------------------
   const userCookie = Cookies.get('bookofyogcore-usersetupdata');
   const userCookieData = useMemo(() => {
@@ -27,18 +24,13 @@ const FormationProvider = ({ children }) => {
     return null;
   }, [userCookie]);
 
-  // ---------------------- load from db with feeding param ----------------------
-  // Get the domain of the current URL
-  const currentDomain = window.location.origin;
-  const currentUrl = window.location.href; // Full URL
-
-  const baseURL = `${currentDomain}/formation-helper`;
-  const [encryptedUrl, setEncryptedUrl] = useState(currentUrl);
+  // ---------------------- load from db with feeding setupcode ----------------------
+  const [encryptedSetupCode, setEncryptedSetupCode] = useState();
 
   // state to indicate loading state
   const [isLoading, setIsLoading] = useState(false);
 
-  // decrypt the form state from the setupcode
+  // decrypt the form state from the shareCode
   const HERO_UUID4_LIST = useMemo(
     () =>
       Object.keys(HEROES_NAME_UUID4_MAPPING).map((key) => {
@@ -58,19 +50,21 @@ const FormationProvider = ({ children }) => {
 
   // we only try to retrieve the decrypted setup code from the db on the very first render
   useEffect(() => {
-    if (setupcode) {
+    console.log('getting encrypted setup code', encryptedSetupCode);
+    // TODO: PRODUCTION: comment back once deployed
+    if (encryptedSetupCode) {
       retrieveHashedSetup({
-        hashedSetupCode: setupcode,
+        hashedSetupCode: encryptedSetupCode,
         resetForm,
         setIsLoading,
       });
     }
-  }, [setupcode]);
+  }, [encryptedSetupCode]);
 
   // only load the cookie upon first render
   useEffect(() => {
-    if (!setupcode && userCookieData) {
-      console.log('reset with cookie data');
+    if (userCookieData) {
+      console.log('reset with cookie data', userCookieData);
       resetForm(userCookieData);
     }
   }, []);
@@ -80,8 +74,8 @@ const FormationProvider = ({ children }) => {
   // Watch all fields
   const watchedValues = watchForm();
 
-  const handleFormChange = (values) => {
-    Cookies.set(FORMATION_COOKIE_KEY, JSON.stringify(values), {
+  const handleFormChange = (watchedValues) => {
+    Cookies.set(FORMATION_COOKIE_KEY, JSON.stringify(watchedValues), {
       expires: 7,
     }); // Expires in 7 days
   };
@@ -107,14 +101,13 @@ const FormationProvider = ({ children }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <form>
-          <FormationEncryptUrl
-            baseURL={baseURL}
-            encryptedUrl={encryptedUrl}
-            setEncryptedUrl={setEncryptedUrl}
+        <>
+          <FormationEncryptedCode
+            encryptedSetupCode={encryptedSetupCode}
+            setEncryptedSetupCode={setEncryptedSetupCode}
           />
-          {children}
-        </form>
+          <form>{children}</form>
+        </>
       )}
     </FormationContext.Provider>
   );

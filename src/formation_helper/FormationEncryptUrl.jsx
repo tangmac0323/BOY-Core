@@ -1,5 +1,13 @@
+import { useEffect, useState } from 'react';
+
+// css
+import './FormationEncryptUrl.css';
+
 // hooks
 import useFormation from '@src/formation_helper/useFormation';
+import CustomizedModal, {
+  useCustomizedModal,
+} from './shared/CustomizedModal/CustomizedModal';
 
 // utils
 import { encryptObject, decryptObject, generateHash } from '@src/crypto/Utils';
@@ -32,6 +40,7 @@ const writeHashedSetup = async ({ hashBuffer, encryptedFormValues }) => {
   // console.log('writeHashedSetup - get data: ', data);
 };
 
+// NOTE: following is in prod
 export const retrieveHashedSetup = async ({
   hashedSetupCode,
   resetForm,
@@ -87,7 +96,7 @@ export const retrieveHashedSetup = async ({
     });
 };
 
-// export const retrieveSetupFromDatabase = async ({
+// export const retrieveHashedSetup = async ({
 //   hashedSetupCode,
 //   resetForm,
 // }) => {
@@ -121,13 +130,30 @@ export const retrieveHashedSetup = async ({
 //   resetForm(decryptedSetupCode);
 // };
 
-const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
+const SetupCodeInputModal = ({ inputSetupCode, setInputSetupCode }) => {
+  return (
+    <input
+      type="text"
+      placeholder="输入分享码"
+      value={inputSetupCode}
+      onChange={(e) => setInputSetupCode(e.target.value)}
+    />
+  );
+};
+
+const FormationEncryptedCode = ({
+  encryptedSetupCode,
+  setEncryptedSetupCode,
+}) => {
   const { watchForm } = useFormation();
+
+  const [inputSetupCode, setInputSetupCode] = useState('');
+  const { open, openModal, closeModal } = useCustomizedModal();
 
   // we need to hash the setupCode
 
   // Function to copy the URL to the clipboard
-  const generateShareLink = async () => {
+  const generateShareCode = async () => {
     // encrypt formState
     const formValues = watchForm();
 
@@ -137,6 +163,7 @@ const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
     const hashBuffer = await generateHash(encryptedFormValues);
 
     //  update the database with the hashed setup code
+    // NOTE: this is in production
     await writeHashedSetup({ hashBuffer, encryptedFormValues });
 
     // await sql`INSERT INTO hashed_formation_setup (hashed_setup_code, encrypted_setup_code)
@@ -144,57 +171,94 @@ const FormationEncryptUrl = ({ baseURL, encryptedUrl, setEncryptedUrl }) => {
     //             ON CONFLICT (hashed_setup_code) DO UPDATE
     //             SET encrypted_setup_code=${encryptedFormValues}`;
 
-    const completeUrl = baseURL + `?setupcode=${hashBuffer}`;
-
+    // const completeUrl = baseURL + `?setupcode=${hashBuffer}`;
     navigator.clipboard
-      .writeText(completeUrl)
+      .writeText(hashBuffer)
       .then(() => {
-        setEncryptedUrl(completeUrl);
-        alert('生成的链接已保存在剪切板，如需保留请复制下来以供以后使用');
+        setEncryptedSetupCode(hashBuffer);
+        alert('生成的分享码已保存在剪切板，如需保留请复制下来以供以后使用');
       })
       .catch((error) => {
-        console.error('链接生成失败', error);
+        console.error('分享码生成失败', error);
       });
   };
 
+  const onOpenModal = () => {
+    // reset the encrypted code
+    setEncryptedSetupCode('');
+    openModal();
+  };
+  const onSubmitModal = () => {
+    console.log('onSubmitModal', inputSetupCode);
+    setEncryptedSetupCode(inputSetupCode);
+    closeModal();
+    setInputSetupCode('');
+  };
+  const onCloseModal = () => {
+    setInputSetupCode('');
+    closeModal();
+  };
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
-      <button
-        type="button"
-        style={{
-          fontSize: '16px',
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: '#007bff',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          padding: '10px',
-        }}
-        onClick={generateShareLink}
-      >
-        生成分享链接
-      </button>
-      <p
-        style={{
-          width: '80%',
-          fontSize: '16px',
-          wordBreak: 'break-all',
-          padding: '10px', // Add padding for height
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          marginRight: '10px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {encryptedUrl}
-      </p>
-    </div>
+    <>
+      {open && (
+        <CustomizedModal
+          title={'请输入分享码'}
+          onSubmit={onSubmitModal}
+          closeModal={onCloseModal}
+        >
+          <SetupCodeInputModal
+            inputSetupCode={inputSetupCode}
+            setInputSetupCode={setInputSetupCode}
+          />
+        </CustomizedModal>
+      )}
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
+        <button
+          type="button"
+          style={{
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: '#007bff',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            padding: '10px',
+          }}
+          onClick={generateShareCode}
+        >
+          生成分享码
+        </button>
+        <button
+          type="button"
+          style={{
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: '#007bff',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            padding: '10px',
+          }}
+          onClick={onOpenModal}
+        >
+          读取分享码
+        </button>
+        <input
+          type="text"
+          readOnly
+          value={encryptedSetupCode || ''}
+          placeholder={'分享码'}
+          // onChange={handleInputChange}
+          className="formation_setup-copy-only-field"
+        />
+      </div>
+    </>
   );
 };
 
-export default FormationEncryptUrl;
+export default FormationEncryptedCode;

@@ -41,6 +41,7 @@ export const cleanHero = ({ heroFieldName, setFormValue }) => {
   // reset the max formation lvl selected for this hero in form
   setFormValue(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.FORMATION_MAX_LVL}`, 1);
   setFormValue(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.NAME}`, '');
+  setFormValue(`${heroFieldName}.${FORM_KEYS.TEAM.HERO.MAJOR_OVERRIDE}`, false);
 
   const formationDefaultValues = [];
 

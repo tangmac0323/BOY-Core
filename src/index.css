@@ -32,6 +32,18 @@ code {
   border: 1px solid blue;
 }
 
+.boder-light-purple {
+  border: 1px solid purple;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+.border-radius-20 {
+  border-radius: 20px;
+}
+
 .padding-3 {
   padding: 3px;
 }
