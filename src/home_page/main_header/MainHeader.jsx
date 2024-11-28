@@ -5,7 +5,7 @@ import './MainHeader.css'; // Link to your header styling
 const MainHeader = () => {
   return (
     <header className="sticky-header">
-      <h1>Book Of Yog Core {`(BETA)`}</h1>
+      <h1>Book Of Yog Core {`(BETA version 0.5.0)`}</h1>
     </header>
   );
 };

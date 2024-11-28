@@ -50,7 +50,6 @@ const FormationProvider = ({ children }) => {
 
   // we only try to retrieve the decrypted setup code from the db on the very first render
   useEffect(() => {
-    console.log(`SHXT: ${encryptedSetupCode}`);
     // TODO: PRODUCTION: comment back once deployed
     if (encryptedSetupCode) {
       retrieveHashedSetup({
@@ -75,7 +74,6 @@ const FormationProvider = ({ children }) => {
   const watchedValues = watchForm();
 
   const handleFormChange = () => {
-    console.log('refresh cookie');
     Cookies.set(FORMATION_COOKIE_KEY, JSON.stringify(watchedValues), {
       expires: 7,
     }); // Expires in 7 days

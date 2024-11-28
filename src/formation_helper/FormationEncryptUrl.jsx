@@ -144,7 +144,6 @@ const FormationEncryptedCode = ({
   encryptedSetupCode,
   setEncryptedSetupCode,
 }) => {
-  console.log(`re-redner: ${encryptedSetupCode}`);
   const { watchForm } = useFormation();
 
   const [inputSetupCode, setInputSetupCode] = useState('');
@@ -184,7 +183,6 @@ const FormationEncryptedCode = ({
   };
 
   const onSubmitModal = () => {
-    // console.log(`WTF-3: ${e.target.value}`);
     setEncryptedSetupCode(inputSetupCode);
     closeModal();
     setInputSetupCode('');
@@ -193,7 +191,7 @@ const FormationEncryptedCode = ({
     setInputSetupCode('');
     closeModal();
   };
-  console.log(`HTF: ${open}`);
+
   return (
     <>
       {open && (

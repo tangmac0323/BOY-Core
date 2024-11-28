@@ -1,9 +1,24 @@
+import { useMemo } from 'react';
+
 // css
 import './RotatingButton.css';
 
-// constants
-import { FORM_KEYS, HERO_FORMATION_RULE } from '@src/formation_helper/Utils';
-import { RAW_FORMATION_CONFIG_KEYS } from '@src/raw_data/FormationData';
+// utils
+import useFormation from '@src/formation_helper/useFormation';
+import {
+  RAW_FORMATION_CONFIG_KEYS,
+  RAW_FORMATION_DATA,
+} from '@src/raw_data/FormationData';
+import {
+  RAW_HEROES_DATA,
+  RAW_HERO_CONFIG_KEYS,
+  RAW_HERO_FORMATION_CONFIG_KEYS,
+} from '@src/raw_data/HeroData';
+import {
+  FORM_KEYS,
+  HERO_FORMATION_RULE,
+  getMajorFormationOverrode,
+} from '@src/formation_helper/Utils';
 
 const TriggerableFormationTooltip = ({ triggerable }) => {
   return (
@@ -38,17 +53,21 @@ const isExceedMaxTotalFormationLvl = ({
   // calculate the total formation lvl for the field value
 };
 
+// TODO: refactor this to get information directly from the form values
 const RotatingButton = ({
   isMajor,
-  formationConfig,
+  formationID,
   count,
   minCount,
-  maxCount,
   maxTotalFormationLvl,
   curTotalFormationLvl,
   field,
   triggerable,
+  teamNumber,
+  heroIndex,
+  watchForm,
   disabled = false,
+
   // major formation is always triggerable
 }) => {
   // ------------------------- disable deremental -------------------------
@@ -66,6 +85,37 @@ const RotatingButton = ({
       }
     }
   }
+
+  // const trueFormationID = useMemo(() => {
+  //   if (isMajor) {
+  //     return getMajorFormationOverrode({
+  //       watchForm,
+  //       teamNumber,
+  //       heroIndex,
+  //     });
+  //   }
+
+  //   return formationID;
+  // }, [watchForm, teamNumber, heroIndex]);
+
+  const { formationConfig, maxCount } = useMemo(() => {
+    let trueFormationID = formationID;
+    if (isMajor) {
+      trueFormationID = getMajorFormationOverrode({
+        watchForm,
+        teamNumber,
+        heroIndex,
+      });
+    }
+
+    const tempConfig = RAW_FORMATION_DATA[trueFormationID];
+    let tempMaxCount = tempConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL];
+    if (!isMajor) {
+      tempMaxCount = HERO_FORMATION_RULE.MAX_EXTRA_LVL;
+    }
+
+    return { formationConfig: tempConfig, maxCount: tempMaxCount };
+  }, [watchForm, teamNumber, heroIndex, formationID]);
 
   // ------------------------- disable incremental -------------------------
   const disabledIncremental = isExceedMaxTotalFormationLvl({
@@ -101,7 +151,6 @@ const RotatingButton = ({
   const isHighlighted = field && field.value && field.value.level > 0;
 
   // we need to check if this formation ever got a chance to be acticated with this team setup
-
   return (
     <div
       className={`${isHighlighted ? 'boder-light-blue' : null} rotating-button`}

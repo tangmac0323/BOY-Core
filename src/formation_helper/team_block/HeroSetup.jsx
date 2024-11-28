@@ -20,6 +20,7 @@ import {
   getSelectedHeroes,
   getHeroFieldName,
   getTriggerableFormationIDsInTeam,
+  getMajorFormationOverrode,
 } from '@src/formation_helper/Utils';
 
 import {
@@ -82,7 +83,7 @@ const FormationLvlConfigurator = ({
   );
 
   // get the main formation for the hero
-  const { rawMajorForamtionConfig, extraFormationIDs } = useMemo(() => {
+  const { majorFormationID, extraFormationIDs } = useMemo(() => {
     if (!selectedHeroID) return {};
 
     // get the major formation config
@@ -91,13 +92,21 @@ const FormationLvlConfigurator = ({
         RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR
       ];
 
+    // we should use the overrode one if there is override
+    // const majorFormationID = getMajorFormationOverrode({
+    //   watchForm,
+    //   teamNumber,
+    //   heroIndex,
+    // });
+
     const tempExtraFormationIDs =
       RAW_HEROES_DATA[selectedHeroID][RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG][
         RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA
       ];
 
     return {
-      rawMajorForamtionConfig: RAW_FORMATION_DATA[majorFormationID],
+      majorFormationID,
+      // rawMajorForamtionConfig: RAW_FORMATION_DATA[majorFormationID],
       extraFormationIDs: tempExtraFormationIDs,
     };
   }, [selectedHeroID]);
@@ -113,7 +122,7 @@ const FormationLvlConfigurator = ({
   // get the current major foramtion lvl
   const curMajorFormationLvl = getFormationLvl({
     curFormationInfo,
-    formationID: rawMajorForamtionConfig?.[RAW_FORMATION_CONFIG_KEYS.UUID4],
+    formationID: majorFormationID,
   });
 
   // render the button based on FORMATIONS_RAW_DATA
@@ -126,19 +135,23 @@ const FormationLvlConfigurator = ({
           name={`${buttonKeyBase}[0]`}
           control={control}
           render={({ field }) =>
-            rawMajorForamtionConfig ? (
+            majorFormationID ? (
               <RotatingButton
                 isMajor={true}
                 maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                 curTotalFormationLvl={curTotalFormationLvl}
-                formationConfig={rawMajorForamtionConfig}
+                // formationConfig={rawMajorForamtionConfig}
+                formationID={majorFormationID}
                 count={curMajorFormationLvl}
                 minCount={HERO_FORMATION_RULE.MIN_MAJOR_LVL}
-                maxCount={
-                  rawMajorForamtionConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL]
-                }
+                // maxCount={
+                //   rawMajorForamtionConfig[RAW_FORMATION_CONFIG_KEYS.MAX_LVL]
+                // }
                 field={field}
                 triggerable={true}
+                teamNumber={teamNumber}
+                heroIndex={heroIndex}
+                watchForm={watchForm}
               />
             ) : null
           }
@@ -150,28 +163,29 @@ const FormationLvlConfigurator = ({
         extraFormationIDs
           ? extraFormationIDs.map((extraFormationID, index) => {
               const curFormationButtonKey = `${buttonKeyBase}[${index + 1}]`;
-              const curFormationConfig = RAW_FORMATION_DATA[extraFormationID];
+              // const curFormationConfig = RAW_FORMATION_DATA[extraFormationID];
               return (
                 <Controller
                   key={curFormationButtonKey}
                   name={curFormationButtonKey}
                   control={control}
-                  defaultValue={{
-                    [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
-                    [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 0,
-                  }}
+                  // defaultValue={{
+                  //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.NAME]: null,
+                  //   [FORM_KEYS.TEAM.HERO.FORMATION_CONFIG.LEVEL]: 0,
+                  // }}
                   render={({ field }) => (
                     <RotatingButton
                       isMajor={false}
                       maxTotalFormationLvl={heroSelectedMaxFormationLvl}
                       curTotalFormationLvl={curTotalFormationLvl}
-                      formationConfig={curFormationConfig}
+                      // formationConfig={curFormationConfig}
+                      formationID={extraFormationID}
                       count={getFormationLvl({
                         curFormationInfo,
                         formationID: extraFormationID,
                       })}
                       minCount={HERO_FORMATION_RULE.MIN_EXTRA_LVL}
-                      maxCount={HERO_FORMATION_RULE.MAX_EXTRA_LVL}
+                      // maxCount={HERO_FORMATION_RULE.MAX_EXTRA_LVL}
                       field={field}
                       // NOTE: we disable the extra formation if the major formation is less than 4
                       disabled={
@@ -181,6 +195,9 @@ const FormationLvlConfigurator = ({
                       triggerable={triggerableFormationIDs.includes(
                         extraFormationID
                       )}
+                      teamNumber={teamNumber}
+                      heroIndex={heroIndex}
+                      watchForm={watchForm}
                     />
                   )}
                 />
@@ -294,6 +311,7 @@ const HeroFormationMaxLvlSelector = ({
   );
 };
 
+// isSupport means if this hero is in support team not in formal team
 const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
   // get information from the provider
   const { control, HERO_UUID4_LIST, watchForm, setFormValue } = useFormation();
@@ -379,15 +397,19 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
         currentSelectedHeroID ? 'boder-light-purple' : ''
       }`}
     >
-      <HeroSelector
-        teamNumber={teamNumber}
-        heroIndex={heroIndex}
-        control={control}
-        handleHeroSelect={handleHeroSelect}
-        getValidHeroOptions={getValidHeroOptions}
-      />
       <div className="hero-basic team-block-item">
-        <MajorFormationOverride />
+        <HeroSelector
+          teamNumber={teamNumber}
+          heroIndex={heroIndex}
+          control={control}
+          handleHeroSelect={handleHeroSelect}
+          getValidHeroOptions={getValidHeroOptions}
+        />
+        <MajorFormationOverride
+          teamNumber={teamNumber}
+          heroIndex={heroIndex}
+          control={control}
+        />
         {/* Slider to set the number of extra dropdowns */}
         <HeroFormationMaxLvlSelector
           teamNumber={teamNumber}

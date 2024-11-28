@@ -1,4 +1,5 @@
 export const HEROES_NAME_UUID4_MAPPING = {
+  '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc': '不熄曜日-朱丽叶',
   'd8fd618b-12a7-4f30-a10e-2047fe0bee9c': '雅波娜-雷鸣掠空',
   'c25d8615-e930-4f1a-9199-89e0ab4013b2': '切夏娅-秽翼魔女',
   '99c0b5b9-a14e-48c9-994c-b7e719314703': '塞尔希娅-圣翼降临',
@@ -52,6 +53,7 @@ export const HEROES_NAME_UUID4_MAPPING = {
 };
 
 export const HEROES_NAME_UUID4_REVERSE_MAPPING = {
+  '不熄曜日-朱丽叶': '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc',
   '雅波娜-雷鸣掠空': 'd8fd618b-12a7-4f30-a10e-2047fe0bee9c',
   '切夏娅-秽翼魔女': 'c25d8615-e930-4f1a-9199-89e0ab4013b2',
   '塞尔希娅-圣翼降临': '99c0b5b9-a14e-48c9-994c-b7e719314703',
@@ -119,6 +121,26 @@ export const RAW_HERO_FORMATION_CONFIG_KEYS = {
 };
 
 export const RAW_HEROES_DATA = {
+  '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc': {
+    [RAW_HERO_CONFIG_KEYS.TYPE]: '1550231a-7ab7-4d66-a664-1eb44774da2c',
+    [RAW_HERO_CONFIG_KEYS.TITLE]: '不熄曜日',
+    [RAW_HERO_CONFIG_KEYS.NAME]: '朱丽叶',
+    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
+    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
+        '1550231a-7ab7-4d66-a664-1eb44774da2c',
+      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
+        '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5',
+        '3a4e010c-dd87-40fe-b51e-ac22b071124c',
+        '8eb7ab2a-4fb6-47b9-9944-5092bde976a5',
+        'aac2a900-5097-4c50-ad0b-427089f53e2a',
+        '9ecf9e36-9a3c-45d9-b284-8956c27af301',
+        'f1afd4e4-362a-469b-bccf-863e76797007',
+        'ca820d71-cb69-4f89-b043-d58bb757fc39',
+      ],
+    },
+  },
   'd8fd618b-12a7-4f30-a10e-2047fe0bee9c': {
     [RAW_HERO_CONFIG_KEYS.TYPE]: '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
     [RAW_HERO_CONFIG_KEYS.TITLE]: '雷鸣掠空',
