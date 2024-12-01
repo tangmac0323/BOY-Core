@@ -16,6 +16,7 @@ const FormationSetup = () => {
       <TeamBlock teamNumber="0" />
       <TeamBlock teamNumber="1" />
       <TeamBlock teamNumber="2" />
+      <TeamBlock teamNumber="3" />
     </div>
   );
 };
