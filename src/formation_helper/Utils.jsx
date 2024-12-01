@@ -45,6 +45,10 @@ export const TEAM_HERO_LIMIT = {
     MAIN: 4,
     SUPPORT: 2,
   },
+  3: {
+    MAIN: 4,
+    SUPPORT: 2,
+  },
 };
 
 export const RAW_DATA_HERO_CONFIG_KEYS = {
