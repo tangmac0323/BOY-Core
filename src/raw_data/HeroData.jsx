@@ -172,7 +172,7 @@ export const RAW_HEROES_DATA = {
         '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
       [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
         '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586',
-        'd44097e3-b513-4fdc-8c24-4b1977da07af',
+        '0156538f-7a4d-4dad-b10b-ade160100753',
         '92eec46c-563f-4762-9e05-d3eb59186b7d',
         '17cdfdc0-84f3-4c83-8b76-9a933151b414',
         'aac2a900-5097-4c50-ad0b-427089f53e2a',
