@@ -432,7 +432,7 @@ const hunter_effect_description_handler = (level) => {
   // ------------------- High lvl ----------------------
   if (level >= 8) {
     switch (level) {
-      case 5:
+      case 8:
         descriptions.push(
           <li>
             所有黑卫的攻击速度提升
