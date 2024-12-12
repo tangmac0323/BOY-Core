@@ -178,6 +178,7 @@ export const RAW_HEROES_DATA = {
         'aac2a900-5097-4c50-ad0b-427089f53e2a',
         '834597b0-22e7-478b-960d-3b1f0026fcab',
         '0e817b77-0591-4e44-9cf5-8918fe31ab43',
+        'd44097e3-b513-4fdc-8c24-4b1977da07af',
       ],
     },
   },
