@@ -377,18 +377,12 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
           return true;
         }
       });
-      //     heroID === currentSelectedHeroID || !selectedHeroesIDs.includes(heroID) || (selectedHeroesIDs.includes(heroID) && RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.RARITY] != 'SP' ) || (heroID === currentSelectedHeroID && RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.RARITY] != 'SP' )
-      // );
 
       // we dont allow user to select the same hero more than twice in the support team
       // also dont allow user to select SP hero which already in Battle team
       for (const heroInfo of selectedSupportHeroeesCurTeam) {
         valieOptions = valieOptions.filter((heroID) => {
-          if (RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.RARITY] == 'SP') {
-            return heroID !== heroInfo.ID || heroID === currentSelectedHeroID;
-          } else {
-            return heroID !== heroInfo.ID;
-          }
+          return heroID !== heroInfo.ID || heroID === currentSelectedHeroID;
         });
       }
 
