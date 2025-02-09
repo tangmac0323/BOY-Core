@@ -19,6 +19,9 @@ export const HEROES_NAME_UUID4_MAPPING = {
   'bf2be13a-f78f-46a1-877d-6e674455305a': '冥音-自由炮手',
   'd1285d74-d3e4-448c-b68e-0fbe9ffe598d': '可可米-迷迭妖精',
   'b05dc1ee-792e-4e56-9957-1af6bd8b0135': '花信风-拂光破雪',
+  '15c85196-b5ab-49dd-95fa-3c9451366463': '若英-玉尘仙灵',
+
+  // -------------------------- SS ------------------------
   '8b118674-8699-49ee-b9e8-82c993730ec3': '诺黛尔-御刃神锋',
   '3f840045-b068-48c9-96bc-8c51d52b160c': '幻刃-审判使者',
   'f9312195-a80b-4b7b-8c98-6577f3de1f5a': '凌-百花旅者',
@@ -28,6 +31,8 @@ export const HEROES_NAME_UUID4_MAPPING = {
   'a0844d81-8dc7-4bc9-920b-2c54123d60ae': '狩樱-妖刀',
   'ccb9608f-34e1-4e05-9e4f-d8b625b299a2': '安黛莉-纯白之羽',
   '9f65c94d-1918-43cb-904f-1f1bf3f49f03': '乌西洛蒂-冰封之心',
+
+  // -------------------------- S ------------------------
   '7e886f4d-3913-4c2a-b51a-d34bc8d66db8': '芭芭拉-秘境仙灵',
   'debd514d-0f25-4b90-b844-4a0871d54d67': '布拉欣多-灰袍法师',
   'a0d4c403-4267-4729-b283-cf3c552281be': '安丽诺-深庭玫瑰',
@@ -74,6 +79,9 @@ export const HEROES_NAME_UUID4_REVERSE_MAPPING = {
   '冥音-自由炮手': 'bf2be13a-f78f-46a1-877d-6e674455305a',
   '可可米-迷迭妖精': 'd1285d74-d3e4-448c-b68e-0fbe9ffe598d',
   '花信风-拂光破雪': 'b05dc1ee-792e-4e56-9957-1af6bd8b0135',
+  '若英-玉尘仙灵': '15c85196-b5ab-49dd-95fa-3c9451366463',
+
+  // ------------------------ SS -------------------
   '诺黛尔-御刃神锋': '8b118674-8699-49ee-b9e8-82c993730ec3',
   '幻刃-审判使者': '3f840045-b068-48c9-96bc-8c51d52b160c',
   '凌-百花旅者': 'f9312195-a80b-4b7b-8c98-6577f3de1f5a',
@@ -83,6 +91,8 @@ export const HEROES_NAME_UUID4_REVERSE_MAPPING = {
   '狩樱-妖刀': 'a0844d81-8dc7-4bc9-920b-2c54123d60ae',
   '安黛莉-纯白之羽': 'ccb9608f-34e1-4e05-9e4f-d8b625b299a2',
   '乌西洛蒂-冰封之心': '9f65c94d-1918-43cb-904f-1f1bf3f49f03',
+
+  // ------------------------ S -------------------
   '芭芭拉-秘境仙灵': '7e886f4d-3913-4c2a-b51a-d34bc8d66db8',
   '布拉欣多-灰袍法师': 'debd514d-0f25-4b90-b844-4a0871d54d67',
   '安丽诺-深庭玫瑰': 'a0d4c403-4267-4729-b283-cf3c552281be',
@@ -529,7 +539,27 @@ export const RAW_HEROES_DATA = {
       ],
     },
   },
-
+  '15c85196-b5ab-49dd-95fa-3c9451366463': {
+    [RAW_HERO_CONFIG_KEYS.TYPE]: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+    [RAW_HERO_CONFIG_KEYS.TITLE]: '玉尘仙灵',
+    [RAW_HERO_CONFIG_KEYS.NAME]: '若英',
+    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
+    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
+        '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
+        '3a4e010c-dd87-40fe-b51e-ac22b071124c',
+        'd44097e3-b513-4fdc-8c24-4b1977da07af',
+        '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1',
+        '17cdfdc0-84f3-4c83-8b76-9a933151b414',
+        '9a6155f8-b843-4f22-9e29-1f35973db970',
+        'aac2a900-5097-4c50-ad0b-427089f53e2a',
+        '834597b0-22e7-478b-960d-3b1f0026fcab',
+      ],
+    },
+  },
+  // ------------------------------------------ SS ----------------------------------------------------------------
   '8b118674-8699-49ee-b9e8-82c993730ec3': {
     [RAW_HERO_CONFIG_KEYS.TYPE]: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
     [RAW_HERO_CONFIG_KEYS.TITLE]: '御刃神锋',
