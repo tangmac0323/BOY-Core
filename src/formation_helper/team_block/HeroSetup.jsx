@@ -360,23 +360,34 @@ const HeroSetup = ({ teamNumber, heroIndex, isSupport }) => {
 
   //   this function will generate the valid hero options for each team
   const getValidHeroOptions = () => {
-    // watchedValues;
-    // get the non empty values from the form state
-    let valieOptions = HERO_UUID4_LIST.filter(
-      (heroID) =>
-        heroID === currentSelectedHeroID || !selectedHeroesIDs.includes(heroID)
-    );
+    if (!isSupport) {
+      return HERO_UUID4_LIST.filter(
+        (heroID) =>
+          heroID === currentSelectedHeroID ||
+          !selectedHeroesIDs.includes(heroID)
+      );
+    } else {
+      let valieOptions = HERO_UUID4_LIST.filter((heroID) => {
+        if (RAW_HEROES_DATA[heroID][RAW_HERO_CONFIG_KEYS.RARITY] == 'SP') {
+          return (
+            heroID === currentSelectedHeroID ||
+            !selectedHeroesIDs.includes(heroID)
+          );
+        } else {
+          return true;
+        }
+      });
 
-    if (isSupport) {
-      // if this is a support hero selector, we also dont allow select the hero which is in the support position in the same team
+      // we dont allow user to select the same hero more than twice in the support team
+      // also dont allow user to select SP hero which already in Battle team
       for (const heroInfo of selectedSupportHeroeesCurTeam) {
-        valieOptions = valieOptions.filter(
-          (heroID) => heroID !== heroInfo.ID || heroID === currentSelectedHeroID
-        );
+        valieOptions = valieOptions.filter((heroID) => {
+          return heroID !== heroInfo.ID || heroID === currentSelectedHeroID;
+        });
       }
-    }
 
-    return valieOptions;
+      return valieOptions;
+    }
   };
 
   // Function to handle dropdown selection

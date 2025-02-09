@@ -37,6 +37,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Update Note
 
+v 0.6.1
+
+- fix bug when unrestrict the limitation of None-SP hero in support team
+
+v 0.6.0
+
+- add new hero 若英
+- allow same heroes other than SP level to be replaced in both team and support position
+
 v 0.5.0
 
 - add new hero 朱丽叶
