@@ -1,4 +1,7 @@
 export const HEROES_NAME_UUID4_MAPPING = {
+  '457973a3-4111-413d-a36a-e6d520f3881d': '莎莎萝-绮夜梦影',
+  'b05dc1ee-792e-4e56-9957-1af6bd8b0135': '花信风-拂光破雪',
+  '15c85196-b5ab-49dd-95fa-3c9451366463': '若英-玉尘仙灵',
   '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc': '不熄曜日-朱丽叶',
   'd8fd618b-12a7-4f30-a10e-2047fe0bee9c': '雅波娜-雷鸣掠空',
   'c25d8615-e930-4f1a-9199-89e0ab4013b2': '切夏娅-秽翼魔女',
@@ -18,8 +21,6 @@ export const HEROES_NAME_UUID4_MAPPING = {
   'c8ecb931-1723-48c4-ba99-18351ae307fc': '维娜-传承之龙',
   'bf2be13a-f78f-46a1-877d-6e674455305a': '冥音-自由炮手',
   'd1285d74-d3e4-448c-b68e-0fbe9ffe598d': '可可米-迷迭妖精',
-  'b05dc1ee-792e-4e56-9957-1af6bd8b0135': '花信风-拂光破雪',
-  '15c85196-b5ab-49dd-95fa-3c9451366463': '若英-玉尘仙灵',
 
   // -------------------------- SS ------------------------
   '8b118674-8699-49ee-b9e8-82c993730ec3': '诺黛尔-御刃神锋',
@@ -59,6 +60,9 @@ export const HEROES_NAME_UUID4_MAPPING = {
 };
 
 export const HEROES_NAME_UUID4_REVERSE_MAPPING = {
+  '莎莎萝-绮夜梦影': '457973a3-4111-413d-a36a-e6d520f3881d',
+  '花信风-拂光破雪': 'b05dc1ee-792e-4e56-9957-1af6bd8b0135',
+  '若英-玉尘仙灵': '15c85196-b5ab-49dd-95fa-3c9451366463',
   '不熄曜日-朱丽叶': '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc',
   '雅波娜-雷鸣掠空': 'd8fd618b-12a7-4f30-a10e-2047fe0bee9c',
   '切夏娅-秽翼魔女': 'c25d8615-e930-4f1a-9199-89e0ab4013b2',
@@ -78,8 +82,6 @@ export const HEROES_NAME_UUID4_REVERSE_MAPPING = {
   '维娜-传承之龙': 'c8ecb931-1723-48c4-ba99-18351ae307fc',
   '冥音-自由炮手': 'bf2be13a-f78f-46a1-877d-6e674455305a',
   '可可米-迷迭妖精': 'd1285d74-d3e4-448c-b68e-0fbe9ffe598d',
-  '花信风-拂光破雪': 'b05dc1ee-792e-4e56-9957-1af6bd8b0135',
-  '若英-玉尘仙灵': '15c85196-b5ab-49dd-95fa-3c9451366463',
 
   // ------------------------ SS -------------------
   '诺黛尔-御刃神锋': '8b118674-8699-49ee-b9e8-82c993730ec3',
@@ -133,6 +135,67 @@ export const RAW_HERO_FORMATION_CONFIG_KEYS = {
 };
 
 export const RAW_HEROES_DATA = {
+  '457973a3-4111-413d-a36a-e6d520f3881d': {
+    [RAW_HERO_CONFIG_KEYS.TYPE]: '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
+    [RAW_HERO_CONFIG_KEYS.TITLE]: '绮夜梦影',
+    [RAW_HERO_CONFIG_KEYS.NAME]: '莎莎萝',
+    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
+    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
+        '2745a25d-a88a-4ad5-8bcc-53754ff8c842',
+      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
+        '22767987-a7f7-478d-a886-600680371a29',
+        '7ce1586c-2934-4817-9e49-3438c5176dca',
+        'd44097e3-b513-4fdc-8c24-4b1977da07af',
+        '834597b0-22e7-478b-960d-3b1f0026fcab',
+        '8759154e-1d77-42e6-9117-6ef621ce0259',
+        'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
+        'ca820d71-cb69-4f89-b043-d58bb757fc39',
+      ],
+    },
+  },
+  'b05dc1ee-792e-4e56-9957-1af6bd8b0135': {
+    [RAW_HERO_CONFIG_KEYS.TYPE]: 'c47446e8-6e8c-48be-89ba-a235aed8aa70',
+    [RAW_HERO_CONFIG_KEYS.TITLE]: '拂光破雪',
+    [RAW_HERO_CONFIG_KEYS.NAME]: '花信风',
+    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
+    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
+        'c47446e8-6e8c-48be-89ba-a235aed8aa70',
+      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
+        'a5d2555f-384b-45d9-9641-2b58ad1ba704',
+        '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586',
+        '22767987-a7f7-478d-a886-600680371a29',
+        'df287f43-de18-479c-8347-acd4568ff1fa',
+        '0e817b77-0591-4e44-9cf5-8918fe31ab43',
+        'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
+        'ca820d71-cb69-4f89-b043-d58bb757fc39',
+        '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5',
+      ],
+    },
+  },
+  '15c85196-b5ab-49dd-95fa-3c9451366463': {
+    [RAW_HERO_CONFIG_KEYS.TYPE]: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+    [RAW_HERO_CONFIG_KEYS.TITLE]: '玉尘仙灵',
+    [RAW_HERO_CONFIG_KEYS.NAME]: '若英',
+    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
+    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
+      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
+        '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
+      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
+        '3a4e010c-dd87-40fe-b51e-ac22b071124c',
+        'd44097e3-b513-4fdc-8c24-4b1977da07af',
+        '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1',
+        '17cdfdc0-84f3-4c83-8b76-9a933151b414',
+        '9a6155f8-b843-4f22-9e29-1f35973db970',
+        'aac2a900-5097-4c50-ad0b-427089f53e2a',
+        '834597b0-22e7-478b-960d-3b1f0026fcab',
+      ],
+    },
+  },
   '2f9d3bb4-ff5b-4c7c-89ec-b4ecaa7410bc': {
     [RAW_HERO_CONFIG_KEYS.TYPE]: '1550231a-7ab7-4d66-a664-1eb44774da2c',
     [RAW_HERO_CONFIG_KEYS.TITLE]: '不熄曜日',
@@ -515,47 +578,6 @@ export const RAW_HEROES_DATA = {
         '8eb7ab2a-4fb6-47b9-9944-5092bde976a5',
         '8759154e-1d77-42e6-9117-6ef621ce0259',
         'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
-      ],
-    },
-  },
-  'b05dc1ee-792e-4e56-9957-1af6bd8b0135': {
-    [RAW_HERO_CONFIG_KEYS.TYPE]: 'c47446e8-6e8c-48be-89ba-a235aed8aa70',
-    [RAW_HERO_CONFIG_KEYS.TITLE]: '拂光破雪',
-    [RAW_HERO_CONFIG_KEYS.NAME]: '花信风',
-    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
-    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
-      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
-      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
-        'c47446e8-6e8c-48be-89ba-a235aed8aa70',
-      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
-        'a5d2555f-384b-45d9-9641-2b58ad1ba704',
-        '3ee0bf53-fa3a-4dbb-8e71-7335d5c67586',
-        '22767987-a7f7-478d-a886-600680371a29',
-        'df287f43-de18-479c-8347-acd4568ff1fa',
-        '0e817b77-0591-4e44-9cf5-8918fe31ab43',
-        'aa0aaa05-9e59-49bb-a5dd-7c4e6a9bf281',
-        'ca820d71-cb69-4f89-b043-d58bb757fc39',
-        '1825b0ff-7e1e-4b9c-a1e1-98d2c1fd8aa5',
-      ],
-    },
-  },
-  '15c85196-b5ab-49dd-95fa-3c9451366463': {
-    [RAW_HERO_CONFIG_KEYS.TYPE]: '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
-    [RAW_HERO_CONFIG_KEYS.TITLE]: '玉尘仙灵',
-    [RAW_HERO_CONFIG_KEYS.NAME]: '若英',
-    [RAW_HERO_CONFIG_KEYS.RARITY]: 'SP',
-    [RAW_HERO_CONFIG_KEYS.FORMATION_CONFIG]: {
-      [RAW_HERO_FORMATION_CONFIG_KEYS.MAX_LVL]: 10,
-      [RAW_HERO_FORMATION_CONFIG_KEYS.MAJOR]:
-        '3ec87c68-f5d7-47f4-836e-e5adcea0b310',
-      [RAW_HERO_FORMATION_CONFIG_KEYS.EXTRA]: [
-        '3a4e010c-dd87-40fe-b51e-ac22b071124c',
-        'd44097e3-b513-4fdc-8c24-4b1977da07af',
-        '9a1f8f3e-91f1-448e-8a81-30fa7f9f9ad1',
-        '17cdfdc0-84f3-4c83-8b76-9a933151b414',
-        '9a6155f8-b843-4f22-9e29-1f35973db970',
-        'aac2a900-5097-4c50-ad0b-427089f53e2a',
-        '834597b0-22e7-478b-960d-3b1f0026fcab',
       ],
     },
   },
